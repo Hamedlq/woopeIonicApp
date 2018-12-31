@@ -1,0 +1,42 @@
+<ion-header class="header">
+  <ion-navbar text-center>
+    <ion-title>
+      ورود
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="background:url(assets/img/ZWhHOEDmTTehZHGMZQzT_login.png) no-repeat center;background-size:cover;"
+  id="page10">
+  <div class="spacer" style="height:70px;" id="register-spacer8"></div>
+  <img src="assets/img/logo_white.png" style="display:block;width:150px;height:auto;margin-left:auto;margin-right:auto;" />
+  <div class="spacer" style="height:50px;" id="register-spacer9"></div>
+  <form id="register-form" style="display:block;width:200px;height:auto;margin-left:auto;margin-right:auto;">
+
+    <div id="username">
+      <ion-item username>
+        <ion-label></ion-label>
+        <ion-input text-center type="text" placeholder="نام کاربری/شماره موبایل" name="username" [(ngModel)]="username"></ion-input>
+      </ion-item>
+
+
+    </div>
+
+    <div class="spacer" style="height:20px;" id="register-spacer12"></div>
+    <div id="password">
+      <ion-item id="register-input4">
+        <ion-label></ion-label>
+        <ion-input text-center type="password" placeholder="رمز عبور" name="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </div>
+    <div class="spacer" style="height:20px;" id="register-spacer9"></div>
+
+  </form>
+  <div id="login-markdown2" style="text-align:center;" class="show-list-numbers-and-dots">
+    <p style="margin-top:0px;color:#FFFFFF;font-size:14px;">
+      رمز عبور خود را فراموش کرده‌اید
+    </p>
+  </div>
+  <div class="spacer" style="height:50px;" id="register-spacer11"></div>
+  <img src="assets/img/n0Y0IldSR9exNFyyozZW_group1785.png" style="display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;" on-click="loginUser()"/>
+</ion-content>
