@@ -4,6 +4,8 @@ import { ToastController } from 'ionic-angular';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ResponseStatus } from '../Enum/enum';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
+import { serverUrl } from '../../Globals';
+
 
 @Component({
   selector: 'page-login',
@@ -16,11 +18,11 @@ export class LoginPage {
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController) {
   }
-  
+
 
   
   loginUser() {
-    let baseUrl = 'http://localhost:8090/';
+    let baseUrl = serverUrl;
     var body = new HttpParams()
       .append('username', this.username)
       .append('password', this.password)

@@ -6,6 +6,7 @@ import { ResponseStatus } from '../Enum/enum';
 import { ToastController } from 'ionic-angular';
 
 import 'rxjs/add/operator/map';
+import { serverUrl } from '../../Globals';
 
 @Component({
   selector: 'page-register',
@@ -20,9 +21,8 @@ export class RegisterPage {
   constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController) {
 
   }
-
   registerUser() {
-    let baseUrl = 'http://localhost:8090/';
+    let baseUrl = serverUrl;
     var body = new HttpParams()
       .append('username', this.username)
       .append('password', this.password)

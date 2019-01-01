@@ -6,6 +6,7 @@ import { LoginPage } from '../login/login';
 
 
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
+import { serverUrl } from '../../Globals';
 
 @Component({
   selector: 'page-splash',
@@ -19,7 +20,7 @@ export class SplashPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(private http: HttpClient, public navCtrl: NavController) {
-    let url= 'http://localhost:8090/';
+    let url= serverUrl;
     //this.url ;
     console.log(url);
     clearInterval(this.timer);
