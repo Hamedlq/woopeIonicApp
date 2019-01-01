@@ -15,10 +15,11 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let accessToken = localStorage.getItem("access_token");
+
         if (accessToken) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: 'Bearer ${accessToken}'
+                    Authorization: 'Bearer '+accessToken
                 }
             });
         }

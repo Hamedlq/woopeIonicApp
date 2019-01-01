@@ -19,13 +19,13 @@ export class SplashPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(private http: HttpClient, public navCtrl: NavController) {
-    let url= 'http://localhost:8090/';
+    let baseUrl= 'http://localhost:8090/';
     //this.url ;
-    console.log(url);
+    console.log(baseUrl);
     clearInterval(this.timer);
     this.timer = setTimeout(function () {
       if (true) {
-        http.post(url+'api/Profile/GetProfile',{})
+        http.post(baseUrl+'api/Profile/GetProfile',{})
         .subscribe(data1 => {
             navCtrl.setRoot(TabsControllerPage);
         });

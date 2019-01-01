@@ -1,22 +1,30 @@
-<ion-header>
-  <ion-navbar>
+<ion-header class="header">
+  <ion-navbar text-center>
     <ion-title>
-      SmsValidation
+ثبت نام
     </ion-title>
+
   </ion-navbar>
 </ion-header>
-<ion-content padding style="background:url(assets/img/qA5ubynnQru2jvzc8zh1_login.png) no-repeat center;background-size:cover;" id="page12">
-  <div class="spacer" style="height:200px;" id="smsValidation-spacer10"></div>
+<ion-content padding style="background:url(assets/img/ZWhHOEDmTTehZHGMZQzT_login.png) no-repeat center;background-size:cover;">
+  <div class="spacer" style="height:70px;" id="register-spacer8"></div>
+  <img src="assets/img/logo_white.png" style="display:block;width:150px;height:auto;margin-left:auto;margin-right:auto;" />
+  <div class="spacer" style="height:100px;" id="smsValidation-spacer10"></div>
   <div id="smsValidation-markdown3" style="text-align:center;" class="show-list-numbers-and-dots">
     <p style="color:#FFFFFF;font-size:14px;">
       لطفا کد تایید پیامک شده را وارد کنید
     </p>
   </div>
-  <form id="smsValidation-form3">
-    <ion-item id="smsValidation-input7">
-      <ion-label></ion-label>
-      <ion-input type="number" placeholder="کد تایید"></ion-input>
-    </ion-item>
+  <form id="sms-form" style="display:block;width:200px;height:auto;margin-left:auto;margin-right:auto;">
+    <div class="spacer" style="height:20px;" id="register-spacer12"></div>
+    <div id="code">
+      <ion-item id="register-input4">
+        <ion-label></ion-label>
+        <ion-input text-center type="text" placeholder="کد تایید" name="code" [(ngModel)]="code"></ion-input>
+      </ion-item>
+    </div>
+    <div class="spacer" style="height:20px;" id="register-spacer9"></div>
   </form>
-  <img src="assets/img/8K0V1WMkR6qvpnpItW83_accept_button.png" style="display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;" />
+  <div class="spacer" style="height:50px;" id="register-spacer11"></div>
+  <img src="assets/img/accept_button.png" style="display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;" on-click="confirmCode()" />
 </ion-content>
