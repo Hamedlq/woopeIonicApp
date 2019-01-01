@@ -35,7 +35,7 @@ export class LoginPage {
         console.log(data["access_token"]);
         if (data["access_token"]) {
           localStorage.setItem("access_token",data["access_token"])
-            this.navCtrl.setRoot(TabsControllerPage);
+            this.navCtrl.push(SmsValidationPage,{mobile:this.username});
         } else {
           let toast = this.toastCtrl.create({
             message: "نام کاربری یا رمز عبور نامعتبر!",
