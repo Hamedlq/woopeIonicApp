@@ -5,6 +5,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ResponseStatus } from '../Enum/enum';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
+import { SmsValidationPage } from '../sms-validation/sms-validation';
 
 
 @Component({

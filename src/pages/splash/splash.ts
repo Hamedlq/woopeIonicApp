@@ -22,11 +22,11 @@ export class SplashPage {
   constructor(private http: HttpClient, public navCtrl: NavController) {
     let url= serverUrl;
     //this.url ;
-    console.log(baseUrl);
+    console.log(url);
     clearInterval(this.timer);
     this.timer = setTimeout(function () {
       if (true) {
-        http.post(baseUrl+'api/Profile/GetProfile',{})
+        http.post(url+'api/Profile/GetProfile',{})
         .subscribe(data1 => {
             navCtrl.setRoot(TabsControllerPage);
         });
