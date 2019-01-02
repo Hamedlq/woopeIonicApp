@@ -20,7 +20,7 @@ export class SplashPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(private http: HttpClient, public navCtrl: NavController) {
-    let url= serverUrl;
+    let baseUrl= serverUrl;
     //this.url ;
     console.log(url);
     clearInterval(this.timer);
