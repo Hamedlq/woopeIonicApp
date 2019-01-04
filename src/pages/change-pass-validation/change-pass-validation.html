@@ -1,0 +1,30 @@
+<ion-header class="header">
+  <ion-navbar text-center>
+    <ion-title>
+تغییر رمز عبور
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="background:url(assets/img/ZWhHOEDmTTehZHGMZQzT_login.png) no-repeat center;background-size:cover;">
+  <div class="spacer" style="height:70px;" id="register-spacer8"></div>
+  <img src="assets/img/logo_white.png" style="display:block;width:150px;height:auto;margin-left:auto;margin-right:auto;" />
+  <div class="spacer" style="height:100px;" id="smsValidation-spacer10"></div>
+  <div id="smsValidation-markdown3" style="text-align:center;" class="show-list-numbers-and-dots">
+    <p style="color:#FFFFFF;font-size:14px;">
+      لطفا رمز عبور جدید را وارد کنید
+    </p>
+  </div>
+  <form id="sms-form" style="display:block;width:200px;height:auto;margin-left:auto;margin-right:auto;">
+    <div class="spacer" style="height:20px;" id="register-spacer12"></div>
+    <div id="password">
+      <ion-item id="register-input4">
+        <ion-label></ion-label>
+        <ion-input text-center type="text" placeholder="رمز عبور جدید" name="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </div>
+    <div class="spacer" style="height:20px;" id="register-spacer9"></div>
+  </form>
+  <div class="spacer" style="height:50px;" id="register-spacer11"></div>
+  <img src="assets/img/accept_button.png" style="display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;" on-click="confirmCode()" />
+</ion-content>

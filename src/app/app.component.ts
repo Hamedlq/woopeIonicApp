@@ -28,6 +28,10 @@ export class MyApp {
         this.rootPage = SplashSelectPage;
       });
 
+      events.subscribe('splash:refresh', () => {
+        this.rootPage = SplashSelectPage;
+        this.rootPage = SplashPage;
+      });
 
       events.subscribe('user:login', (token) => {
         localStorage.setItem('token', token);

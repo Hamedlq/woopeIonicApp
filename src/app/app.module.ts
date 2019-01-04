@@ -25,6 +25,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
 import { ExtendedHttpService } from '../providers/authInterceptor.ts';
 import { AuthInterceptor } from '../providers/authInterceptor';
+import { ForgetPassSmsValidationPage } from '../pages/forgetpass-sms-validation/forgetpass-sms-validation';
+import { changePassValidationPage } from '../pages/change-pass-validation/change-pass-validation';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { AuthInterceptor } from '../providers/authInterceptor';
     LoginPage,
     RegisterPage,
     SmsValidationPage,
+    ForgetPassSmsValidationPage,
+    changePassValidationPage,
     ChangePassPage,
     GiftPage,
     PayPage
@@ -64,6 +68,8 @@ import { AuthInterceptor } from '../providers/authInterceptor';
     LoginPage,
     RegisterPage,
     SmsValidationPage,
+    ForgetPassSmsValidationPage,
+    changePassValidationPage,
     ChangePassPage,
     GiftPage,
     PayPage

@@ -1,4 +1,4 @@
-page-change-pass {
+page-change-pass-validation {
     ion-header {
         .toolbar {
           position: absolute;
@@ -26,12 +26,12 @@ page-change-pass {
         padding: 0px !important;
         color: white !important;
       }
-      #mobile{
-        background-image: url('../../assets/img/phonenumber_background.png') !important;
+ 
+      #password{
+        background-image: url('../../assets/img/password_background.png') !important;
         background-repeat: no-repeat !important;
         background-size: 200px 40px !important;
     } 
-    
 
 .centering{
   text-align:center;
