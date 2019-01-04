@@ -54,7 +54,7 @@
 
 /* 1# Global Settings Font Style
 ================================================*/
-$font-name: 'Roboto', sans-serif;
+$font-name:'IRANSans', 'Roboto', sans-serif;
 $font-weight-value: 300 !default;
 
 .bar.bar-stable .title,
@@ -789,6 +789,9 @@ $text-input-md-highlight-color-valid: transparent;
 $text-input-md-show-invalid-highlight: transparent;
 $text-input-md-highlight-color: transparent;
 $text-input-md-show-valid-highlight: transparent;
-ion-header ion-icon.back-button-icon.icon {
-  color: map-get($colors, light);
+h1, h2, h3, h4, h5, h6,input, textarea {
+	font-family: IRANSans !important;
+}
+h1 {
+	font-weight: bold;
 }
