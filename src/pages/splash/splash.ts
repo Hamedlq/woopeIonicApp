@@ -7,6 +7,7 @@ import { LoginPage } from '../login/login';
 
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
+import { global } from '@angular/core/src/util';
 
 @Component({
   selector: 'page-splash',
@@ -22,11 +23,11 @@ export class SplashPage {
   constructor(private http: HttpClient, public navCtrl: NavController) {
     let baseUrl= serverUrl;
     //this.url ;
-    console.log(url);
+    // console.log(global.serverUrl);
     clearInterval(this.timer);
     this.timer = setTimeout(function () {
       if (true) {
-        http.post(url+'api/Profile/GetProfile',{})
+        http.post(baseUrl+'api/Profile/GetProfile',{})
         .subscribe(data1 => {
             navCtrl.setRoot(TabsControllerPage);
         });
