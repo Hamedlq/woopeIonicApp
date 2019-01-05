@@ -1,0 +1,39 @@
+page-change-pass-validation {
+    ion-header {
+        .toolbar {
+          position: absolute;
+      
+          .toolbar-background {
+            background: transparent;
+          }
+          .toolbar-title {
+            color: white;
+          }
+        }
+      }
+    .header{
+        background: #FF000000;
+    }
+    .item-md.item-block .item-inner{
+      border-bottom: none !important;
+      box-shadow: none !important;
+  }
+
+    ion-item{
+        background: transparent !important;
+        width: 200px !important;
+        height: 40px !important;
+        padding: 0px !important;
+        color: white !important;
+      }
+ 
+      #password{
+        background-image: url('../../assets/img/password_background.png') !important;
+        background-repeat: no-repeat !important;
+        background-size: 200px 40px !important;
+    } 
+
+.centering{
+  text-align:center;
+}
+}

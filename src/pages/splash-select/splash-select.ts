@@ -15,7 +15,8 @@ export class SplashSelectPage {
   goToRegister(params){
     if (!params) params = {};
     this.navCtrl.push(RegisterPage);
-  }goToLogin(params){
+  }
+  goToLogin(params){
     if (!params) params = {};
     this.navCtrl.push(LoginPage);
   }
