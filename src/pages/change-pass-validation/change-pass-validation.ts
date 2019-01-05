@@ -43,7 +43,7 @@ export class changePassValidationPage {
           .subscribe(data => {
             if (data["access_token"]) {
               this.events.publish('user:login', data["access_token"]);
-              this.navCtrl.push(ToastController);
+              this.navCtrl.push(TabsControllerPage);
             }
           });
       });

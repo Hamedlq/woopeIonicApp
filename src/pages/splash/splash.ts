@@ -23,7 +23,6 @@ export class SplashPage {
     let baseUrl= serverUrl;
     this.duration= 3000;
     //this.url ;
-    console.log(url);
     clearInterval(this.timer);
     this.timer = setTimeout(function () {
 

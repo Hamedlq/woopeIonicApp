@@ -20,8 +20,8 @@ export class RegisterPage {
   profile: any;
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  constructor(public navCtrl: NavController, private http: HttpClient, 
-    private toastCtrl: ToastController,public events: Events) {
+  constructor(public navCtrl: NavController, private http: HttpClient,
+    private toastCtrl: ToastController, public events: Events) {
 
   }
   registerUser() {
@@ -34,27 +34,32 @@ export class RegisterPage {
     this.http.request('Post', baseUrl + 'api/Account/RegisterApp', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         if (data["status"] == ResponseStatus.Success) {
+          var body = new HttpParams()
+            .append('username', this.mobile)
+            .append('password', this.password)
+            .append('grant_type', "password");
+
           this.http.request('Post', baseUrl + 'connect/token', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-          .subscribe(data => {
-            console.log(data);
-            console.log(data["access_token"]);
-            if (data["access_token"]) {
-              this.events.publish('user:login',data["access_token"]);
-              //check if show sms validation or tabcontroller
-              this.navCtrl.push(SmsValidationPage,{mobile:this.mobile});
-            } else {
-              let toast = this.toastCtrl.create({
-                message: 'خطا در سرور',
-                duration: 3000,
-                position: 'bottom'
-              });
-              toast.onDidDismiss(() => {
-                console.log('Dismissed toast');
-              });
-    
-              toast.present();
-            }
-          });
+            .subscribe(data => {
+              console.log(data);
+              console.log(data["access_token"]);
+              if (data["access_token"]) {
+                this.events.publish('user:login', data["access_token"]);
+                //check if show sms validation or tabcontroller
+                this.navCtrl.push(SmsValidationPage, { mobile: this.mobile });
+              } else {
+                let toast = this.toastCtrl.create({
+                  message: 'خطا در سرور',
+                  duration: 3000,
+                  position: 'bottom'
+                });
+                toast.onDidDismiss(() => {
+                  console.log('Dismissed toast');
+                });
+
+                toast.present();
+              }
+            });
 
           //this.navCtrl.setRoot(TabsControllerPage);
         } else {
