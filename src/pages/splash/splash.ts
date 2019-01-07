@@ -9,6 +9,7 @@ import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
 import { GiftPage } from '../gift/gift';
 import { global } from '@angular/core/src/util';
+import { PayPage } from '../pay/pay';
 
 @Component({
   selector: 'page-splash',
@@ -30,7 +31,7 @@ export class SplashPage {
 
         http.post(baseUrl+'api/Profile/GetProfile',{})
         .subscribe(data1 => {
-            navCtrl.setRoot(GiftPage);
+            navCtrl.setRoot(PayPage);
         });
     }, this.duration);
     
