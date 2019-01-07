@@ -7,13 +7,17 @@
     <ion-item-divider color="light" id="storeTab-list-item-divider1">
       banner
     </ion-item-divider>
-    <ion-item color="none" id="storeTab-list-item7">
+    <ion-item color="none" *ngFor="let item of items">
       <ion-avatar item-left>
-        <img src="assets/img/F4P6GAoeS0qtcoC90k8B_default_store.png" />
+        <img src=$baseUrl+{{item.logoSrc}} />
       </ion-avatar>
       <h2>
-        فروشگاه سالوت
+          {{item.storeName}}
       </h2>
     </ion-item>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
