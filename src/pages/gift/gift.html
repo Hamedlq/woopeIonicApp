@@ -5,13 +5,19 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding id="page11" style="background-color:#F7F6FB;">
+<ion-content padding style="background-color:#F7F6FB;">
   <img src="assets/img/Yjzlc2uRhSGxZUguOdFg_gift_ico.png" style="display:block;width:200px;height:auto;margin-left:auto;margin-right:auto;" />
-  <img src="assets/img/pxW1i4wPROCv9WyuSqXC_gift_input.png" style="display:block;width:200px;height:auto;margin-left:auto;margin-right:auto;" />
   <form id="gift-form7">
-    <ion-item id="gift-input9">
-      <ion-label></ion-label>
-      <ion-input type="text" placeholder="کد هدیه"></ion-input>
-    </ion-item>
+      <div id="gift">
+          <ion-item id="gift-input4">
+            <ion-label></ion-label>
+            <ion-input text-center type="text" placeholder="کد هدیه" name="gift" [(ngModel)]="gift"></ion-input>
+          </ion-item>
+        </div>
   </form>
 </ion-content>
+<ion-footer no-shadow>
+	
+		<button ion-button color="secondary" full>تایید کد هدیه</button>
+	
+</ion-footer>

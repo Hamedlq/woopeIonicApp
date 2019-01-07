@@ -17,9 +17,9 @@ export class changePassValidationPage {
   profile: any;
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  constructor(public navCtrl: NavController, private http: HttpClient, 
+  constructor(public navCtrl: NavController, private http: HttpClient,
     private toastCtrl: ToastController, public navParams: NavParams
-    ,public events: Events) {
+    , public events: Events) {
 
     let baseUrl = serverUrl;
     this.code = navParams.get('code');
@@ -35,17 +35,32 @@ export class changePassValidationPage {
       .append('Mobile', this.mobile);
     this.http.request('Post', baseUrl + 'api/Account/ConfirmCodeAndUpdate', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        var body = new HttpParams()
-      .append('username', this.mobile)
-      .append('password', this.password)
-      .append('grant_type', "password");
-        this.http.request('Post', baseUrl + 'connect/token', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-          .subscribe(data => {
-            if (data["access_token"]) {
-              this.events.publish('user:login', data["access_token"]);
-              this.navCtrl.push(TabsControllerPage);
-            }
+
+        if (data["status"] == ResponseStatus.Success) {
+          var body = new HttpParams()
+            .append('username', this.mobile)
+            .append('password', this.password)
+            .append('grant_type', "password");
+          this.http.request('Post', baseUrl + 'connect/token', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+            .subscribe(data => {
+              if (data["access_token"]) {
+                this.events.publish('user:login', data["access_token"]);
+                this.navCtrl.push(TabsControllerPage);
+              }
+            });
+        }else{
+          let toast = this.toastCtrl.create({
+            message: data["message"],
+            duration: 3000,
+            position: 'bottom'
           });
+          toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+          });
+
+          toast.present();
+          this.navCtrl.pop();
+        }
       });
   }
 }

@@ -29,12 +29,12 @@ export class MyApp {
       });
 
       events.subscribe('splash:refresh', () => {
-        this.rootPage = SplashSelectPage;
+        //this.rootPage = SplashSelectPage;
         this.rootPage = SplashPage;
       });
 
       events.subscribe('user:login', (token) => {
-        localStorage.setItem('token', token);
+        localStorage.setItem('access_token', token);
       });
 
     });

@@ -38,7 +38,7 @@ export class RegisterPage {
             .append('username', this.mobile)
             .append('password', this.password)
             .append('grant_type', "password");
-
+            console.log(data);
           this.http.request('Post', baseUrl + 'connect/token', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
             .subscribe(data => {
               console.log(data);

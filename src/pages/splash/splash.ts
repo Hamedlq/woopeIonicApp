@@ -7,6 +7,7 @@ import { LoginPage } from '../login/login';
 
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
+import { GiftPage } from '../gift/gift';
 
 @Component({
   selector: 'page-splash',
@@ -28,7 +29,7 @@ export class SplashPage {
 
         http.post(baseUrl+'api/Profile/GetProfile',{})
         .subscribe(data1 => {
-            navCtrl.setRoot(TabsControllerPage);
+            navCtrl.setRoot(GiftPage);
         });
     }, this.duration);
     
