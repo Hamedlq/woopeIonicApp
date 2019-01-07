@@ -102,16 +102,16 @@ $text-font-size: 14px;
 $palettes: (
     mainColors: ( // Also used for backgrounds.
 
-        primary:   #424242, // Used for list color, list activated button, list border item color, header-title, header-subtitle, button-clear-outline, swipe, checkbox, tabs, search-bar, map-header, maps-title, maps-subtitle, toolbar, action-sheet, Loading, alert
-        secondary:  #FCD736, // Used for icon, item-divider, span, header-bcg, header-divider, button, fab button, checkbox, toggle, radio button, wizard-bcg, input field, range, search-bar, map-header, map-content, toolbar-background, alert, spiner
+        primary:   #8100F9, // Used for list color, list activated button, list border item color, header-title, header-subtitle, button-clear-outline, swipe, checkbox, tabs, search-bar, map-header, maps-title, maps-subtitle, toolbar, action-sheet, Loading, alert
+        secondary:  #7AE09F, // Used for icon, item-divider, span, header-bcg, header-divider, button, fab button, checkbox, toggle, radio button, wizard-bcg, input field, range, search-bar, map-header, map-content, toolbar-background, alert, spiner
         accent:   #202020, //Used for background your app, list border item color, button, fab button, checkbox, action-sheet, alert
         accentLight: #FEFEFE //Used for toggle
     ),
 
     textColors: ( // Used for text colors in all screens
 
-        primary: #FCD736, // Used for text colors in: item-title, button-clear, card-title, parallax-title, parallax-subtitle, tabs-title, tabs-subtitle, search-bar, loading, action-sheet, alert, wizard-body-text, wizard-title
-        secondary: #FEFEFE, // Used for text colors in: card-subtitle, item-subtitle, card-body-text, description, alert
+        primary: #f4f4f4, // Used for text colors in: item-title, button-clear, card-title, parallax-title, parallax-subtitle, tabs-title, tabs-subtitle, search-bar, loading, action-sheet, alert, wizard-body-text, wizard-title
+        secondary: #222222, // Used for text colors in: card-subtitle, item-subtitle, card-body-text, description, alert
         accent:   #ffffff, // Used for text colors in: subitem-title, swiped-item-title, subitem-subtitle
     ),
     blendModes: ( // Used for blend modes
@@ -794,4 +794,7 @@ h1, h2, h3, h4, h5, h6,input, textarea,span {
 }
 h1 {
 	font-weight: bold;
+}
+ion-header ion-icon.back-button-icon.icon {
+  color: map-get($colors, light);
 }

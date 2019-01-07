@@ -11,16 +11,16 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, Htt
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(public events: Events,private toastCtrl: ToastController) {
+    constructor(public events: Events, private toastCtrl: ToastController) {
 
     }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let accessToken = localStorage.getItem("access_token");
-
+        console.log("intercept" + accessToken);
         if (accessToken) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: 'Bearer '+accessToken
+                    Authorization: 'Bearer ' + accessToken
                 }
             });
         }
@@ -37,18 +37,18 @@ export class AuthInterceptor implements HttpInterceptor {
 
                     localStorage.removeItem("access_token");
                     this.events.publish('user:logout');
-                }else if(err.status === 0){
+                } else if (err.status === 0) {
                     let toast = this.toastCtrl.create({
                         message: 'خطا در شبکه. لطفا دوباره سعی کنید',
                         showCloseButton: true,
-                        closeButtonText:'تلاش مجدد',
+                        closeButtonText: 'تلاش مجدد',
                         position: 'bottom'
-                      });
-                      toast.onDidDismiss(() => {
+                    });
+                    toast.onDidDismiss(() => {
                         this.events.publish('splash:refresh');
-                      });
-            
-                      toast.present();
+                    });
+
+                    toast.present();
                 }
             }
         }));

@@ -7,6 +7,7 @@ import { LoginPage } from '../login/login';
 
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
+import { GiftPage } from '../gift/gift';
 import { global } from '@angular/core/src/util';
 
 @Component({
@@ -29,7 +30,7 @@ export class SplashPage {
 
         http.post(baseUrl+'api/Profile/GetProfile',{})
         .subscribe(data1 => {
-            navCtrl.setRoot(TabsControllerPage);
+            navCtrl.setRoot(GiftPage);
         });
     }, this.duration);
     
