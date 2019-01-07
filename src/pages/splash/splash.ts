@@ -10,6 +10,7 @@ import { serverUrl } from '../../Globals';
 import { GiftPage } from '../gift/gift';
 import { ResponseStatus } from '../Enum/enum';
 import { global } from '@angular/core/src/util';
+import { PayPage } from '../pay/pay';
 
 @Component({
   selector: 'page-splash',
