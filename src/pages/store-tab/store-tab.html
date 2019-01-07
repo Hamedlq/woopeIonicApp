@@ -9,7 +9,7 @@
   <ion-list class="border-avatar" id="storeTab-list1" style="border-bottom: none !important;;margin-top: 20px;direction: rtl">
     <ion-item color="none" *ngFor="let store of items" style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff">
       <div class="slider" *ngIf="store.isAdvertise; else elsetag" style="text-align: center">
-        <img class="imgbaner" src="assets/img/aa.jpg" style="border-radius:10px;" />
+        <img class="imgbaner" src="store.logoSrc" style="border-radius:10px;" />
       </div>
       <ng-template #elsetag>
         <div class="storeitem" style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff" >
@@ -38,9 +38,9 @@
               </span>
             </div>
           </div>
-          <!-- <div class="row" style="direction: ltr">
+          <div class="row" style="direction: ltr">
         <i [class]="store.isFollowed?'ion ion-ios-heart':'ion ion-ios-heart-outline'"></i>
-      </div> -->
+      </div>
         </div>
       </ng-template>
     </ion-item>

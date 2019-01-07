@@ -26,7 +26,7 @@ export class SplashPage {
   constructor(private http: HttpClient, public navCtrl: NavController,
     public toastCtrl: ToastController,public events: Events) {
     let baseUrl = serverUrl;
-    this.duration = 3000;
+    this.duration = 0;
     //this.url ;
     clearInterval(this.timer);
     this.timer = setTimeout(function () {
