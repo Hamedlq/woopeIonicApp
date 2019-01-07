@@ -1,5 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Network } from "@ionic-native/network";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { map, filter, tap } from 'rxjs/operators';
@@ -37,19 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
                     localStorage.removeItem("access_token");
                     this.events.publish('user:logout');
-                } else if (err.status === 0) {
-                    let toast = this.toastCtrl.create({
-                        message: 'خطا در شبکه. لطفا دوباره سعی کنید',
-                        showCloseButton: true,
-                        closeButtonText: 'تلاش مجدد',
-                        position: 'bottom'
-                    });
-                    toast.onDidDismiss(() => {
-                        this.events.publish('splash:refresh');
-                    });
-
-                    toast.present();
-                }
+                } 
             }
         }));
     }

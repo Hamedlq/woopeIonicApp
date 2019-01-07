@@ -46,7 +46,7 @@ export class LoginPage {
             if(!this.profile["phoneNumberConfirmed"]){
               this.navCtrl.push(SmsValidationPage,{mobile:this.profile["mobile"]});
             }else{
-              this.navCtrl.push(ToastController);
+              this.navCtrl.push(TabsControllerPage);
             }
           });
         } else {
