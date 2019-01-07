@@ -9,6 +9,7 @@ import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
 import { GiftPage } from '../gift/gift';
 import { ResponseStatus } from '../Enum/enum';
+import { global } from '@angular/core/src/util';
 
 @Component({
   selector: 'page-splash',
