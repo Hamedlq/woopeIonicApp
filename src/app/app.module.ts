@@ -27,6 +27,7 @@ import { ExtendedHttpService } from '../providers/authInterceptor.ts';
 import { AuthInterceptor } from '../providers/authInterceptor';
 import { ForgetPassSmsValidationPage } from '../pages/forgetpass-sms-validation/forgetpass-sms-validation';
 import { changePassValidationPage } from '../pages/change-pass-validation/change-pass-validation';
+import { StorePage } from '../pages/store-page/store-page';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { changePassValidationPage } from '../pages/change-pass-validation/change
     changePassValidationPage,
     ChangePassPage,
     GiftPage,
-    PayPage
+    PayPage,
+    StorePage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import { changePassValidationPage } from '../pages/change-pass-validation/change
     changePassValidationPage,
     ChangePassPage,
     GiftPage,
-    PayPage
+    PayPage,
+    StorePage
   ],
   providers: [
     StatusBar,

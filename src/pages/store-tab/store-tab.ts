@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, NavParams, ItemSliding } from 'ionic-angular';
+import { NavController, ToastController, NavParams, ItemSliding, App } from 'ionic-angular';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { StorePage } from '../store-page/store-page';
 
 @Component({
   selector: 'page-store-tab',
@@ -13,13 +15,16 @@ export class StoreTabPage {
   items = [];
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private http: HttpClient, 
+    private toastCtrl: ToastController, public navParams: NavParams,
+    public app: App) {
     this.page = 0;
     this.baseUrl = serverUrl;
     var body = new HttpParams()
       .append('pageNumber', this.page);
     this.http.request('Post', this.baseUrl + 'api/Store/GetStoresbyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
+        console.log(data);
         this.items = <any>data;
       });
   }
@@ -43,5 +48,12 @@ export class StoreTabPage {
       infiniteScroll.complete();
     }, 500);
   }
+  bannerclick(banner){
+    //let browser = new InAppBrowser(banner.website, '_system');
+    window.open(banner.website, '_system');
+  }
 
+  storeclick(store){
+    this.app.getRootNav().setRoot(StorePage, { store: store});
+  }
 }

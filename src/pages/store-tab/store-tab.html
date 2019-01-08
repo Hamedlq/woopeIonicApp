@@ -8,11 +8,11 @@
 
   <ion-list class="border-avatar" id="storeTab-list1" style="border-bottom: none !important;;margin-top: 20px;direction: rtl">
     <ion-item color="none" *ngFor="let store of items" style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff">
-      <div class="slider" *ngIf="store.isAdvertise; else elsetag" style="text-align: center">
-        <img class="imgbaner" src="store.logoSrc" style="border-radius:10px;" />
+      <div class="slider" *ngIf="store.isAdvertise; else elsetag" style="text-align: center" on-click="bannerclick(store)">
+        <img class="imgbaner" [src]="baseUrl+store.logoSrc" style="border-radius:10px;" />
       </div>
       <ng-template #elsetag>
-        <div class="storeitem" style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff" >
+        <div class="storeitem" on-click="storeclick(store)" style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff" >
           <ion-avatar style="border:none;margin: 3px;" item-left>
             <img style="width: 56px;height: 56px;" [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'" />
           </ion-avatar>

@@ -14,11 +14,10 @@ export class WoopeTabPage {
   // should be each tab's root Page
   constructor(public navCtrl: NavController,private http: HttpClient,) {
     this.baseUrl = serverUrl;
-    
     this.http.request('Post', this.baseUrl + 'api/Transaction/GetUserAllActivePaylists', {})
       .subscribe(data => {
+        console.log(data);
         this.items = <any>data;
       });
   }
-  
 }
