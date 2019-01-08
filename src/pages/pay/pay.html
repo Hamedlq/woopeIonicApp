@@ -1,57 +1,138 @@
 <div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
   <i style="position: absolute;color: #ffffff; margin: 20px; ;font-size: 35px;font-weight: bold" class="ion-ios-help"></i>
-  <ion-icon style="direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold" name="arrow-forward"></ion-icon>
-  <span style="direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 45%;font-family:Irsansans; font-size: 20px;font-weight: bold" name="arrow-forward">سالوت</span>
+  <ion-icon style="direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold"
+    name="arrow-forward"></ion-icon>
+  <span style="direction: rtl; position: absolute;color: #ffffff;margin-top: 30px;margin-left: 44%;font-family:Irsansans; font-size: 20px;font-weight: bold"
+    name="arrow-forward">سالوت</span>
   <img src="assets/img/home2.png" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
-  <img src="assets/img/F4P6GAoeS0qtcoC90k8B_default_store.png" style="margin-top:-50px;margin-left: -90px; display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;"  />
+  <img src="assets/img/F4P6GAoeS0qtcoC90k8B_default_store.png" style="margin-top:-50px;margin-left: 43% !important; display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;" />
 </div>
 <ion-content id="page2" style="background-color:#F7F6FB;margin-top: 60px;">
-  <img src="assets/img/home_shadow.png" style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />
-  <ion-card id="pay-card21" style="margin-top: 60px;">
-    <ion-list>
-      <ion-item color="none" id="pay-list-item10">
-        <ion-thumbnail item-left>
-          <img src="assets/img/rYxTY9VNTMy2vLxSKysE_cash_ico.png" />
-        </ion-thumbnail>
-        <h2>
-          Item
-        </h2>
-      </ion-item>
-      <div style="width:100%;height:220px;margin:0px 0px;line-height:250px;background-color:#e8ebef;text-align:center;">
-        <i class="icon ion-image" style="font-size:64px;color:#888;vertical-align:middle;"></i>
+  <img src="assets/img/home_shadow.png" style="z-index: -20;display:block;width:100%;height:100px;margin-left:auto;margin-right:auto" />
+
+  <div class="row" style="justify-content:space-around">
+    <div class="col-6">
+      <ion-card style="background-color: #F7F6FB;width:100px;height:100px;" id="profileTab-card25">
+        <ion-list>
+          <img class="img1" src="assets/img/rYxTY9VNTMy2vLxSKysE_cash_ico.png" style="margin-top:5px; display:block;width:60%;height:6%;margin-left:auto;margin-right:auto;" />
+        </ion-list>
+      </ion-card>
+    </div>
+    <div class="col-6">
+      <ion-card style="background-color: #F7F6FB;width:100px;height:100px;" id="profileTab-card24">
+        <ion-list>
+          <img class="img1" src="assets/img/kqcevnhvS169DufOP28A_online_ico.png" style="margin-top:5px; display:block;width:50%;height:6%;margin-left:auto;margin-right:auto;" />
+        </ion-list>
+      </ion-card>
+    </div>
+  </div>
+  <form id="pay-form8" style="direction: rtl">
+    <div class="row" style="justify-content: space-around">
+      <div col-10>
+        <ion-item id="pay-toggle1" style="font-size: 15px; border: none; border-radius: 5px; background-color: #ffffff;margin-top: 10px;box-shadow: 5px 5px #f1f1f1;">
+          <ion-label>
+            اسفتاده از موجودی تومانی
+          </ion-label>
+          <ion-toggle style="color: blue !important;border: none" color="positive" checked="false"></ion-toggle>
+        </ion-item>
       </div>
-    </ion-list>
-  </ion-card>
-  <ion-card id="pay-card23">
-    <ion-list>
-      <ion-item color="none" id="pay-list-item12">
-        <ion-thumbnail item-left>
-          <img src="assets/img/kqcevnhvS169DufOP28A_online_ico.png" />
-        </ion-thumbnail>
-        <h2>
-          Item
-        </h2>
-      </ion-item>
-      <div style="width:100%;height:220px;margin:0px 0px;line-height:250px;background-color:#e8ebef;text-align:center;">
-        <i class="icon ion-image" style="font-size:64px;color:#888;vertical-align:middle;"></i>
+    </div>
+    <div class="row" style="justify-content: space-around">
+      <div col-10>
+        <ion-item id="pay-toggle1" style="border-radius: 5px; background-color: #ffffff;margin-top: 8px;box-shadow: 5px 5px #f1f1f1;">
+          <ion-label>
+            استفاده از ووپ
+          </ion-label>
+          <ion-toggle color="positive" checked="false"></ion-toggle>
+        </ion-item>
       </div>
-    </ion-list>
-  </ion-card>
-  <form id="pay-form8">
-    <ion-item id="pay-toggle1">
-      <ion-label>
-        اسفتاده از موجودی تومانی
-      </ion-label>
-      <ion-toggle color="positive" checked="false"></ion-toggle>
-    </ion-item>
-    <ion-item id="pay-toggle2">
-      <ion-label>
-        استفاده از ووپ
-      </ion-label>
-      <ion-toggle color="positive" checked="false"></ion-toggle>
-    </ion-item>
-    <button id="pay-button4" ion-button color="positive" block>
-      پرداخت
-    </button>
+    </div>
   </form>
 </ion-content>
+<ion-footer style="direction: rtl">
+  <div  class="row" style="position: absolute; bottom: 0px; justify-content:space-around;margin-top: 15px;">
+    <div col-12 col-md-10>
+      <ion-icon *ngIf=showi (click)="paydraw()" style="position: absolute;margin-right: 45%;color: #ffffff ;margin-top: 5px;" class="arrow icon icon-ios ion-ios-arrow-up"></ion-icon>
+      <ion-icon *ngIf=show (click)="paydraw()" style="position: absolute;margin-right: 45%;color: #ffffff ;margin-top: 5px;" class="arrow icon icon-ios ion-ios-arrow-down"></ion-icon>
+      <img (click)="paydraw()" class="price" src="assets/img/Android/price_drawer.png" style="padding: 0;margin: 0;margin-bottom: -5px; width: 100%;height: auto" />
+      <div *ngIf=show class="row" style="padding: 0;margin: 0; position: relative; background-color: #F7F6FB">
+        <div col-6>
+          <span>
+            مبلغ پرداختی
+          </span>
+
+        </div>
+        <div style="direction: ltr" col-6>
+          <span>
+            0
+          </span>
+        </div>
+        <hr style="width: 100% !important; background-color: #7ae097 !important">
+        <div col-6>
+          <span>
+            مبلغ کل
+          </span>
+        </div>
+        <div style="direction: ltr" col-6>
+          <span>
+            0
+          </span>
+        </div>
+        <div col-6>
+          <span>
+            استفاده از موجودی تومانی
+          </span>
+        </div>
+        <div style="direction: ltr" col-6>
+          <span>
+            0
+          </span>
+        </div>
+        <div col-6>
+          <span>
+            استفاده از ووپ
+          </span>
+        </div>
+        <div style="direction: ltr" col-6>
+          <span>
+            0
+          </span>
+        </div>
+        <div col-6>
+          <span>
+            ووپ بازگشتی
+          </span>
+        </div>
+        <div style="direction: ltr" col-6>
+          <span>
+            0
+          </span>
+        </div>
+        <div col-6>
+          <span>
+            باقیمانده تومانی
+          </span>
+        </div>
+        <div style="direction: ltr" col-6>
+          <span>
+            0
+          </span>
+        </div>
+        <div col-6>
+          <span>
+            مالیات
+          </span>
+        </div>
+        <div style="direction: ltr" col-6>
+          <span>
+            0
+          </span>
+        </div>
+      </div>
+      <button style="padding: 0;margin: 0;margin-top: -4px; background-color:#7ae097" id="pay-button4" ion-button color="positive"
+        block>
+        پرداخت
+      </button>
+    </div>
+  </div>
+</ion-footer>

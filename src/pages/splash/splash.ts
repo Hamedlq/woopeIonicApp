@@ -26,7 +26,7 @@ export class SplashPage {
   constructor(private http: HttpClient, public navCtrl: NavController,
     public toastCtrl: ToastController,public events: Events) {
     let baseUrl = serverUrl;
-    this.duration = 3000;
+    this.duration = 0;
     //this.url ;
     clearInterval(this.timer);
     this.timer = setTimeout(function () {
@@ -35,7 +35,7 @@ export class SplashPage {
           console.log(data);
           if (data["status"] == ResponseStatus.Success) {
 
-            navCtrl.setRoot(TabsControllerPage,{profile:data});
+            navCtrl.setRoot(PayPage,{profile:data});
           } else {
             let toast = toastCtrl.create({
               message: 'خطا در شبکه. لطفا دوباره سعی کنید',
