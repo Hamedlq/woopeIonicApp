@@ -28,6 +28,8 @@ import { AuthInterceptor } from '../providers/authInterceptor';
 import { ForgetPassSmsValidationPage } from '../pages/forgetpass-sms-validation/forgetpass-sms-validation';
 import { changePassValidationPage } from '../pages/change-pass-validation/change-pass-validation';
 import { StorePage } from '../pages/store-page/store-page';
+import { CreditePayCodePage } from '../pages/creditepaycode/creditepaycode';
+import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { StorePage } from '../pages/store-page/store-page';
     ChangePassPage,
     GiftPage,
     PayPage,
-    StorePage
+    StorePage,
+    CreditePayCodePage,
+    CashPayCodePage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,9 @@ import { StorePage } from '../pages/store-page/store-page';
     ChangePassPage,
     GiftPage,
     PayPage,
-    StorePage
+    StorePage,
+    CreditePayCodePage,
+    CashPayCodePage
   ],
   providers: [
     StatusBar,

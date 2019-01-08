@@ -11,6 +11,8 @@ import { GiftPage } from '../gift/gift';
 import { ResponseStatus } from '../Enum/enum';
 import { global } from '@angular/core/src/util';
 import { PayPage } from '../pay/pay';
+import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
+import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 
 @Component({
   selector: 'page-splash',
@@ -35,7 +37,7 @@ export class SplashPage {
           console.log(data);
           if (data["status"] == ResponseStatus.Success) {
 
-            navCtrl.setRoot(PayPage,{profile:data});
+            navCtrl.setRoot(TabsControllerPage,{profile:data});
           } else {
             let toast = toastCtrl.create({
               message: 'خطا در شبکه. لطفا دوباره سعی کنید',
