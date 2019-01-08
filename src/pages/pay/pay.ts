@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+
 @Component({
   selector: 'page-pay',
   templateUrl: 'pay.html'
 })
+
 export class PayPage {
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
+  show = false;
+  showi = true;
   constructor(public navCtrl: NavController) {
   }
-  
+  paydraw() {
+    this.show = !this.show;
+    this.showi = !this.showi;
+  }
+
 }
