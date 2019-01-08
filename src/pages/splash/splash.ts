@@ -13,6 +13,7 @@ import { global } from '@angular/core/src/util';
 import { PayPage } from '../pay/pay';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
+import { SplashSelectPage } from '../splash-select/splash-select';
 
 @Component({
   selector: 'page-splash',
@@ -37,7 +38,7 @@ export class SplashPage {
           console.log(data);
           if (data["status"] == ResponseStatus.Success) {
 
-            navCtrl.setRoot(TabsControllerPage,{profile:data});
+            navCtrl.setRoot(SplashSelectPage,{profile:data});
           } else {
             let toast = toastCtrl.create({
               message: 'خطا در شبکه. لطفا دوباره سعی کنید',
