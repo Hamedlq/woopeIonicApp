@@ -1,3 +1,19 @@
 page-tabs-controller {
-
+    ion-icon {
+    &[class*="custom-"] {
+        margin: 0 5px 0 0;
+        vertical-align: middle;
+        $sz: 50px;
+        width: $sz;
+        height: $sz;
+    } // custom icons
+    &[class*="pin"][ng-reflect-is-active="true"] {
+        background: url("../assets/img/fab_bg.png") no-repeat 50% 50%;
+        background-size: contain;
+    }//in case of active
+    &[class*="pin"][ng-reflect-is-active="false"] {
+        background: url("../assets/img/fab_bg.png") no-repeat 50% 50%;
+        background-size: contain;
+    }//in case of inactive
+}
 }

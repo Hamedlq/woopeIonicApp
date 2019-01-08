@@ -26,15 +26,20 @@ export class StoreTabPage {
 
   doInfinite(infiniteScroll) {
     console.log('Begin async operation');
-
+    this.page++;
     setTimeout(() => {
       var body = new HttpParams()
         .append('pageNumber', this.page);
       this.http.request('Post', this.baseUrl + 'api/Store/GetStoresbyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
         .subscribe(data => {
-          this.items.push(<any>data);
+          let newitems=<any>data;
+          console.log(newitems);
+          if(newitems.length>1){
+            for (let i = 0; i < newitems.length; i++) {
+              this.items.push( newitems[i] );
+            }
+          }
         });
-
       infiniteScroll.complete();
     }, 500);
   }
