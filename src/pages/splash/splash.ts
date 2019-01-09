@@ -14,6 +14,7 @@ import { PayPage } from '../pay/pay';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { SplashSelectPage } from '../splash-select/splash-select';
+import { EditPage } from '../Edit-Profile/Edit-Profile';
 
 @Component({
   selector: 'page-splash',
