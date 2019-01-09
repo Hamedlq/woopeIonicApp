@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, ToastController } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, ToastController, IonicPageModule } from 'ionic-angular';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -31,6 +31,8 @@ import { StorePage } from '../pages/store-page/store-page';
 import { CreditePayCodePage } from '../pages/creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BankPageModule } from '../pages/bank/bank.module';
+
 
 
 @NgModule({
@@ -54,12 +56,13 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     PayPage,
     StorePage,
     CreditePayCodePage,
-    CashPayCodePage
+    CashPayCodePage,
   ],
   imports: [
     BrowserModule,
     HttpClientModule ,
-    IonicModule.forRoot(MyApp)
+    BankPageModule,
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -82,7 +85,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     PayPage,
     StorePage,
     CreditePayCodePage,
-    CashPayCodePage
+    CashPayCodePage,
   ],
   providers: [
     StatusBar,

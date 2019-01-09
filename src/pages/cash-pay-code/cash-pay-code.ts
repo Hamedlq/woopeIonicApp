@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { ResponseStatus } from '../Enum/enum';
+import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 
 /**
  * Generated class for the CashPayCodePage page.
@@ -43,7 +44,8 @@ confirmCode(){
           });
 
           toast.present();
-          this.navCtrl.pop();
+          //this.navCtrl.pop();
+          this.navCtrl.setRoot(TabsControllerPage);
       } else {
         let toast = this.toastCtrl.create({
           message: data["message"],

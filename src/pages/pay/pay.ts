@@ -46,6 +46,9 @@ export class PayPage {
     this.show = !this.show;
     this.showi = !this.showi;
   }
+  backpressed(){
+    this.navCtrl.pop();
+  }
   cashSelected() {
     this.isOnline = false;
     this.calculateValues();
@@ -105,7 +108,6 @@ export class PayPage {
           this.calculateValues();
         }
       });
-
   }
   GetPayInfo(payListId) {
     var body = new HttpParams()
@@ -113,14 +115,14 @@ export class PayPage {
     this.http.request('Post', serverUrl + 'api/Pay/GetPayInfo', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         console.log(data);
-        let browser = this.iab.create(data["bankUrl"]);
-        browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
-          var closeUrl = 'app.woope.ir';
-          if (event.url == closeUrl) {
-            browser.close();       //This will close InAppBrowser Automatically when closeUrl Started
-          }
-        });
-        //window.open(data["bankUrl"], '_system');
+        // let browser = this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
+        // browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
+        //   var closeUrl = 'app.woope.ir';
+        //   if (event.url == closeUrl) {
+        //     browser.close();       //This will close InAppBrowser Automatically when closeUrl Started
+        //   }
+        // });
+        window.open(data["bankUrl"], '_system');
       });
   }
   calculateValues() {
