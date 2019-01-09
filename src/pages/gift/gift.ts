@@ -13,6 +13,6 @@ export class GiftPage {
 
   }
   giftcode(){
-    gift
+    
   }
 }

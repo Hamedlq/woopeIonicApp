@@ -70,9 +70,11 @@ export class PayPage {
       .append('SwitchWoope', String(this.switch_woope));
     this.http.request('Post', serverUrl + 'api/Transaction/InsertUserPayList', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
+        console.log(data);
         if (!this.isOnline) {
+          
           //go to cash pay
-          this.navCtrl.push(CashPayCodePage, { store: this.store, profile: this.profile,payListId: data["Id"] });
+          this.navCtrl.push(CashPayCodePage, { store: this.store, profile: this.profile,payListId: data["id"] });
         } else {
           //go to credit pay
           this.setNext(data["id"]);
