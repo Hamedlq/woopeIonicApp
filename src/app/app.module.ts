@@ -31,6 +31,7 @@ import { StorePage } from '../pages/store-page/store-page';
 import { CreditePayCodePage } from '../pages/creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     PayPage,
     StorePage,
     CreditePayCodePage,
-    CashPayCodePage
+    CashPayCodePage,
+    EditPage
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     PayPage,
     StorePage,
     CreditePayCodePage,
-    CashPayCodePage
+    CashPayCodePage,
+    EditPage
   ],
   providers: [
     StatusBar,
