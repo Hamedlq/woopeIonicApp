@@ -35,7 +35,7 @@ export class SplashPage {
           console.log(data);
           if (data["status"] == ResponseStatus.Success) {
 
-            navCtrl.setRoot(PayPage,{profile:data});
+            navCtrl.setRoot(TabsControllerPage,{profile:data});
           } else {
             let toast = toastCtrl.create({
               message: 'خطا در شبکه. لطفا دوباره سعی کنید',

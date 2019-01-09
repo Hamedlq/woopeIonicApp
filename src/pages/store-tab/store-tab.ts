@@ -4,6 +4,7 @@ import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { StorePage } from '../store-page/store-page';
+import { GiftPage } from '../gift/gift';
 
 @Component({
   selector: 'page-store-tab',
@@ -55,5 +56,9 @@ export class StoreTabPage {
 
   storeclick(store){
     this.app.getRootNav().setRoot(StorePage, { store: store});
+  }
+
+  openGift(){
+    this.app.getRootNav().setRoot(GiftPage);
   }
 }
