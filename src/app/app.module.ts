@@ -30,6 +30,7 @@ import { changePassValidationPage } from '../pages/change-pass-validation/change
 import { StorePage } from '../pages/store-page/store-page';
 import { CreditePayCodePage } from '../pages/creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @NgModule({
@@ -86,6 +87,7 @@ import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
   providers: [
     StatusBar,
     ToastController,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi: true },
   ]

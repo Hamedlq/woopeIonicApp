@@ -6,6 +6,7 @@ import { serverUrl } from '../../Globals';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { ResponseStatus } from '../Enum/enum';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
+import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
 export class PayPage {
   show = false;
   showi = true;
+  baseUrl: any;
   profile: any;
   payListId: any;
   store: any;
@@ -31,7 +33,8 @@ export class PayPage {
   Btntxt: any;
   switch_credit: boolean;
   switch_woope: boolean;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private iab: InAppBrowser) {
+    this.baseUrl = serverUrl;
     this.payListId = navParams.get('payListId');
     this.profile = navParams.get('profile');
     this.store = navParams.get('store');
@@ -72,9 +75,9 @@ export class PayPage {
       .subscribe(data => {
         console.log(data);
         if (!this.isOnline) {
-          
+
           //go to cash pay
-          this.navCtrl.push(CashPayCodePage, { store: this.store, profile: this.profile,payListId: data["id"] });
+          this.navCtrl.push(CashPayCodePage, { store: this.store, profile: this.profile, payListId: data["id"] });
         } else {
           //go to credit pay
           this.setNext(data["id"]);
@@ -98,21 +101,30 @@ export class PayPage {
       .subscribe(data => {
         if (data["status"] == ResponseStatus.Success) {
           this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile });
-      } else {
+        } else {
           this.calculateValues();
-      }
+        }
       });
 
   }
-  GetPayInfo(payListId){
+  GetPayInfo(payListId) {
     var body = new HttpParams()
       .append('paylistId', payListId);
     this.http.request('Post', serverUrl + 'api/Pay/GetPayInfo', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        window.open(data["bankUrl"], '_system');
+        console.log(data);
+        let browser = this.iab.create(data["bankUrl"]);
+        browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
+          var closeUrl = 'app.woope.ir';
+          if (event.url == closeUrl) {
+            browser.close();       //This will close InAppBrowser Automatically when closeUrl Started
+          }
+        });
+        //window.open(data["bankUrl"], '_system');
       });
   }
   calculateValues() {
+    console.log(this.profile);
     //int selectedId = payType.getCheckedRadioButtonId();
     let rw = 0;
     if (this.store.returnPoint != 0) {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, Events } from 'ionic-angular';
+import { NavController, ToastController, Events, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 import { LoginPage } from '../login/login';
@@ -20,16 +20,18 @@ import { SplashSelectPage } from '../splash-select/splash-select';
   templateUrl: 'splash.html'
 })
 export class SplashPage {
-
+  State:any;
   data: any;
   timer: any;
   duration: any;
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(private http: HttpClient, public navCtrl: NavController,
-    public toastCtrl: ToastController,public events: Events) {
+    public toastCtrl: ToastController,public events: Events,navParams: NavParams) {
+    this.State = navParams.get('State');
+    console.log(this.State);
     let baseUrl = serverUrl;
-    this.duration = 0;
+    this.duration = 1000;
     //this.url ;
     clearInterval(this.timer);
     this.timer = setTimeout(function () {
