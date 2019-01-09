@@ -22,7 +22,7 @@ export class StorePage {
   presentAlert() {
     let alert = this.alertCtrl.create({
       title: 'مبلغ پرداختی خود را وارد کنید',
-      subTitle: '<iput/>',
+      subTitle: '',
       buttons: ['تایید'],
       cssClass:"myalert",
       inputs: [
