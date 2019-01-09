@@ -101,6 +101,9 @@ margin: 20px;
 .label-ios {
     margin: 2px 2px 2px 0;
 }
+.alert-ios .alert-message:empty {
+    padding: 0 0 0px;
+}
 
 
 

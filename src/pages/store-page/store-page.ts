@@ -28,13 +28,8 @@ export class StorePage {
   presentAlert() {
     let alert = this.alertCtrl.create({
       title: 'مبلغ پرداختی خود را وارد کنید',
-      subTitle: '<iput/>',
-      buttons: [{
-        text: 'تایید', handler: data => {
-          console.log(data.amount);
-          this.navCtrl.push(PayPage, { store: this.store,profile:this.profile,amount:data.amount});
-        }
-      }],
+      subTitle: '',
+      buttons: ['تایید'],
       cssClass:"myalert",
       inputs: [
         {
