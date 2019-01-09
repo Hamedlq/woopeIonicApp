@@ -9,31 +9,32 @@
 </div>
 <ion-content id="page2" style="background-color:#F7F6FB;margin-top: 60px;">
   <img src="assets/img/home_shadow.png" style="z-index: -20;display:block;width:100%;height:100px;margin-left:auto;margin-right:auto" />
-
   <div class="row" style="justify-content:space-around">
     <div class="col-6">
-      <ion-card style="background-color: #F7F6FB;width:100px;height:100px;" id="profileTab-card25">
+      <ion-card on-click="cashSelected()" style="background-color: #F7F6FB;width:100px;height:100px;" id="profileTab-card25">
         <ion-list>
+          <img *ngIf="!isOnline"  src="assets/img/ic_ok.png" style="margin-top:5px; display:block;width:30%;height:30%;margin-left:10px;" />
           <img class="img1" src="assets/img/rYxTY9VNTMy2vLxSKysE_cash_ico.png" style="margin-top:5px; display:block;width:60%;height:6%;margin-left:auto;margin-right:auto;" />
         </ion-list>
       </ion-card>
     </div>
     <div class="col-6">
-      <ion-card style="background-color: #F7F6FB;width:100px;height:100px;" id="profileTab-card24">
+      <ion-card on-click="onlineSelected()" style="background-color: #F7F6FB;width:100px;height:100px;" id="profileTab-card24">
         <ion-list>
+          <img *ngIf="isOnline"  src="assets/img/ic_ok.png" style="margin-top:5px; display:block;width:30%;height:30%;margin-left:10px;" />
           <img class="img1" src="assets/img/kqcevnhvS169DufOP28A_online_ico.png" style="margin-top:5px; display:block;width:50%;height:6%;margin-left:auto;margin-right:auto;" />
         </ion-list>
       </ion-card>
     </div>
   </div>
-  <form id="pay-form8" style="direction: rtl">
+  <div *ngIf="isOnline" id="pay-form8" style="direction: rtl">
     <div class="row" style="justify-content: space-around">
       <div col-10>
         <ion-item id="pay-toggle1" style="font-size: 15px; border: none; border-radius: 5px; background-color: #ffffff;margin-top: 10px;box-shadow: 5px 5px #f1f1f1;">
           <ion-label>
-            اسفتاده از موجودی تومانی
+            استفاده از موجودی تومانی({{profile.moneyCredit}})
           </ion-label>
-          <ion-toggle style="color: blue !important;border: none" color="positive" checked="false"></ion-toggle>
+          <ion-toggle [(ngModel)]="switch_credit" (ionChange)="updateItem(item)" style="color: blue !important;border: none" color="positive" checked="false"></ion-toggle>
         </ion-item>
       </div>
     </div>
@@ -41,13 +42,13 @@
       <div col-10>
         <ion-item id="pay-toggle1" style="border-radius: 5px; background-color: #ffffff;margin-top: 8px;box-shadow: 5px 5px #f1f1f1;">
           <ion-label>
-            استفاده از ووپ
+            استفاده از ووپ({{profile.woopeCredit}})
           </ion-label>
-          <ion-toggle color="positive" checked="false"></ion-toggle>
+          <ion-toggle [(ngModel)]="switch_woope" (ionChange)="updateItem(item)" color="positive" checked="false"></ion-toggle>
         </ion-item>
       </div>
     </div>
-  </form>
+  </div>
 </ion-content>
 <ion-footer style="direction: rtl">
   <div  class="row" style="position: absolute; bottom: 0px; justify-content:space-around;margin-top: 15px;">
@@ -64,7 +65,7 @@
         </div>
         <div style="direction: ltr" col-6>
           <span>
-            0
+            {{pay_price}}
           </span>
         </div>
         <hr style="width: 100% !important; background-color: #7ae097 !important">
@@ -75,7 +76,7 @@
         </div>
         <div style="direction: ltr" col-6>
           <span>
-            0
+            {{totalPrice}}
           </span>
         </div>
         <div col-6>
@@ -85,7 +86,7 @@
         </div>
         <div style="direction: ltr" col-6>
           <span>
-            0
+            {{toman_use}}
           </span>
         </div>
         <div col-6>
@@ -95,7 +96,7 @@
         </div>
         <div style="direction: ltr" col-6>
           <span>
-            0
+            {{woope_use}}
           </span>
         </div>
         <div col-6>
@@ -105,7 +106,7 @@
         </div>
         <div style="direction: ltr" col-6>
           <span>
-            0
+            {{return_woope}}
           </span>
         </div>
         <div col-6>
@@ -115,7 +116,7 @@
         </div>
         <div style="direction: ltr" col-6>
           <span>
-            0
+            {{remain_toman}}
           </span>
         </div>
         <div col-6>
@@ -125,13 +126,13 @@
         </div>
         <div style="direction: ltr" col-6>
           <span>
-            0
+            {{tax}}
           </span>
         </div>
       </div>
-      <button style="padding: 0;margin: 0;margin-top: -4px; background-color:#7ae097" id="pay-button4" ion-button color="positive"
+      <button on-click="doPay()" style="padding: 0;margin: 0;margin-top: -4px; background-color:#7ae097" id="pay-button4" ion-button color="positive"
         block>
-        پرداخت
+        {{Btntxt}}
       </button>
     </div>
   </div>

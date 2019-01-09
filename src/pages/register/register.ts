@@ -34,7 +34,7 @@ export class RegisterPage {
     this.http.request('Post', baseUrl + 'api/Account/RegisterApp', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         if (data["status"] == ResponseStatus.Success) {
-          var body = new HttpParams()
+          var body = new HttpParams() 
             .append('username', this.mobile)
             .append('password', this.password)
             .append('grant_type', "password");

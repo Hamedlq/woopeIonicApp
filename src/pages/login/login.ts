@@ -37,7 +37,6 @@ export class LoginPage {
     this.http.request('Post', baseUrl + 'connect/token', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         if (data["access_token"]) {
-    
           this.events.publish('user:login',data["access_token"]);
           //check if show sms validation or tabcontroller
           this.http.post(baseUrl + 'api/Profile/GetProfile', {})
