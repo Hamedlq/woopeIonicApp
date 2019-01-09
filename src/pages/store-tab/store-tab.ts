@@ -4,6 +4,8 @@ import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { StorePage } from '../store-page/store-page';
+import { GiftPage } from '../gift/gift';
+import { PayPage } from '../pay/pay';
 
 @Component({
   selector: 'page-store-tab',
@@ -11,6 +13,7 @@ import { StorePage } from '../store-page/store-page';
 })
 export class StoreTabPage {
   page: any;
+  profile: any;
   baseUrl:any;
   items = [];
   // this tells the tabs component which Pages
@@ -18,6 +21,7 @@ export class StoreTabPage {
   constructor(public navCtrl: NavController, private http: HttpClient, 
     private toastCtrl: ToastController, public navParams: NavParams,
     public app: App) {
+      this.profile = navParams.get('profile');
     this.page = 0;
     this.baseUrl = serverUrl;
     var body = new HttpParams()
@@ -54,6 +58,10 @@ export class StoreTabPage {
   }
 
   storeclick(store){
-    this.app.getRootNav().setRoot(StorePage, { store: store});
+    this.app.getRootNav().setRoot(StorePage, { store: store,profile:this.profile});
+  }
+
+  openGift(){
+    this.app.getRootNav().setRoot(GiftPage);
   }
 }

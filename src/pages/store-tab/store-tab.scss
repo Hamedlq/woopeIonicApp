@@ -81,6 +81,22 @@ page-store-tab {
     border-bottom: none !important;
 }
 }
+.logo{
+width:20%!important;
+height:auto !important;
+position: absolute; 
+margin: 20px; 
+}
+.icon-right{
+    width:5%!important;
+    height:auto !important;
+    position: absolute; 
+    direction: rtl; 
+    position: absolute; 
+    margin: 20px;
+    margin-top: 30px;
+    margin-left: 90%;
+    }
 }
 .label-ios {
     margin: 2px 2px 2px 0;
