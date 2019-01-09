@@ -6,41 +6,47 @@
   <!-- <img src="assets/img/home2.png" style="position: fixed; overflow: hidden;position: fixed;top: 0; z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" /> -->
   <img src="assets/img/home_shadow.png" style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />
 
-  <ion-list class="border-avatar" id="storeTab-list1" style="border-bottom: none !important;;margin-top: 20px;direction: rtl">
-    <ion-item color="none" *ngFor="let store of items" style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff">
+  <ion-list class="border-avatar" id="storeTab-list1" style="direction: rtl">
+    <ion-item color="none" *ngFor="let store of items" style=" margin-top: 3px;border: none;border-radius: 5px; background-color:transparent">
       <div class="slider" *ngIf="store.isAdvertise; else elsetag" style="text-align: center" on-click="bannerclick(store)">
-        <img class="imgbaner" [src]="baseUrl+store.logoSrc" style="border-radius:10px;" />
+        <img class="imgbaner" style="z-index: 100; border:none;border-radius: 5px !important;" [src]="baseUrl+store.logoSrc" style="border-radius:10px;" />
       </div>
-      <ng-template #elsetag>
-        <div class="storeitem" on-click="storeclick(store)" style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff" >
-          <ion-avatar style="border:none;margin: 3px;" item-left>
-            <img style="width: 56px;height: 56px;" [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'" />
-          </ion-avatar>
+      <ng-template style="border-top-right-radius: 200px;border-bottom-right-radius: 200px;" #elsetag>
+        <div class="storeitem" on-click="storeclick(store)" style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff">
           <div class="row">
-            <div col-6>
-              <span> {{store.storeName}}</span>
+            <div col-3>
+              <ion-avatar style="border:none;margin: 3px;margin-top: 10px;" item-left>
+                <img style="width: 66px;height: 66px;" [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'" />
+              </ion-avatar>
             </div>
-            <div style="direction: ltr" col-6>
-              <span style="padding: 3px; font-size:10px;  border-radius:5px;  color: #ffffff; background-color: #7ae09f;">
-                {{store.returnPoint}} عدد ووپ
-              </span>
+            <div col-9>
+              <div class="row">
+                <div col-6>
+                  <span> {{store.storeName}}</span>
+                </div>
+                <div style="direction: ltr" col-6>
+                  <span style="padding: 3px; font-size:10px;  border-radius:5px;  color: #ffffff; background-color: #7ae09f;">
+                    {{store.returnPoint}} عدد ووپ
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div col-6>
+                  <span style="font-size:10px;">به ازای هر {{store.basePrice}} تومان خرید {{store.returnPoint}} عدد ووپ
+                    هدیه
+                    بگیرید</span>
+                </div>
+                <div col-6 style="direction: ltr">
+                  <span style="font-size:10px; color:#Ed0000;">
+                    {{store.discountPercent}}% تخفیف
+                  </span>
+                </div>
+              </div>
+              <!-- <div class="row" style="direction: ltr">
+                <i [class]="store.isFollowed?'ion ion-ios-heart':'ion ion-ios-heart-outline'"></i>
+              </div> -->
             </div>
           </div>
-          <div class="row">
-            <div col-6>
-              <span style="font-size:10px;">به ازای هر {{store.basePrice}} تومان خرید {{store.returnPoint}} عدد ووپ
-                هدیه
-                بگیرید</span>
-            </div>
-            <div col-6 style="direction: ltr">
-              <span style="font-size:10px; color:#Ed0000;">
-                {{store.discountPercent}}% تخفیف
-              </span>
-            </div>
-          </div>
-          <div class="row" style="direction: ltr">
-        <i [class]="store.isFollowed?'ion ion-ios-heart':'ion ion-ios-heart-outline'"></i>
-      </div>
         </div>
       </ng-template>
     </ion-item>
