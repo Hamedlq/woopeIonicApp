@@ -11,6 +11,9 @@ import { GiftPage } from '../gift/gift';
 import { ResponseStatus } from '../Enum/enum';
 import { global } from '@angular/core/src/util';
 import { PayPage } from '../pay/pay';
+import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
+import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
+import { SplashSelectPage } from '../splash-select/splash-select';
 
 @Component({
   selector: 'page-splash',
