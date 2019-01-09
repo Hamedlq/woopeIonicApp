@@ -4,3 +4,44 @@ store-page {
 .platform-ios ion-list {
     margin-top: 90px !important;
 }
+.myalert{
+    background:#F7F6FB !important;
+}
+.alert-head {
+    background-color: #F7F6FB;
+  }
+  .alert-message {
+    font-size: 10px;
+  }
+  .alert-title{
+      color: #000000 !important;
+      direction: rtl;
+    font-size: 14px !important;
+    
+  }
+  .alert-input-group{
+      direction: rtl;
+    background:#F7F6FB !important;
+  }
+  .alert-input {
+      text-align: right;
+  }
+  .alert-button-group{
+    //   background-image: url("assets/img/accept_button.png") !important;
+    background:#F7F6FB !important;
+  }
+  .alert-input:focus {
+    color: #000000 !important;
+  }
+  .alert-wrapper{
+      border-radius: 10px !important;
+  }
+  .alert-ios .alert-button {
+    color: #7ae09f;
+  }    
+  .alert-ios .alert-message{
+    background:#F7F6FB !important;
+  }
+  .alert-input {
+      border-bottom: 1px solid #7ae09f !important;
+  }
