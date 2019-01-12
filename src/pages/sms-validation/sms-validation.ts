@@ -45,7 +45,7 @@ export class SmsValidationPage {
   }
 
   confirmCode() {
-    let baseUrl = 'http://localhost:8090/';
+    let baseUrl = serverUrl;
     var body = new HttpParams()
       .append('Mobile', this.profile["mobile"])
       .append('VerifyCode', this.code);

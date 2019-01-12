@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, App } from 'ionic-angular';
 import { serverUrl } from '../../Globals';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController } from 'ionic-angular'
 import { PayPage } from '../pay/pay';
+import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 
 @Component({
   selector: 'store-page',
@@ -16,7 +17,7 @@ export class StorePage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private http: HttpClient,
-    public navParams: NavParams, private alertCtrl: AlertController) {
+    public navParams: NavParams, private alertCtrl: AlertController,public app: App) {
     this.baseUrl = serverUrl;
     this.store = navParams.get('store');
     this.profile = navParams.get('profile');
@@ -45,5 +46,10 @@ export class StorePage {
       ],
     });
     alert.present();
+  }
+
+  backpressed(){
+    
+    this.app.getRootNav().setRoot(TabsControllerPage);
   }
 }

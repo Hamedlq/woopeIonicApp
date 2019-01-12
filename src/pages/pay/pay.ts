@@ -41,6 +41,10 @@ export class PayPage {
     this.totalPrice = navParams.get('amount');
     this.isOnline = true;
     this.calculateValues();
+    if(this.payListId){
+      this.ConfirmPayment(this.payListId);
+    }
+    
   }
   paydraw() {
     this.show = !this.show;
@@ -103,7 +107,7 @@ export class PayPage {
     this.http.request('Post', serverUrl + 'api/Transaction/GetConfirmCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         if (data["status"] == ResponseStatus.Success) {
-          this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile });
+          this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile,code:data["message"] });
         } else {
           this.calculateValues();
         }
@@ -130,7 +134,7 @@ export class PayPage {
     //int selectedId = payType.getCheckedRadioButtonId();
     let rw = 0;
     if (this.store.returnPoint != 0) {
-      rw = Math.ceil((this.totalPrice) / this.store.basePrice) * this.store.returnPoint;
+      rw = Math.floor((this.totalPrice) / this.store.basePrice) * this.store.returnPoint;
     }
     console.log(rw);
     this.return_woope = rw;
@@ -190,8 +194,8 @@ export class PayPage {
           this.payPriceValue = 0;
           this.pay_price = "0";
           this.Btntxt = "پرداخت (" + "0" + " تومان)";
-          this.toman_use = this.profile.moneyCredit;
-          this.woope_use = "0";
+          this.toman_use = "0";
+          this.woope_use = this.profile.woopeCredit;
           this.remain_toman = "0";
           this.tax = "0";
 
@@ -201,7 +205,7 @@ export class PayPage {
           this.payPriceValue = 0;
           this.pay_price = "0";
           this.Btntxt = "پرداخت (" + "0" + " تومان)";
-          this.toman_use = this.profile.moneyCredit;
+          this.toman_use = "0";
           this.woope_use = Math.abs(integerPart);
           this.remain_toman = remainder;
           this.tax = "0";

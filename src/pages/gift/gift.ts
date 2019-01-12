@@ -1,18 +1,41 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController, App } from 'ionic-angular';
+import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
+import { serverUrl } from '../../Globals';
+import { ResponseStatus } from '../Enum/enum';
+import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 
 @Component({
   selector: 'page-gift',
   templateUrl: 'gift.html'
 })
 export class GiftPage {
-  gift:any;
+  gift: any;
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController,public app: App) {
 
   }
-  giftcode(){
+  submitGiftCode() {
+    var body = new HttpParams()
+      .append('GiftCode', this.gift);
+
+    this.http.request('Post', serverUrl + 'api/Gift/SubmitGiftCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+      .subscribe(data => {
+        let toast = this.toastCtrl.create({
+          message: data["message"],
+          duration: 10000,
+          position: 'bottom'
+        });
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+
+        toast.present();
+      });
+  }
+  backpressed() {
     
+    this.app.getRootNav().setRoot(TabsControllerPage);
   }
 }

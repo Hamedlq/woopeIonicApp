@@ -1,4 +1,4 @@
-<ion-icon style="z-index: 100; direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold"
+<ion-icon on-click="backpressed()" style="z-index: 100; direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold"
   name="arrow-forward"></ion-icon>
 <ion-header>
   <ion-navbar>
@@ -23,5 +23,5 @@
   </form>
 </ion-content>
 <ion-footer no-shadow>
-  <button ion-button color="secondary" full on-click="giftcode()">تایید کد هدیه</button>
+  <button on-click="submitGiftCode()" ion-button color="secondary" full >تایید کد هدیه</button>
 </ion-footer>
