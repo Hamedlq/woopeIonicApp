@@ -29,8 +29,7 @@ export class SplashPage {
   // should be each tab's root Page
   constructor(private http: HttpClient, public navCtrl: NavController,
     public toastCtrl: ToastController,public events: Events,navParams: NavParams) {
-    this.State = navParams.get('State');
-    console.log(this.State);
+
     let baseUrl = serverUrl;
     this.duration = 1000;
     //this.url ;
@@ -40,7 +39,8 @@ export class SplashPage {
         .subscribe(data => {
           console.log(data);
           if (data["status"] == ResponseStatus.Success) {
-
+            
+            //navCtrl.push('bank');
             navCtrl.setRoot(TabsControllerPage,{profile:data});
           } else {
             let toast = toastCtrl.create({

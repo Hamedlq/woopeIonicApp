@@ -41,10 +41,17 @@ export class PayPage {
     this.totalPrice = navParams.get('amount');
     this.isOnline = true;
     this.calculateValues();
+    if(this.payListId){
+      this.ConfirmPayment(this.payListId);
+    }
+    
   }
   paydraw() {
     this.show = !this.show;
     this.showi = !this.showi;
+  }
+  backpressed(){
+    this.navCtrl.pop();
   }
   cashSelected() {
     this.isOnline = false;
@@ -100,12 +107,11 @@ export class PayPage {
     this.http.request('Post', serverUrl + 'api/Transaction/GetConfirmCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         if (data["status"] == ResponseStatus.Success) {
-          this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile });
+          this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile,code:data["message"] });
         } else {
           this.calculateValues();
         }
       });
-
   }
   GetPayInfo(payListId) {
     var body = new HttpParams()
@@ -113,14 +119,14 @@ export class PayPage {
     this.http.request('Post', serverUrl + 'api/Pay/GetPayInfo', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         console.log(data);
-        let browser = this.iab.create(data["bankUrl"]);
-        browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
-          var closeUrl = 'app.woope.ir';
-          if (event.url == closeUrl) {
-            browser.close();       //This will close InAppBrowser Automatically when closeUrl Started
-          }
-        });
-        //window.open(data["bankUrl"], '_system');
+        // let browser = this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
+        // browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
+        //   var closeUrl = 'app.woope.ir';
+        //   if (event.url == closeUrl) {
+        //     browser.close();       //This will close InAppBrowser Automatically when closeUrl Started
+        //   }
+        // });
+        window.open(data["bankUrl"], '_system');
       });
   }
   calculateValues() {
@@ -128,7 +134,7 @@ export class PayPage {
     //int selectedId = payType.getCheckedRadioButtonId();
     let rw = 0;
     if (this.store.returnPoint != 0) {
-      rw = Math.ceil((this.totalPrice) / this.store.basePrice) * this.store.returnPoint;
+      rw = Math.floor((this.totalPrice) / this.store.basePrice) * this.store.returnPoint;
     }
     console.log(rw);
     this.return_woope = rw;
@@ -188,8 +194,8 @@ export class PayPage {
           this.payPriceValue = 0;
           this.pay_price = "0";
           this.Btntxt = "پرداخت (" + "0" + " تومان)";
-          this.toman_use = this.profile.moneyCredit;
-          this.woope_use = "0";
+          this.toman_use = "0";
+          this.woope_use = this.profile.woopeCredit;
           this.remain_toman = "0";
           this.tax = "0";
 
@@ -199,7 +205,7 @@ export class PayPage {
           this.payPriceValue = 0;
           this.pay_price = "0";
           this.Btntxt = "پرداخت (" + "0" + " تومان)";
-          this.toman_use = this.profile.moneyCredit;
+          this.toman_use = "0";
           this.woope_use = Math.abs(integerPart);
           this.remain_toman = remainder;
           this.tax = "0";

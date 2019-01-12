@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, ToastController } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, ToastController, IonicPageModule } from 'ionic-angular';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -34,6 +34,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -61,7 +62,7 @@ import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
   imports: [
     BrowserModule,
     HttpClientModule ,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -85,7 +86,7 @@ import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
     StorePage,
     CreditePayCodePage,
     CashPayCodePage,
-    EditPage
+    EditPage,
   ],
   providers: [
     StatusBar,
