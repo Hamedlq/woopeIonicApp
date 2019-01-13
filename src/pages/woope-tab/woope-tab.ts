@@ -27,6 +27,6 @@ export class WoopeTabPage {
     let store={storeId:trans.branchId,returnPoint:trans.returnWoope,basePrice:trans.basePrice}
     let payListId=trans.id;
     let amount=trans.totalPrice;
-    this.navCtrl.push(PayPage, { store: store, profile: this.profile, amount: amount });
+    this.navCtrl.push(PayPage, { store: store, profile: this.profile, amount: amount,payListId:payListId });
   }
 }

@@ -3,7 +3,7 @@
   <ion-icon on-click="backpressed()" style="direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold"
     name="arrow-forward"></ion-icon>
   <span style="direction: rtl; position: absolute;color: #ffffff;margin-top: 30px;margin-left: 44%;font-family:Irsansans; font-size: 20px;font-weight: bold"
-    name="arrow-forward">سالوت</span>
+    name="arrow-forward">{{store.storeName}}</span>
   <img src="assets/img/home2.png" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
   <img [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'" style="margin-top:-50px;margin-left: 43% !important; display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;" />
 </div>
@@ -11,19 +11,21 @@
   <img src="assets/img/home_shadow.png" style="z-index: -20;display:block;width:100%;height:100px;margin-left:auto;margin-right:auto" />
   <div class="row" style="justify-content:space-around">
     <div class="col-6">
-      <ion-card on-click="cashSelected()" style="background-color: #F7F6FB;width:100px;height:100px;" id="profileTab-card25">
-        <ion-list>
-          <img *ngIf="!isOnline"  src="assets/img/ic_ok.png" style="margin-top:5px; display:block;width:30%;height:30%;margin-left:10px;" />
-          <img class="img1" src="assets/img/rYxTY9VNTMy2vLxSKysE_cash_ico.png" style="margin-top:5px; display:block;width:60%;height:6%;margin-left:auto;margin-right:auto;" />
-        </ion-list>
+      <ion-card on-click="cashSelected()" style="background-color: #F7F6FB;width:100px;height:100px;">
+        <div class="row" style=" display:block;width:30%;height:2%;">
+          <img *ngIf="!isOnline" src="assets/img/ic_ok.png" style=" display:block;margin-left:10px;" />
+        </div>
+        <img class="img1" src="assets/img/rYxTY9VNTMy2vLxSKysE_cash_ico.png" style="margin-top:25px !important; display:block;width:60%;height:50%;margin-left:auto;margin-right:auto;" />
       </ion-card>
     </div>
     <div class="col-6">
-      <ion-card on-click="onlineSelected()" style="background-color: #F7F6FB;width:100px;height:100px;" id="profileTab-card24">
-        <ion-list>
-          <img *ngIf="isOnline"  src="assets/img/ic_ok.png" style="margin-top:5px; display:block;width:30%;height:30%;margin-left:10px;" />
-          <img class="img1" src="assets/img/kqcevnhvS169DufOP28A_online_ico.png" style="margin-top:5px; display:block;width:50%;height:6%;margin-left:auto;margin-right:auto;" />
-        </ion-list>
+      <ion-card on-click="onlineSelected()" style="background-color: #F7F6FB;width:100px;height:100px;">
+        <div class="row" style=" display:block;width:30%;height:2%;">
+          <img *ngIf="isOnline" src="assets/img/ic_ok.png" style=" display:block;margin-left:10px;" />
+        </div>
+        <div class="row">
+          <img class="img1" src="assets/img/kqcevnhvS169DufOP28A_online_ico.png" style="margin-top:25px!important; display:block;width:50%;height:50%;margin-left:auto;margin-right:auto;" />
+        </div>
       </ion-card>
     </div>
   </div>
@@ -34,7 +36,8 @@
           <ion-label>
             استفاده از موجودی تومانی({{profile.moneyCredit}})
           </ion-label>
-          <ion-toggle [(ngModel)]="switch_credit" (ionChange)="updateItem(item)" style="color: blue !important;border: none" color="positive" checked="false"></ion-toggle>
+          <ion-toggle [(ngModel)]="switch_credit" (ionChange)="updateItem(item)" style="color: blue !important;border: none"
+            color="positive" checked="false"></ion-toggle>
         </ion-item>
       </div>
     </div>
@@ -51,10 +54,12 @@
   </div>
 </ion-content>
 <ion-footer style="direction: rtl">
-  <div  class="row" style="position: absolute; bottom: 0px; justify-content:space-around;margin-top: 15px;">
+  <div class="row" style="position: absolute; bottom: 0px; justify-content:space-around;margin-top: 15px;">
     <div col-12 col-md-10>
-      <ion-icon *ngIf=showi (click)="paydraw()" style="position: absolute;margin-right: 45%;color: #ffffff ;margin-top: 5px;" class="arrow icon icon-ios ion-ios-arrow-up"></ion-icon>
-      <ion-icon *ngIf=show (click)="paydraw()" style="position: absolute;margin-right: 45%;color: #ffffff ;margin-top: 5px;" class="arrow icon icon-ios ion-ios-arrow-down"></ion-icon>
+      <ion-icon *ngIf=showi (click)="paydraw()" style="position: absolute;margin-right: 45%;color: #ffffff ;margin-top: 5px;"
+        class="arrow icon icon-ios ion-ios-arrow-up"></ion-icon>
+      <ion-icon *ngIf=show (click)="paydraw()" style="position: absolute;margin-right: 45%;color: #ffffff ;margin-top: 5px;"
+        class="arrow icon icon-ios ion-ios-arrow-down"></ion-icon>
       <img (click)="paydraw()" class="price" src="assets/img/Android/price_drawer.png" style="padding: 0;margin: 0;margin-bottom: -5px; width: 100%;height: auto" />
       <div *ngIf=show class="row" style="padding: 0;margin: 0; position: relative; background-color: #F7F6FB">
         <div col-6>
@@ -130,8 +135,8 @@
           </span>
         </div>
       </div>
-      <button on-click="doPay()" style="padding: 0;margin: 0;margin-top: -4px; background-color:#7ae097" id="pay-button4" ion-button color="positive"
-        block>
+      <button on-click="doPay()" style="padding: 0;margin: 0;margin-top: -4px; background-color:#7ae097" id="pay-button4"
+        ion-button color="positive" block>
         {{Btntxt}}
       </button>
     </div>

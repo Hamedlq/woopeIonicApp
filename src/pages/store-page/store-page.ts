@@ -27,6 +27,10 @@ export class StorePage {
       .subscribe(data => {
         this.store = data;
       });
+      this.http.post(serverUrl + 'api/Profile/GetProfile', {})
+      .subscribe(data => {
+        this.profile=data;
+      });
   }
   presentAlert() {
     let alert = this.alertCtrl.create({

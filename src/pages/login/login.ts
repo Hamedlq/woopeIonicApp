@@ -28,6 +28,7 @@ export class LoginPage {
   
   loginUser() {
     let baseUrl = serverUrl;
+
     var body = new HttpParams()
       .append('username', this.username)
       .append('password', this.password)
@@ -36,9 +37,7 @@ export class LoginPage {
 
     this.http.request('Post', baseUrl + 'connect/token', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        console.log(data);
         if (data["access_token"]) {
-          console.log(data);
           this.events.publish('user:login',data["access_token"]);
           //check if show sms validation or tabcontroller
           this.http.post(baseUrl + 'api/Profile/GetProfile', {})
