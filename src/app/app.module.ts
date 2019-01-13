@@ -32,6 +32,7 @@ import { CreditePayCodePage } from '../pages/creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
+import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionHistory';
 
 
 
@@ -57,7 +58,8 @@ import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
     StorePage,
     CreditePayCodePage,
     CashPayCodePage,
-    EditPage
+    EditPage,
+    TransactionHistoryPage,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +89,7 @@ import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
     CreditePayCodePage,
     CashPayCodePage,
     EditPage,
+    TransactionHistoryPage
   ],
   providers: [
     StatusBar,

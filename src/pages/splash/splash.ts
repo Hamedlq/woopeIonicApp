@@ -15,6 +15,7 @@ import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { SplashSelectPage } from '../splash-select/splash-select';
 import { EditPage } from '../Edit-Profile/Edit-Profile';
+import { TransactionHistoryPage } from '../TransactionHistory/TransactionHistory';
 
 @Component({
   selector: 'page-splash',
@@ -41,7 +42,7 @@ export class SplashPage {
           if (data["status"] == ResponseStatus.Success) {
             
             //navCtrl.push('bank');
-            navCtrl.setRoot(TabsControllerPage,{profile:data});
+            navCtrl.setRoot(TransactionHistoryPage,{profile:data});
           } else {
             let toast = toastCtrl.create({
               message: 'خطا در شبکه. لطفا دوباره سعی کنید',
