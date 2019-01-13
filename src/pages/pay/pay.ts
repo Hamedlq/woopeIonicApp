@@ -126,7 +126,8 @@ export class PayPage {
         //     browser.close();       //This will close InAppBrowser Automatically when closeUrl Started
         //   }
         // });
-        window.open(data["bankUrl"], '_system');
+        //this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
+        window.open("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"], '_self');
       });
   }
   calculateValues() {
