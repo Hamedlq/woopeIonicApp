@@ -19,20 +19,23 @@ import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 export class CashPayCodePage {
   payListId: any;
   code:any;
+  disableButton;
   constructor(public navCtrl: NavController, public navParams: NavParams,private http: HttpClient,private toastCtrl: ToastController,) {
     this.payListId = navParams.get('payListId');
-
+    this.disableButton=false;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CashPayCodePage');
   }
 confirmCode(){
+  this.disableButton=true;
   var body = new HttpParams()
       .append('paylistId', this.payListId)
       .append('confirmationCode', this.code);
     this.http.request('Post', serverUrl + 'api/Transaction/SubmitCashConfirmationCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
+        this.disableButton=true;
         if (data["status"] == ResponseStatus.Success) {
           let toast = this.toastCtrl.create({
             message: data["message"],
@@ -59,6 +62,6 @@ confirmCode(){
         toast.present();
       }
         
-      });
+      },onerror=>{this.disableButton=false;});
 }
 }

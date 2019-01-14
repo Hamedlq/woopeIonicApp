@@ -15,6 +15,7 @@ import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 })
 
 export class PayPage {
+  disableButton;
   show = false;
   showi = true;
   baseUrl: any;
@@ -34,6 +35,7 @@ export class PayPage {
   switch_credit: boolean;
   switch_woope: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private iab: InAppBrowser) {
+    this.disableButton=false;
     this.baseUrl = serverUrl;
     this.payListId = navParams.get('payListId');
     this.profile = navParams.get('profile');
@@ -44,7 +46,6 @@ export class PayPage {
     if(this.payListId){
       this.ConfirmPayment(this.payListId);
     }
-    
   }
   paydraw() {
     this.show = !this.show;
@@ -65,6 +66,7 @@ export class PayPage {
     this.calculateValues();
   }
   doPay() {
+    this.disableButton=true;
     let pt = "1";
     if (!this.isOnline) {
       pt = "1";
@@ -82,14 +84,14 @@ export class PayPage {
       .subscribe(data => {
         console.log(data);
         if (!this.isOnline) {
-
+          this.disableButton=false;
           //go to cash pay
           this.navCtrl.push(CashPayCodePage, { store: this.store, profile: this.profile, payListId: data["id"] });
         } else {
           //go to credit pay
           this.setNext(data["id"]);
         }
-      });
+      },onerror=>{this.disableButton=false;});
   }
 
   setNext(payListId) {
@@ -102,22 +104,30 @@ export class PayPage {
   }
 
   ConfirmPayment(payListId) {
+    
+    this.disableButton=true;
     var body = new HttpParams()
       .append('Id', payListId);
     this.http.request('Post', serverUrl + 'api/Transaction/GetConfirmCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         if (data["status"] == ResponseStatus.Success) {
+          
+        this.disableButton=false;
           this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile,code:data["message"] });
         } else {
           this.calculateValues();
         }
-      });
+      },onerror=>{this.disableButton=false;});
   }
   GetPayInfo(payListId) {
+    
+    this.disableButton=true;
     var body = new HttpParams()
       .append('paylistId', payListId);
     this.http.request('Post', serverUrl + 'api/Pay/GetPayInfo', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
+        
+        this.disableButton=false;
         console.log(data);
         // let browser = this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
         // browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
@@ -128,7 +138,7 @@ export class PayPage {
         // });
         //this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
         window.open("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"], '_self');
-      });
+      },onerror=>{this.disableButton=false;});
   }
   calculateValues() {
     console.log(this.profile);

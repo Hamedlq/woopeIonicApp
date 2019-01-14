@@ -56,11 +56,9 @@ export class StoreTabPage {
     //let browser = new InAppBrowser(banner.website, '_system');
     window.open(banner.website, '_system');
   }
-
   storeclick(store){
     this.app.getRootNav().setRoot(StorePage, { store: store,profile:this.profile});
   }
-
   openGift(){
     this.app.getRootNav().setRoot(GiftPage);
   }
