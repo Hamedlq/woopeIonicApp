@@ -23,5 +23,5 @@
   </form>
 </ion-content>
 <ion-footer no-shadow>
-  <button on-click="submitGiftCode()" ion-button color="secondary" full >تایید کد هدیه</button>
+  <button [disabled]="disableButton" on-click="submitGiftCode()" ion-button color="secondary" full >تایید کد هدیه</button>
 </ion-footer>

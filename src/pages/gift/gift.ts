@@ -11,17 +11,23 @@ import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 })
 export class GiftPage {
   gift: any;
+  
+  disableButton;
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController,public app: App) {
-
+    this.disableButton=false;
   }
   submitGiftCode() {
+    
+    this.disableButton=true;
     var body = new HttpParams()
       .append('GiftCode', this.gift);
 
     this.http.request('Post', serverUrl + 'api/Gift/SubmitGiftCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
+        
+        this.disableButton=false;
         let toast = this.toastCtrl.create({
           message: data["message"],
           duration: 10000,
@@ -32,7 +38,7 @@ export class GiftPage {
         });
 
         toast.present();
-      });
+      },onerror=>{this.disableButton=false;});
   }
   backpressed() {
     
