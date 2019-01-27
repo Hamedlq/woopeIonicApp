@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     //in this example I am navigating to login.
                     //console.log("Error_Token_Expired: redirecting to login.");
 
-                    localStorage.removeItem("access_token");
+                    
                     this.events.publish('user:logout');
                 } 
             }

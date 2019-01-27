@@ -19,9 +19,11 @@ import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 export class CashPayCodePage {
   payListId: any;
   code:any;
+  store:any;
   disableButton;
   constructor(public navCtrl: NavController, public navParams: NavParams,private http: HttpClient,private toastCtrl: ToastController,) {
     this.payListId = navParams.get('payListId');
+    this.store = navParams.get('store');
     this.disableButton=false;
   }
 
@@ -35,7 +37,7 @@ confirmCode(){
       .append('confirmationCode', this.code);
     this.http.request('Post', serverUrl + 'api/Transaction/SubmitCashConfirmationCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        this.disableButton=true;
+        this.disableButton=false;
         if (data["status"] == ResponseStatus.Success) {
           let toast = this.toastCtrl.create({
             message: data["message"],

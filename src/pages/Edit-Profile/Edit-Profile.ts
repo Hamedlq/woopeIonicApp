@@ -12,7 +12,4 @@ export class EditPage {
   constructor(public navCtrl: NavController) {
 
   }
-  giftcode(){
-    
-  }
 }

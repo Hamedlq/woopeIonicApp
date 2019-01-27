@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TransactionHistoryPage } from '../TransactionHistory/TransactionHistory';
+import { EditPage } from '../Edit-Profile/Edit-Profile';
 
 @Component({
   selector: 'page-profile-tab',
@@ -17,5 +18,7 @@ export class ProfileTabPage {
   transactionhistory(){
     this.navCtrl.push(TransactionHistoryPage);
   }
-  
+  editprofile(){
+    this.navCtrl.push(EditPage,);
+  }
 }

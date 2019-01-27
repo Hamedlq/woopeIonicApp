@@ -44,7 +44,8 @@ export class LoginPage {
           .subscribe(data => {
             this.profile = data;
             if(!this.profile["phoneNumberConfirmed"]){
-              this.navCtrl.push(SmsValidationPage,{mobile:this.profile["mobile"]});
+              this.events.publish('user:notverified');
+              this.navCtrl.push(SmsValidationPage,{mobile:this.profile["mobile"],password:this.password});
             }else{
               this.navCtrl.push(TabsControllerPage);
             }

@@ -33,6 +33,7 @@ export class MyApp {
       statusBar.styleDefault();
 
       events.subscribe('user:logout', () => {
+        localStorage.removeItem("access_token");
         this.rootPage = SplashSelectPage;
       });
 
@@ -44,7 +45,9 @@ export class MyApp {
       events.subscribe('user:login', (token) => {
         localStorage.setItem('access_token', token);
       });
-
+      events.subscribe('user:notverified', (token) => {
+        localStorage.removeItem("access_token");
+      });
     });
   }
 }

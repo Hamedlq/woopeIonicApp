@@ -110,9 +110,9 @@ export class PayPage {
       .append('Id', payListId);
     this.http.request('Post', serverUrl + 'api/Transaction/GetConfirmCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        if (data["status"] == ResponseStatus.Success) {
-          
         this.disableButton=false;
+        if (data["status"] == ResponseStatus.Success) {
+
           this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile,code:data["message"] });
         } else {
           this.calculateValues();
