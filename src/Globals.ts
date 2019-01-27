@@ -1,7 +1,7 @@
 
-//  export const serverUrl = 'http://192.168.100.3:8090/';
-// export const serverUrl = 'http://localhost/';
-export const serverUrl = 'https://mywoope.com/';
+  export const serverUrl = 'http://192.168.100.3:8090/';
+//export const serverUrl = 'http://localhost/';
+//export const serverUrl = 'https://mywoope.com/';
 // {
 //   // serverUrl: string;
 

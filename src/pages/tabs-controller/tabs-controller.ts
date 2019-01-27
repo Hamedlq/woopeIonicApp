@@ -17,7 +17,7 @@ export class TabsControllerPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   tab1Root: any = StoreTabPage;
-  // tab2Root: any = SearchTabPage;
+  tab2Root: any = SearchTabPage;
   tab3Root: any = WoopeTabPage;
   // tab4Root: any = FavoriteTabPage;
   tab5Root: any = ProfileTabPage;
