@@ -56,3 +56,20 @@ Edit-Profile {
           background-size: 200px 50px !important;
       }
     }
+.borderGander{
+  border: 1px solid rgb(153, 216, 57);
+  color: rgb(153, 216, 57);
+  height: 70px;
+    width: 70px;
+    background-color:#ffffff;
+    border-radius: 50%;
+    display: inline-block;
+}
+.borderGanderNull{
+  border: hidden;
+  height: 70px;
+    width: 70px;
+    background-color:#ffffff;
+    border-radius: 50%;
+    display: inline-block;
+}
