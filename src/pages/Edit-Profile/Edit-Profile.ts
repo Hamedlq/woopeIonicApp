@@ -1,20 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController, App ,NavParams ,ViewController ,Platform} from 'ionic-angular';
-
+import { NavController, App , ModalController} from 'ionic-angular';
 import {serverUrl} from '../../Globals'
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
-import {SplashSelectPage} from '../splash-select/splash-select';
-import {ProfileTabPage}from '../profile-tab/profile-tab';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
-import { ViewChild } from '@angular/core';
-import { Navbar } from 'ionic-angular';
+
 @Component({
   selector: 'Edit-Profile',
   templateUrl: 'Edit-Profile.html'
 })
 export class EditPage {
-  @ViewChild(Navbar) navBar: Navbar;
-  Controller :TabsControllerPage;
   Itames=[];
   classMan: string = 'borderGanderNull';
   classWoman:string = 'borderGanderNull';
@@ -29,13 +23,10 @@ export class EditPage {
   baseUrl=serverUrl;
 
   constructor(
-    public platform: Platform,
-    public view: ViewController,
     public app:App ,
-    public navParams:NavParams,
     public navCtrl: NavController,
-    private http:HttpClient) {
-      this.profile = navParams.get('profile');
+    private http:HttpClient,
+    private modalC :ModalController) {
       this.http.post(serverUrl + 'api/Profile/GetProfile', {})
       .subscribe(data => {
         console.log(data);
@@ -80,8 +71,7 @@ export class EditPage {
   }).subscribe(data => {   
     console.log(<any>data);  
   });
-  //this.navCtrl.push(TabsControllerPage);
-  this.navCtrl.pop();
+  this.navCtrl.push(TabsControllerPage);
 };
 
 selectMan(){
@@ -95,8 +85,8 @@ selectWoman(){
   this.classMan='borderGanderNull';
 };
 logout(){
-  localStorage.clear(); 
-  //this.navCtrl.push(SplashSelectPage);
+  let modalConfirm = this.modalC.create('ModalConfirmationPage');
+  modalConfirm.present();
 };
 
 butBack() {

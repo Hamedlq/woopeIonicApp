@@ -1,4 +1,10 @@
 Edit-Profile {
+  .logo{
+    width:100%!important;
+    height:auto !important;
+    position: absolute; 
+    margin: 20px; 
+    }
   ::-webkit-input-placeholder {
     color: #9a9a9a !important;
     font-size: 12px;
