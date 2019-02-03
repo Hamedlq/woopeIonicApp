@@ -47,7 +47,7 @@ export class SearchTabPage {
     setTimeout(() => {
       var body = new HttpParams()
         .append('pageNumber', this.page);
-      this.http.request('Post', this.baseUrl + 'api/Store/GetStoresbyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+      this.http.request('Post', this.baseUrl + 'api/Store/FindStorebyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
         .subscribe(data => {
           let newitems=<any>data;
           if(newitems.length>1){
