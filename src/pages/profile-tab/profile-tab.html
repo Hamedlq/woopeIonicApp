@@ -1,10 +1,12 @@
-<!-- <ion-icon on-click="editprofile()" name="create" style="position: relative;margin-right:50px;margin-top: 15px;  color: #ffffff;z-index: 100; margin-bottom: 0px; ;font-size: 25px;font-weight: bold;float:right"></ion-icon> -->
-<ion-content id="page6" style="position: absolute; background-color:#F7F6FB;">
-  <img src="assets/img/Hat5qSFnR6CJG8wtInzI_profile_subtoolbar.png" style="display:block;width:100%;height:30%;margin-left:auto;margin-right:auto;" />
-  <img src="assets/img/zaPbzkreSaaV4MoQS0x9_group34.png" style="margin-top:-70px; display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;" />
-
-
-  <div id="profileTab-markdown17" style="text-align:center;" class="show-list-numbers-and-dots">
+<div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
+  <img src="assets/img/logo_white.png" class="logo" />
+  <img src="assets/img/home2.png" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
+</div>
+<header>
+  <ion-icon name="create" on-click="openEditPage()" style="position: relative;margin-top: 15px;  color: #ffffff;z-index: 100; margin-bottom: 0px; ;font-size: 25px;font-weight: bold;float:right"></ion-icon> 
+</header>
+<ion-content id="page6" style="display:block;background-color:#F7F6FB;">
+  <div id="profileTab-markdown17" style="text-align:center; margin-top:120px;" class="show-list-numbers-and-dots">
     <p style="color:#8100F9;">
       {{profile.username}}
     </p>
