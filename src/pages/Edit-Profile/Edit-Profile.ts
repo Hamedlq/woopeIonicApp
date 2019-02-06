@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App , ModalController} from 'ionic-angular';
+import { NavController, App , ModalController,NavParams} from 'ionic-angular';
 import {serverUrl} from '../../Globals'
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
@@ -26,7 +26,9 @@ export class EditPage {
     public app:App ,
     public navCtrl: NavController,
     private http:HttpClient,
-    private modalC :ModalController) {
+    private modalC :ModalController,
+    private navParams: NavParams
+    ) {
       this.http.post(serverUrl + 'api/Profile/GetProfile', {})
       .subscribe(data => {
         console.log(data);
@@ -69,7 +71,7 @@ export class EditPage {
     .append('Age',this.age);
     this.http.request('post',this.baseUrl+'api/Profile/SetProfile',{body:body , headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
   }).subscribe(data => {   
-    console.log(<any>data);  
+    this.navParams.get('profile');
   });
   this.navCtrl.push(TabsControllerPage);
 };
@@ -92,4 +94,5 @@ logout(){
 butBack() {
   this.navCtrl.pop();
 };
+
 };

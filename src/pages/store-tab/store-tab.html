@@ -14,15 +14,16 @@
         <img class="imgbaner" style="z-index: 100; border:none;border-radius: 5px !important;" [src]="baseUrl+store.logoSrc" style="border-radius:10px;" />
       </div>
       <ng-template style="border-top-right-radius: 200px;border-bottom-right-radius: 200px;" #elsetag>
-        <div class="storeitem" on-click="storeclick(store)" style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff">
+        <div class="storeitem"  style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff">
           <div class="row">
-            <div col-3>
+            
+            <div col-3 on-click="storeclick(store)">
               <ion-avatar style="border:none;margin: 3px;margin-top: 0px;" item-left>
                 <img style="width: 66px;height: 66px;" [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'" />
               </ion-avatar>
             </div>
             <div col-9>
-              <div class="row">
+              <div class="row" on-click="storeclick(store)">
                 <div col-6 style="padding: 0px;margin: 0px">
                   <span> {{store.storeName}}</span>
                 </div>
@@ -32,21 +33,23 @@
                   </span>
                 </div>
               </div>
-              <div class="row">
-                <div col-6 style="padding: 0px;margin: 0px">
+              <div class="row" on-click="storeclick(store)">
+                <div col-12 style="padding: 0px;margin: 0px">
                   <span style="font-size:10px;">به ازای هر {{store.basePrice}} تومان خرید {{store.returnPoint}} عدد ووپ
                     هدیه
                     بگیرید</span>
-                </div>
-                <div col-6 style="direction: ltr;padding: 0px;margin: 0px">
-                  <span style="font-size:10px; color:#Ed0000;">
+                  </div>
+              </div>
+              <div class="row" style=" height:25px;padding: 0px;margin: 0px">
+                <div col-10  on-click="storeclick(store)">
+                  <span style="font-size:10px; color:#Ed0000; float: right">
                     {{store.discountPercent}}% تخفیف
                   </span>
                 </div>
+                <div col-2 >
+                  <ion-icon [ngClass]="{'like': store.isFollowed}" on-click="like(store,$event)"  name="md-heart" style="padding: 0px;margin: 0px ; float: lef;text-align: center"  ></ion-icon>
+                </div>
               </div>
-              <!-- <div class="row" style="direction: ltr">
-                <i [class]="store.isFollowed?'ion ion-ios-heart':'ion ion-ios-heart-outline'"></i>
-              </div> -->
             </div>
           </div>
         </div>
