@@ -3,10 +3,11 @@
   <img src="assets/img/home2.png" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
 </div>
 <header>
-  <ion-icon name="create" on-click="openEditPage()" style="position: relative;margin-top: 15px;  color: #ffffff;z-index: 100; margin-bottom: 0px; ;font-size: 25px;font-weight: bold;float:right"></ion-icon> 
+  <ion-icon name="create" on-click="openEditPage()" style="position: relative;margin-top: 15px;  color: #ffffff;z-index: 100; margin-bottom: 0px; ;font-size: 25px;font-weight: bold;float:right ; margin-right:10px;"></ion-icon> 
 </header>
 <ion-content id="page6" style="display:block;background-color:#F7F6FB;">
   <div id="profileTab-markdown17" style="text-align:center; margin-top:120px;" class="show-list-numbers-and-dots">
+    <img style="width: 66px;height: 66px;   border-radius: 50%;" [src]="profile.imageSrc ? baseUrl+profile.imageSrc : 'assets/img/default_store.png'" /> 
     <p style="color:#8100F9;">
       {{profile.username}}
     </p>
@@ -63,6 +64,7 @@
             </p>
           </div>
       </ion-card>
+     
     </div>
   </div>
   <!-- <ion-grid>
