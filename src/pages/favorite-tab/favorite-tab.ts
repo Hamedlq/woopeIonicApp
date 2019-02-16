@@ -3,7 +3,6 @@ import {
   NavController,
   ToastController,
   NavParams,
-  ItemSliding,
   App
 } from "ionic-angular";
 import { HttpParams, HttpHeaders, HttpClient } from "@angular/common/http";
@@ -88,7 +87,5 @@ export class FavoriteTabPage {
         this.items = <any>data;
       });
   }
-  ngAfterViewInit() {
-    console.log("hoiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-  }
+
 }
