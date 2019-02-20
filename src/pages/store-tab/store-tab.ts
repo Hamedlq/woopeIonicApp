@@ -6,6 +6,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { StorePage } from '../store-page/store-page';
 import { GiftPage } from '../gift/gift';
 import { PayPage } from '../pay/pay';
+import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 
 @Component({
   selector: 'page-store-tab',
@@ -14,6 +15,7 @@ import { PayPage } from '../pay/pay';
 export class StoreTabPage {
   page: any;
   profile: any;
+  storelist: any;
   baseUrl:any;
   items = [];
   // this tells the tabs component which Pages
@@ -22,11 +24,15 @@ export class StoreTabPage {
     private toastCtrl: ToastController, public navParams: NavParams,
     public app: App) {
       this.profile = navParams.get('profile');
+      this.storelist = navParams.get('storelist');
     this.page = 0;
     this.baseUrl = serverUrl;
     var body = new HttpParams()
-      .append('pageNumber', this.page);
-    this.http.request('Post', this.baseUrl + 'api/Store/GetStoresbyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+      .append('MallId', this.storelist.id) 
+      .append('countOfList', '9')
+      .append('listOrder', this.storelist.listOrder)
+      .append('pageNumber', "0");
+    this.http.request('Post', this.baseUrl + 'api/Store/GetStoresFilter', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         console.log(data);
         this.items = <any>data;
@@ -38,6 +44,9 @@ export class StoreTabPage {
     this.page++;
     setTimeout(() => {
       var body = new HttpParams()
+        .append('MallId', this.storelist.id) 
+        .append('countOfList', '9')
+        .append('listOrder', this.storelist.listOrder)
         .append('pageNumber', this.page);
       this.http.request('Post', this.baseUrl + 'api/Store/GetStoresbyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
         .subscribe(data => {
@@ -69,5 +78,9 @@ export class StoreTabPage {
       console.log(data);
   });
    event.target.classList.toggle('like');
+}
+backpressed(){
+    
+  this.app.getRootNav().setRoot(TabsControllerPage);
 }
 }

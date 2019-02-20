@@ -1,9 +1,11 @@
 
   // export const serverUrl = 'http://192.168.100.3:8090/';
 //export const serverUrl = 'http://localhost/';
-export const serverUrl = 'https://mywoope.com/';
+// export const serverUrl = 'https://mywoope.com/';
+export const serverUrl = 'http://test.mywoope.com/';
 // {
-//   // serverUrl: string;
+  // serverUrl: string;
+//   // stest.erverUrl: string;
 
 //   // constructor() {
 //   //   // this.url = window.location.hostname;

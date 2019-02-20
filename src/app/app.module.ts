@@ -33,6 +33,7 @@ import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
 import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionHistory';
+import { MainTabPage } from '../pages/main-tab/main-tab';
 
 
 
@@ -41,6 +42,7 @@ import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionH
     MyApp,
     StoreTabPage,
     SearchTabPage,
+    MainTabPage,
     WoopeTabPage,
     TabsControllerPage,
     FavoriteTabPage,
@@ -71,6 +73,7 @@ import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionH
     MyApp,
     StoreTabPage,
     SearchTabPage,
+    MainTabPage,
     WoopeTabPage,
     TabsControllerPage,
     FavoriteTabPage,
