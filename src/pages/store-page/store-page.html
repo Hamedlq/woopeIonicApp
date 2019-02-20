@@ -29,7 +29,9 @@
 
  
         <ion-list style=" margin-top: 58px ; margin-bottom:3px " *ngSwitchCase="'info'">
-           
+          <div style="text-align: center">
+            <button on-click="order()" ion-button style="width: 95%" ><samp>vip</samp>درخواست خدمات </button>
+          </div> 
         <div *ngIf="store.storeDescription">
           <ion-card style="background:#F7F6FB" id="profileTab-card26">
             <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
@@ -61,7 +63,9 @@
             </div>
           </ion-card>
         </div>
-      
+        <div style="text-align: center">
+          <button on-click="fault()" ion-button style="width: 95% ; background: rgb(245, 62, 62)" >گزارش عدم همکاری فروشگاه<ion-icon name="warning"></ion-icon></button>
+        </div> 
       </ion-list>
   
       <ion-list *ngSwitchCase="'gallery'">
@@ -69,7 +73,7 @@
       <div class="row" style="margin-bottom:5px ; ">
           <div *ngFor="let item of items"  col-4>
             
-              <img col-12 style="height: 100px;margin: 0px" [src]="baseUrl+item.productImageAddress " />    
+              <img (click)=storeP(item) col-12 style="height: 100px;margin: 0px" [src]="baseUrl+item.productImageAddress " />    
           </div>
       </div>
       <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

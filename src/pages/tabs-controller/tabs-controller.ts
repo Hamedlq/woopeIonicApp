@@ -8,6 +8,7 @@ import { ProfileTabPage } from '../profile-tab/profile-tab';
 import { HttpClient } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { MainTabPage } from '../main-tab/main-tab';
+import {AllPostPage} from '../all-post/all-post'
 @Component({
   selector: 'page-tabs-controller',
   templateUrl: 'tabs-controller.html'
@@ -20,7 +21,8 @@ export class TabsControllerPage {
   //tab1Root: any = StoreTabPage;
   tab1Root: any = MainTabPage;
   tab2Root: any = SearchTabPage;
-  tab3Root: any = WoopeTabPage;
+  //tab3Root: any = WoopeTabPage;
+  tab3Root: any = AllPostPage;
   tab4Root: any = FavoriteTabPage;
   tab5Root: any = ProfileTabPage;
   constructor(private viewCtrl :ViewController, private http: HttpClient,public navCtrl: NavController,navParams: NavParams,private app:App) {

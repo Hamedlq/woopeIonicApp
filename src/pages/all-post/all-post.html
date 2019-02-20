@@ -1,0 +1,37 @@
+<ion-header class="post">
+
+  <ion-navbar>
+    <ion-title style="float:right;">همه پست ها </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="post">
+   
+  <div  *ngFor="let ionfo of ionfos" >
+        <h4 style=" margin-right:3%;  float: right; direction: ltr" >{{ionfo.storeName}}</h4>
+        <img style=" width: 100%;height: 50%;margin: 0px" [src]="baseUrl+ionfo.productImageAddress" />
+        <div>
+        <div class="row" >   
+          <div col-4 style="margin-top: 7px">
+              <ion-icon [ngClass]="{'like': ionfo.isLiked}" (click)="like(ionfo,$event)" name="md-heart" style="font-weight: bold;float:left; text-align: left; margin: 0px; "></ion-icon>
+              <p style=" margin: 0px"><span style="float: left; margin: 0px"> لایک</span>{{ionfo.countLike}}</p>
+          </div>
+          <div col-8>
+            <button (click)="butporo(ionfo)"  class="but">خرید غیرحضوری</button>
+            </div>        
+        </div> 
+          <div col-12 class="row" style="float: right;direction: rtl" >
+            <p>{{ionfo.description}}</p>
+          </div>
+          
+         
+     
+      </div>
+    <hr>
+</div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

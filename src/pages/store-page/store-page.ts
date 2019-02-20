@@ -1,11 +1,11 @@
 import { Component, ɵConsole } from '@angular/core';
-import { NavController, NavParams, App } from 'ionic-angular';
+import { NavController, NavParams, App ,ModalController} from 'ionic-angular';
 import { serverUrl } from '../../Globals';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController } from 'ionic-angular'
 import { PayPage } from '../pay/pay';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
-
+import {PostPage} from '../post/post';
 @Component({
   selector: 'store-page',
   templateUrl: 'store-page.html'
@@ -16,13 +16,17 @@ export class StorePage {
   scroll: string = 'null';
   profile: any;
   baseUrl: any;
+  ionfo=[];
   pet : string;
   items =[];
   page : any;
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private http: HttpClient,
-    public navParams: NavParams, private alertCtrl: AlertController,public app: App) {
+    public navParams: NavParams,
+     private alertCtrl: AlertController,
+     public app: App,
+     private modalC :ModalController) {
       this.pet='info';
       this.page = 0;
     this.baseUrl = serverUrl;
@@ -65,11 +69,11 @@ export class StorePage {
       ],
     });
     alert.present();
-  }
+  };
 
   backpressed(){
     this.app.getRootNav().setRoot(TabsControllerPage);
-  }
+  };
   doInfinite(infiniteScroll) {
     this.scroll='topScroll';
     this.page++;
@@ -95,5 +99,30 @@ export class StorePage {
     console.log('ok');
     infiniteScroll.complete();
   };
-
-}
+  storeP(post){
+    this.navCtrl.push(PostPage, {post:post,profile:this.profile});     
+};
+order(){
+  var te = new HttpParams()
+  .append('branchId',this.store.storeId);
+  this.http.get(this.baseUrl + 'api/Branch/SaveVIPRequest',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+    .subscribe(data => {
+      this.ionfo =<any>data ;
+      console.log(this.ionfo['message']);
+      let modalConfirm = this.modalC.create('ModalConfirmation', {message: this.ionfo['message']}  );
+      modalConfirm.present();
+    });
+};
+fault(){
+  console.log(this.store.storeId);
+  var param = new HttpParams().append('BranchId', this.store.storeId);
+  this.http.get(this.baseUrl+ 'api/Branch/NonCooperation',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+  .subscribe(data => {
+    this.ionfo =<any>data ;
+    console.log(data)
+    console.log(this.ionfo['message']);
+    let modalConfirm = this.modalC.create('ModalConfirmation', {message: this.ionfo['message']});
+    modalConfirm.present();
+  });
+};
+};
