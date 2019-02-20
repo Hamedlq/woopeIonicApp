@@ -32,13 +32,15 @@ import { CreditePayCodePage } from '../pages/creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
+import { AllPostPage } from '../pages/all-post/all-post';
 import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionHistory';
 import { MainTabPage } from '../pages/main-tab/main-tab';
 
-
+import { PostPage } from '../pages/post/post'
 
 @NgModule({
   declarations: [
+    AllPostPage,
     MyApp,
     StoreTabPage,
     SearchTabPage,
@@ -58,6 +60,7 @@ import { MainTabPage } from '../pages/main-tab/main-tab';
     GiftPage,
     PayPage,
     StorePage,
+    PostPage,
     CreditePayCodePage,
     CashPayCodePage,
     EditPage,
@@ -70,8 +73,10 @@ import { MainTabPage } from '../pages/main-tab/main-tab';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    AllPostPage,
     MyApp,
     StoreTabPage,
+    PostPage,
     SearchTabPage,
     MainTabPage,
     WoopeTabPage,

@@ -1,51 +1,91 @@
-<div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
-  <i style="position: absolute;color: #ffffff; margin: 20px; ;font-size: 35px;font-weight: bold" class="ion-ios-help"></i>
-  <ion-icon on-click="backpressed()" style="z-index: 100; direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold"
-    name="arrow-forward"></ion-icon>
-  <span class="store" style="position: absolute;color: #ffffff;margin-top: 30px;font-size: 20px;font-weight: bold;display:block;margin-right:auto!important">{{store.storeName}}</span>
-  <img [src]="store.coverSrc ? baseUrl+store.coverSrc : 'assets/img/home2.png'" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
-  <img [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'" style="margin-top:-50px;width:80px;height:auto;margin-left:auto;margin-right:auto;display:block !important" />
-  <span style="display:block !important;max-width: 60px; margin-left:auto;margin-right:auto;margin-top: 5px; padding: 3px; font-size:10px;  border-radius:5px;  color: #ffffff; background-color: #7ae09f;">
-    {{store.returnPoint}} عدد ووپ
-  </span>
-  <span style="display:block !important;max-width: 120px; margin-left:auto;margin-right:auto;margin-top: 5px;color: blueviolet">
-    {{store.discountPercent}} درصد تخفیف</span>
+<ion-content [ngSwitch]="pet" id="page2" style="background:rgba(247, 246, 251, 0.884);">
+    <div style="width:100%; z-index: 10;height:150px;display:block;background-color:rgba(247, 246, 251, 0.884);">
+        <i style="position: absolute;color: #ffffff; margin: 20px; ;font-size: 35px;font-weight: bold" class="ion-ios-help"></i>
+        <ion-icon on-click="backpressed()" style="z-index: 100; direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold"
+          name="arrow-forward"></ion-icon>
+        <span class="store" style="position: absolute;color: #ffffff;margin-top: 30px;font-size: 20px;font-weight: bold;display:block;margin-right:auto!important">{{store.storeName}}</span>
+        <img [src]="store.coverSrc ? baseUrl+store.coverSrc : 'assets/img/home2.png'" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
+        <img [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'" style="margin-top:-50px;width:80px;height:auto;margin-left:auto;margin-right:auto;display:block !important ;border-radius: 50%;" />
+        <span style="display:block !important;max-width: 60px; margin-left:auto;margin-right:auto;margin-top: 5px; padding: 3px; font-size:10px;  border-radius:5px;  color: #ffffff; background-color: #7ae09f;">
+          {{store.returnPoint}} عدد ووپ
+        </span>
+        <span style="text-align: center; display:block !important;direction: rtl; max-width: 120px; margin-left:auto;margin-right:auto;margin-top: 5px;color: blueviolet">
+          {{store.discountPercent}} درصد تخفیف</span>       
+      </div>
     
-</div>
-<ion-content id="page2" style="background-color:#F7F6FB;margin-top: 60px;">
-  <img src="assets/img/home_shadow.png" style="z-index: -20;display:block;width:100%;height:100px;margin-left:auto;margin-right:auto" />
-  <div style=" margin-top: 58px">
-    <div *ngIf="store.storeDescription">
-      <ion-card style="background:#F7F6FB" id="profileTab-card26">
-        <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
-          {{store.storeDescription}}
+      <ion-toolbar   no-border-top   style="margin-top: 70px ; overflow: hidden;" >
+          <ion-segment  [(ngModel)]=pet class="stegment" style="border-radius:10px" >
+      
+            <ion-segment-button value="gallery">
+              گالری
+            </ion-segment-button>
+            <ion-segment-button value="info">
+              اطلاعات
+            </ion-segment-button>
+      
+          </ion-segment>
+        
+        </ion-toolbar>
+
+ 
+        <ion-list style=" margin-top: 58px ; margin-bottom:3px " *ngSwitchCase="'info'">
+          <div style="text-align: center">
+            <button on-click="order()" ion-button style="width: 95%" ><samp>vip</samp>درخواست خدمات </button>
+          </div> 
+        <div *ngIf="store.storeDescription">
+          <ion-card style="background:#F7F6FB" id="profileTab-card26">
+            <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
+              {{store.storeDescription}}
+            </div>
+          </ion-card>
         </div>
-      </ion-card>
-    </div>
-    <div *ngIf="store.basePrice">
-      <ion-card style="background:#F7F6FB" id="profileTab-card26">
-        <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
-          به ازای هر {{store.basePrice}} تومان خرید {{store.returnPoint}} ووپ دریافت می کنید
+        <div *ngIf="store.basePrice">
+          <ion-card style="background:#F7F6FB" id="profileTab-card26">
+            <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
+              به ازای هر {{store.basePrice}} تومان خرید {{store.returnPoint}} ووپ دریافت می کنید
+            </div>
+          </ion-card>
         </div>
-      </ion-card>
-    </div>
-   
-    <div *ngIf="(store.firstPhone || store.secondPhone)">
-      <ion-card style="background:#F7F6FB" id="profileTab-card26">
-        <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
-          {{store.firstPhone}} {{store.secondPhone}}
-          <ion-icon style="direction: rtl" name="call"></ion-icon>
+       
+        <div *ngIf="(store.firstPhone || store.secondPhone)">
+          <ion-card style="background:#F7F6FB" id="profileTab-card26">
+            <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
+              {{store.firstPhone}} {{store.secondPhone}}
+              <ion-icon style="direction: rtl" name="call"></ion-icon>
+            </div>
+          </ion-card>
         </div>
-      </ion-card>
-    </div>
-    <div *ngIf="store.address">
-      <ion-card style="background:#F7F6FB" id="profileTab-card26">
-        <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
-          {{store.address}}
-          <ion-icon name="compass"></ion-icon>
+        <div *ngIf="store.address">
+          <ion-card style="background:#F7F6FB" id="profileTab-card26">
+            <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
+              {{store.address}}
+              <ion-icon name="compass"></ion-icon>
+            </div>
+          </ion-card>
         </div>
-      </ion-card>
-    </div>
+        <div style="text-align: center">
+          <button on-click="fault()" ion-button style="width: 95% ; background: rgb(245, 62, 62)" >گزارش عدم همکاری فروشگاه<ion-icon name="warning"></ion-icon></button>
+        </div> 
+      </ion-list>
+  
+      <ion-list *ngSwitchCase="'gallery'">
+
+      <div class="row" style="margin-bottom:5px ; ">
+          <div *ngFor="let item of items"  col-4>
+            
+              <img (click)=storeP(item) col-12 style="height: 100px;margin: 0px" [src]="baseUrl+item.productImageAddress " />    
+          </div>
+      </div>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+        
+        </ion-list>
+ 
+         
+  
+
+ 
     <!-- <div>
     <ion-card style="background:#F7F6FB" id="profileTab-card26">
       <div style="font-family: IRANSans; text-align: center; background: #F7F6FB;padding: 10px;">
@@ -53,7 +93,7 @@
       </div>
     </ion-card>
   </div> -->
-  </div>
+
 </ion-content>
 <ion-footer>
   <button (click)="presentAlert()" style="padding: 0;margin: 0;margin-top: -4px; background-color:#7ae097" id="pay-button4"
