@@ -46,8 +46,7 @@ page-search-tab {
     border: 1px;
     background-color:#7AE09F; 
     border-radius: 5px; 
-};
-
+}
 .like{
 color: red;
 };
@@ -57,4 +56,12 @@ color: blue;
 
 .searchbar-ios .searchbar-input {
     background-color: #ffffff !important;
-};
+}
+
+.logo{
+    width:20%!important;
+    height:auto !important;
+    position: absolute; 
+    margin: 20px; 
+    }
+
