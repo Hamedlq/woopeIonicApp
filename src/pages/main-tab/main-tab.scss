@@ -36,6 +36,8 @@ page-main-tab {
     .cadr{
         height: 200px;
         min-width: 150px;
+        margin-left: 2px;
+        margin-right: 2px;
         border: 1px solid rgb(168, 168, 168);
         border-radius: 5px; 
         box-shadow: 1px 1px 0.5px rgb(192, 192, 192);
@@ -45,6 +47,8 @@ page-main-tab {
     }
     .imgelement{
         margin-left: auto;margin-right: auto;display: block;width: 66px;height: 66px;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
     }
     .returnPointCadr{
         text-align: center;

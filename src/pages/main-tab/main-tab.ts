@@ -5,6 +5,7 @@ import { serverUrl } from '../../Globals';
 import { StorePage } from '../store-page/store-page';
 import { ListTypes } from './ListTypes';
 import { StoreTabPage } from '../store-tab/store-tab';
+import { GiftPage } from '../gift/gift';
 
 @Component({
   selector: 'page-main-tab',
@@ -118,6 +119,9 @@ export class MainTabPage {
     }else{
       return [];
     }
+  }
+  openGift(){
+    this.app.getRootNav().setRoot(GiftPage);
   }
   showList(item){
     this.app.getRootNav().setRoot(StoreTabPage, { storelist: item});
