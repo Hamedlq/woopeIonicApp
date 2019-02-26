@@ -30,14 +30,27 @@ export class PostPage {
     })
   };
   like(post,event){
+    if(post.isLiked){
+      post.countLike--;
+      post.isLiked=false;
+    }else{
+      post.countLike++;
+      post.isLiked=true;
+    }
     var body = new HttpParams().append('ImageID', post.id);
     this.http.request('Post', this.baseUrl + 'api/Product/ChangeLikeImage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-    .subscribe(data =>{
-      this.post['countLike']= data['countLike'];
+    .subscribe(data => {
+    });
+   event.target.classList.toggle('like');
+
+  //   var body = new HttpParams().append('ImageID', post.id);
+  //   this.http.request('Post', this.baseUrl + 'api/Product/ChangeLikeImage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+  //   .subscribe(data =>{
+  //     this.post['countLike']= data['countLike'];
 
      
-  });
-   event.target.classList.toggle('like');
+  // });
+  //  event.target.classList.toggle('like');
 };
   // ionViewWillEnter() {
 butporo(){

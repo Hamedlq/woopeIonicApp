@@ -8,10 +8,9 @@ import {SplashSelectPage} from '../../splash-select/splash-select';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-modal-confirmations',
-  templateUrl: 'modalConfirmation.html',
+  templateUrl: 'modalConfirmations.html',
 })
 export class ModalConfirmations {
   message : any ;

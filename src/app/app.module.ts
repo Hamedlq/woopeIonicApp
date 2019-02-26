@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, ToastController, IonicPageModule } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, ToastController } from 'ionic-angular';
+import { RouterModule } from '@angular/router';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -37,6 +38,10 @@ import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionH
 import { MainTabPage } from '../pages/main-tab/main-tab';
 
 import { PostPage } from '../pages/post/post'
+import { ModalConfirmations } from '../pages/store-page/modalConfirmations/modalConfirmations';
+import { PayPageModule } from '../pages/pay/pay.module';
+
+
 
 @NgModule({
   declarations: [
@@ -58,18 +63,23 @@ import { PostPage } from '../pages/post/post'
     changePassValidationPage,
     ChangePassPage,
     GiftPage,
-    PayPage,
     StorePage,
     PostPage,
     CreditePayCodePage,
     CashPayCodePage,
     EditPage,
     TransactionHistoryPage,
+    ModalConfirmations,
   ],
   imports: [
     BrowserModule,
     HttpClientModule ,
     IonicModule.forRoot(MyApp),
+    PayPageModule,
+    // RouterModule.forRoot([
+    //   { path: '', component: LoginPage },
+    //   { path: 'login', component: LoginPage },
+    // ])
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,12 +102,12 @@ import { PostPage } from '../pages/post/post'
     changePassValidationPage,
     ChangePassPage,
     GiftPage,
-    PayPage,
     StorePage,
     CreditePayCodePage,
     CashPayCodePage,
     EditPage,
-    TransactionHistoryPage
+    TransactionHistoryPage,
+    ModalConfirmations
   ],
   providers: [
     StatusBar,

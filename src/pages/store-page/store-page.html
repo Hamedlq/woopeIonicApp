@@ -28,9 +28,9 @@
         </ion-toolbar>
 
  
-        <ion-list style=" margin-top: 58px ; margin-bottom:3px " *ngSwitchCase="'info'">
-          <div style="text-align: center">
-            <button on-click="order()" ion-button style="width: 95%" ><samp>vip</samp>درخواست خدمات </button>
+        <ion-list style=" margin-top: 30px ; margin-bottom:3px " *ngSwitchCase="'info'">
+          <div  style="text-align: center">
+            <button *ngIf="isVip" on-click="order()" ion-button style="width: 95%" ><samp>vip</samp>درخواست خدمات </button>
           </div> 
         <div *ngIf="store.storeDescription">
           <ion-card style="background:#F7F6FB" id="profileTab-card26">

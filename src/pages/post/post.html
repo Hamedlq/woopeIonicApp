@@ -17,7 +17,7 @@
   
     </div>
     <div col-8>
-      <button on-click="butporo()" class="but">خرید غیرحضوری</button>
+       <button *ngIf="postt.canBeSold" on-click="butporo()" class="but">خرید غیرحضوری</button> 
       </div>
       
   </div>

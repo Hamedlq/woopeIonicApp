@@ -11,7 +11,7 @@ import {PostPage} from '../post/post';
   templateUrl: 'store-page.html'
 })
 export class StorePage {
-
+  isVip:boolean=false;
   store: any;
   scroll: string = 'null';
   profile: any;
@@ -32,6 +32,17 @@ export class StorePage {
     this.baseUrl = serverUrl;
     this.store = navParams.get('store');
     this.profile = navParams.get('profile');
+
+    console.log(this.store.categoryId);
+    if (this.store.categoryId != null) {
+      this.store.categoryId.forEach(function (value) {
+        console.log(value);
+        if (value == 10) {
+          this.isVip=true;
+        }
+      }); 
+    }
+    
     var body = new HttpParams()
       .append('branchId', this.store.storeId);
     this.http.request('Post', serverUrl + 'api/Store/GetUserStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
@@ -44,7 +55,7 @@ export class StorePage {
       });
       var te = new HttpParams()
       .append('ProductId', 'null').append('branchId' ,this.store.storeId).append('page' ,this.page).append('count' ,'12');
-      this.http.get(serverUrl + 'api/Product/GetActiveProduct?',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+      this.http.get(serverUrl + 'api/Product/GetActiveProduct',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         this.items = <any>data;
         console.log(this.items);
