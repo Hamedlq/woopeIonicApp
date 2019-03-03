@@ -12,20 +12,22 @@
   <img src="assets/img/home_shadow.png" style="margin-top: -50px; position: relative; z-index: -20;display:block;width:100%;height:100px;margin-left:auto;margin-right:auto" />
 </ion-header>
 <ion-content padding style="background-color:#F7F6FB;">
-  <ion-card (click)="paydraw()" class="card">
+  <div *ngFor="let docs of items">
+  <ion-card  (click)="paydraw()" class="card">
     <div class="row">
       <div col-4>
         <div class="row">
           <div col-12>
-            <span style="float: left; font-size: 10px">5000 تومان</span>
+            <span style="float: left; font-size: 10px">{{docs.totalPrice}} تومان</span>
             <span style="float: left;margin-top: 20px;margin-left: -50px; padding: 3px;padding-right: 15px;padding-left: 15px; font-size:8px;  border-radius:5px;  color: #ffffff; background-color: #7ae09f;">
-              عدد ووپ 2
+              {{docs.returnWoop}} عدد ووپ
             </span>
           </div>
         </div>
       </div>
       <div col-4 style="margin-top: 5px">
-        <img style="margin-left: auto;margin-right: auto;" src="assets/img/group.png" width="2px !important" height="auto" />
+        <img *ngIf="(docs.payType==1)" style="margin-left: auto;margin-right: auto;" src="assets/img/wallet_mini.png" width="2px !important" height="auto" />
+        <img *ngIf="(docs.payType!=1)" style="margin-left: auto;margin-right: auto;" src="assets/img/mini_woope.png" width="2px !important" height="auto" />
       </div>
       <div (click)="paydraw()" col-4 style="margin-top: 10px">
         <div class="row">
@@ -34,126 +36,27 @@
             <ion-icon *ngIf=showi (click)="paydraw()" style="margin-top: 0px ;position: fixed;color: #000000" class="arrow icon icon-ios ion-ios-arrow-down"></ion-icon>
           </div>
           <div col-6>
-            <span (click)="paydraw()" style="float: right">سالوت</span>
+            <span (click)="paydraw()" style="float: right">{{docs.storeName}}</span>
           </div>
         </div>
       </div>
     </div>
   </ion-card>
   <ion-card *ngIf=show class="subcard">
-    <div class="row">
+    <div *ngFor="let trans of docs.transactionList" class="row">
       <div col-3>
-        <span style="float: left;font-size: 10px">برداشت</span>
+        <span style="float: left;font-size: 10px">{{trans.transType}}</span>
       </div>
       <div col-3>
-        <span style="font-size: 10px">1397/10/8</span>
+        <span style="font-size: 10px">{{trans.time}}</span>
       </div>
       <div col-3>
-        <span style="font-size: 10px">1</span>
+        <span style="font-size: 10px">{{trans.amount}}</span>
       </div>
       <div col-3>
-        <span style="float: right;font-size: 10px">تومان</span>
-      </div>
-    </div>
-    <div class="row">
-      <div col-3>
-        <span style="float: left;font-size: 10px">برداشت</span>
-      </div>
-      <div col-3>
-        <span style="font-size: 10px">1397/10/8</span>
-      </div>
-      <div col-3>
-        <span style="font-size: 10px">-1</span>
-      </div>
-      <div col-3>
-        <span style="float: right;font-size: 10px">ووپ</span>
-      </div>
-    </div>
-    <div class="row">
-      <div col-3>
-        <span style="float: left;font-size: 10px">واریز</span>
-      </div>
-      <div col-3>
-        <span style="font-size: 10px">1397/10/8</span>
-      </div>
-      <div col-3>
-        <span style="font-size: 10px">1</span>
-      </div>
-      <div col-3>
-        <span style="float: right;font-size: 10px">تومان</span>
+        <span style="float: right;font-size: 10px">{{trans.currencyType}}</span>
       </div>
     </div>
   </ion-card>
-  <ion-card (click)="paydraw()" class="card">
-      <div class="row">
-        <div col-4>
-          <div class="row">
-            <div col-12>
-              <span style="float: left; font-size: 10px">5000 تومان</span>
-              <span style="float: left;margin-top: 20px;margin-left: -50px; padding: 3px;padding-right: 15px;padding-left: 15px; font-size:8px;  border-radius:5px;  color: #ffffff; background-color: #7ae09f;">
-                عدد ووپ 2
-              </span>
-            </div>
-          </div>
-        </div>
-        <div col-4 style="margin-top: 5px">
-          <img style="margin-left: auto;margin-right: auto;" src="assets/img/group.png" width="2px !important" height="auto" />
-        </div>
-        <div (click)="paydraw()" col-4 style="margin-top: 10px">
-          <div class="row">
-            <div col-6>
-              <ion-icon *ngIf=show (click)="paydraw()" style="margin-top: 0px ;position: fixed;color: #000000" class="arrow icon icon-ios ion-ios-arrow-up"></ion-icon>
-              <ion-icon *ngIf=showi (click)="paydraw()" style="margin-top: 0px ;position: fixed;color: #000000" class="arrow icon icon-ios ion-ios-arrow-down"></ion-icon>
-            </div>
-            <div col-6>
-              <span (click)="paydraw()" style="float: right">سالوت</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ion-card>
-    <ion-card *ngIf=show class="subcard">
-      <div class="row">
-        <div col-3>
-          <span style="float: left;font-size: 10px">برداشت</span>
-        </div>
-        <div col-3>
-          <span style="font-size: 10px">1397/10/8</span>
-        </div>
-        <div col-3>
-          <span style="font-size: 10px">1</span>
-        </div>
-        <div col-3>
-          <span style="float: right;font-size: 10px">تومان</span>
-        </div>
-      </div>
-      <div class="row">
-        <div col-3>
-          <span style="float: left;font-size: 10px">برداشت</span>
-        </div>
-        <div col-3>
-          <span style="font-size: 10px">1397/10/8</span>
-        </div>
-        <div col-3>
-          <span style="font-size: 10px">-1</span>
-        </div>
-        <div col-3>
-          <span style="float: right;font-size: 10px">ووپ</span>
-        </div>
-      </div>
-      <div class="row">
-        <div col-3>
-          <span style="float: left;font-size: 10px">واریز</span>
-        </div>
-        <div col-3>
-          <span style="font-size: 10px">1397/10/8</span>
-        </div>
-        <div col-3>
-          <span style="font-size: 10px">1</span>
-        </div>
-        <div col-3>
-          <span style="float: right;font-size: 10px">تومان</span>
-        </div>
-      </div>
-    </ion-card>
+</div>
 </ion-content>

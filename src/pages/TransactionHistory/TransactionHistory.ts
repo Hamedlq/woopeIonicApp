@@ -12,36 +12,21 @@ import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 export class TransactionHistoryPage {
   show = false;
   showi = true;
-  gift: any;
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
+  items = [];
+  
   constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController, public app: App) {
 
+    this.http.request('Get', serverUrl + 'api/Transaction/GetUserTransactions', {})
+      .subscribe(data => {
+        console.log(data);
+        this.items = <any>data;
+      });
   }
   paydraw() {
     this.show = !this.show;
     this.showi = !this.showi;
   }
-  submitGiftCode() {
-    var body = new HttpParams()
-      .append('GiftCode', this.gift);
-
-    this.http.request('Post', serverUrl + 'api/Gift/SubmitGiftCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-      .subscribe(data => {
-        let toast = this.toastCtrl.create({
-          message: data["message"],
-          duration: 10000,
-          position: 'bottom'
-        });
-        toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
-        });
-
-        toast.present();
-      });
-  }
-  backpressed() {
-
-    this.app.getRootNav().setRoot(TabsControllerPage);
+  backpressed(){
+    this.navCtrl.pop();
   }
 }

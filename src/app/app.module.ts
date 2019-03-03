@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, ToastController, IonicPageModule } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, ToastController } from 'ionic-angular';
+import { RouterModule } from '@angular/router';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -32,19 +33,27 @@ import { CreditePayCodePage } from '../pages/creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
+import { AllPostPage } from '../pages/all-post/all-post';
 import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionHistory';
+import { MainTabPage } from '../pages/main-tab/main-tab';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Crop } from '@ionic-native/crop';
 import { Camera } from '@ionic-native/camera';
 import { AngularCropperjsModule } from 'angular-cropperjs';
 
+import { PostPage } from '../pages/post/post'
+import { ModalConfirmations } from '../pages/store-page/modalConfirmations/modalConfirmations';
+import { PayPageModule } from '../pages/pay/pay.module';
+
 
 
 @NgModule({
   declarations: [
+    AllPostPage,
     MyApp,
     StoreTabPage,
     SearchTabPage,
+    MainTabPage,
     WoopeTabPage,
     TabsControllerPage,
     FavoriteTabPage,
@@ -58,12 +67,13 @@ import { AngularCropperjsModule } from 'angular-cropperjs';
     changePassValidationPage,
     ChangePassPage,
     GiftPage,
-    PayPage,
     StorePage,
+    PostPage,
     CreditePayCodePage,
     CashPayCodePage,
     EditPage,
     TransactionHistoryPage,
+    ModalConfirmations,
   ],
   imports: [
     BrowserModule,
@@ -71,12 +81,20 @@ import { AngularCropperjsModule } from 'angular-cropperjs';
     AngularCropperjsModule,
     AngularCropperjsModule,
     IonicModule.forRoot(MyApp),
+    PayPageModule,
+    // RouterModule.forRoot([
+    //   { path: '', component: LoginPage },
+    //   { path: 'login', component: LoginPage },
+    // ])
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    AllPostPage,
     MyApp,
     StoreTabPage,
+    PostPage,
     SearchTabPage,
+    MainTabPage,
     WoopeTabPage,
     TabsControllerPage,
     FavoriteTabPage,
@@ -90,12 +108,12 @@ import { AngularCropperjsModule } from 'angular-cropperjs';
     changePassValidationPage,
     ChangePassPage,
     GiftPage,
-    PayPage,
     StorePage,
     CreditePayCodePage,
     CashPayCodePage,
     EditPage,
-    TransactionHistoryPage
+    TransactionHistoryPage,
+    ModalConfirmations
   ],
   providers: [
     StatusBar,

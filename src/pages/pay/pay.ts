@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { isObject } from 'ionic-angular/umd/util/util';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
@@ -7,7 +7,12 @@ import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { ResponseStatus } from '../Enum/enum';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
+import { query } from '@angular/core/src/animation/dsl';
 
+@IonicPage({
+  name: 'pay' ,
+  segment: 'pay'
+})
 
 @Component({
   selector: 'page-pay',
@@ -15,6 +20,7 @@ import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 })
 
 export class PayPage {
+  disableButton;
   show = false;
   showi = true;
   baseUrl: any;
@@ -33,19 +39,67 @@ export class PayPage {
   Btntxt: any;
   switch_credit: boolean;
   switch_woope: boolean;
+  //params: [];
+  params: Map<string, string>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private iab: InAppBrowser) {
+    this.disableButton=false;
     this.baseUrl = serverUrl;
-    this.payListId = navParams.get('payListId');
-    this.profile = navParams.get('profile');
-    this.store = navParams.get('store');
-    this.totalPrice = navParams.get('amount');
+    this.getparams();
+    
+    //let params = new URLSearchParams(window.location.search);
+    console.log(this.params);
+    console.log(this.params['amount']);
+    if(this.params){
+      this.profile={};
+      this.profile.moneyCredit = this.params['profile.moneyCredit'];
+      this.profile.woopeCredit = this.params['profile.woopeCredit'];
+      this.store={};
+      this.store.storeId= this.params['store.storeId'];
+      this.store.returnPoint = this.params['store.returnPoint'];
+      this.store.basePrice = this.params['store.basePrice'];
+      this.totalPrice = this.params['amount'];
+    }else{
+        this.payListId = navParams['payListId'];
+        this.profile = navParams['profile'];
+        this.store = navParams['store'];
+        this.totalPrice = navParams['amount'];
+    }
+
     this.isOnline = true;
     this.calculateValues();
     if(this.payListId){
       this.ConfirmPayment(this.payListId);
     }
-    
   }
+  getparams(){
+    let category;
+    let id;
+    if (document.URL.indexOf("?") > 0) {
+      let splitURL = document.URL.split("?");
+      let splitParams = splitURL[1].split("&");
+      let i: any;
+      this.params = new Map<string, string>();
+      for (i in splitParams){
+        let singleURLParam = splitParams[i].split('=');
+        if (singleURLParam[0] == "category"){
+          category = singleURLParam[1];
+        }
+        if (singleURLParam[0] == "id"){
+          id = singleURLParam[1];
+        }
+      //   let urlParameter = {
+      //   'name': singleURLParam[0],
+      //   'value': singleURLParam[1]
+      // };
+      //this.params: Map<string, string>;
+      
+      this.params[singleURLParam[0]] = singleURLParam[1];
+        //this.params.push(urlParameter);
+      }
+    }
+  }
+
   paydraw() {
     this.show = !this.show;
     this.showi = !this.showi;
@@ -65,6 +119,7 @@ export class PayPage {
     this.calculateValues();
   }
   doPay() {
+    this.disableButton=true;
     let pt = "1";
     if (!this.isOnline) {
       pt = "1";
@@ -82,14 +137,14 @@ export class PayPage {
       .subscribe(data => {
         console.log(data);
         if (!this.isOnline) {
-
+          this.disableButton=false;
           //go to cash pay
           this.navCtrl.push(CashPayCodePage, { store: this.store, profile: this.profile, payListId: data["id"] });
         } else {
           //go to credit pay
           this.setNext(data["id"]);
         }
-      });
+      },onerror=>{this.disableButton=false;});
   }
 
   setNext(payListId) {
@@ -102,22 +157,30 @@ export class PayPage {
   }
 
   ConfirmPayment(payListId) {
+    
+    this.disableButton=true;
     var body = new HttpParams()
       .append('Id', payListId);
     this.http.request('Post', serverUrl + 'api/Transaction/GetConfirmCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
+        this.disableButton=false;
         if (data["status"] == ResponseStatus.Success) {
+
           this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile,code:data["message"] });
         } else {
           this.calculateValues();
         }
-      });
+      },onerror=>{this.disableButton=false;});
   }
   GetPayInfo(payListId) {
+    
+    this.disableButton=true;
     var body = new HttpParams()
       .append('paylistId', payListId);
     this.http.request('Post', serverUrl + 'api/Pay/GetPayInfo', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
+        
+        this.disableButton=false;
         console.log(data);
         // let browser = this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
         // browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
@@ -128,7 +191,7 @@ export class PayPage {
         // });
         //this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
         window.open("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"], '_self');
-      });
+      },onerror=>{this.disableButton=false;});
   }
   calculateValues() {
     console.log(this.profile);

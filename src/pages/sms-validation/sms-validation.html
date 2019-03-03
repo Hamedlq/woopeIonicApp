@@ -25,6 +25,11 @@
     </div>
     <div class="spacer" style="height:20px;" id="register-spacer9"></div>
   </form>
+  <div *ngIf="IsShowResend" style="text-align:center;" class="show-list-numbers-and-dots">
+    <p style="margin-top:0px;color:#FFFFFF;font-size:14px;" on-click="resendsms()">
+      ارسال مجدد پیامک
+    </p>
+  </div>
   <div class="spacer" style="height:50px;" id="register-spacer11"></div>
   <img src="assets/img/accept_button.png" style="display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;" on-click="confirmCode()" />
 </ion-content>
