@@ -1,0 +1,28 @@
+page-payin {
+
+}
+.item-md.item-block .item-inner {
+    padding-right: 8px;
+    border-bottom: none !important;
+}
+.item-ios.item-block .item-inner {
+    padding-right: 0;
+    padding-right: 0;
+    border-bottom: none;
+}
+@media only screen and  (min-width: 992px) {
+    .price{
+    width: 100% !important; height: 32% !important;
+
+}
+.arrow{
+    margin-right: 40% !important;
+    font-size: 25px;
+}
+}
+
+@media only screen and  (max-width: 768px) {
+    .img1{
+    margin-top: -65px !important;
+}
+}

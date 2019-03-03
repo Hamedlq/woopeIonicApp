@@ -95,14 +95,7 @@ export class MainTabPage {
     });
      event.target.classList.toggle('like');
   };
-  ionViewWillEnter() {
-    var body = new HttpParams().append('pageNumber', this.page).append('query',this.valueSearch);
-      this.http.request('Post', this.baseUrl + 'api/Store/FindStorebyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-      .subscribe(data => {
-      this.Items = <any>data;
-      console.log(<any>data);
-      }); 
-  };
+  
   isStoreList(item){
     if(item.listType == ListTypes.StoreList){
       return true;

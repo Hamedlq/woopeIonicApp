@@ -20,6 +20,7 @@ export class StorePage {
   pet : string;
   items =[];
   page : any;
+  showpay :boolean =false;
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private http: HttpClient,
@@ -48,6 +49,7 @@ export class StorePage {
     this.http.request('Post', serverUrl + 'api/Store/GetUserStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         this.store = data;
+        this.showpay=true;
       });
       this.http.post(serverUrl + 'api/Profile/GetProfile', {})
       .subscribe(data => {
