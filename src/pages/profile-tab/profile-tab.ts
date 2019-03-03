@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { IonicNativePlugin } from '@ionic-native/core/ionic-native-plugin';
+import { Crop } from '@ionic-native/crop';
 
 @Component({
   selector: 'page-profile-tab',
@@ -7,14 +9,12 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProfileTabPage {
   profile: any;
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
-  constructor(public navCtrl: NavController,navParams: NavParams) {
+  constructor(public navCtrl: NavController, navParams: NavParams) {
     this.profile = navParams.get('profile');
   }
-
-  transactionhistory(){
-    
-  }
   
+
+  transactionhistory() {
+  }
+
 }

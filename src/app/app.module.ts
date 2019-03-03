@@ -33,6 +33,10 @@ import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
 import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionHistory';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Crop } from '@ionic-native/crop';
+import { Camera } from '@ionic-native/camera';
+import { AngularCropperjsModule } from 'angular-cropperjs';
 
 
 
@@ -63,7 +67,9 @@ import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionH
   ],
   imports: [
     BrowserModule,
-    HttpClientModule ,
+    HttpClientModule,
+    AngularCropperjsModule,
+    AngularCropperjsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -95,8 +101,11 @@ import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionH
     StatusBar,
     ToastController,
     InAppBrowser,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi: true },
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ImagePicker,
+    Crop,
+    Camera
   ]
 })
-export class AppModule {}
+export class AppModule { }

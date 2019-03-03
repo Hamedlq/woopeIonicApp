@@ -42,7 +42,7 @@ export class SplashPage {
           if (data["status"] == ResponseStatus.Success) {
             
             //navCtrl.push('bank');
-            navCtrl.setRoot(TransactionHistoryPage,{profile:data});
+            navCtrl.setRoot(TabsControllerPage,{profile:data});
           } else {
             let toast = toastCtrl.create({
               message: 'خطا در شبکه. لطفا دوباره سعی کنید',
