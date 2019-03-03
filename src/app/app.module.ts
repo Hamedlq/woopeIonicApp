@@ -36,6 +36,10 @@ import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
 import { AllPostPage } from '../pages/all-post/all-post';
 import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionHistory';
 import { MainTabPage } from '../pages/main-tab/main-tab';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Crop } from '@ionic-native/crop';
+import { Camera } from '@ionic-native/camera';
+import { AngularCropperjsModule } from 'angular-cropperjs';
 
 import { PostPage } from '../pages/post/post'
 import { ModalConfirmations } from '../pages/store-page/modalConfirmations/modalConfirmations';
@@ -73,7 +77,9 @@ import { PayPageModule } from '../pages/pay/pay.module';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule ,
+    HttpClientModule,
+    AngularCropperjsModule,
+    AngularCropperjsModule,
     IonicModule.forRoot(MyApp),
     PayPageModule,
     // RouterModule.forRoot([
@@ -113,8 +119,11 @@ import { PayPageModule } from '../pages/pay/pay.module';
     StatusBar,
     ToastController,
     InAppBrowser,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi: true },
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ImagePicker,
+    Crop,
+    Camera
   ]
 })
-export class AppModule {}
+export class AppModule { }
