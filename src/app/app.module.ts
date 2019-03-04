@@ -121,9 +121,6 @@ import { PayPageModule } from '../pages/pay/pay.module';
     InAppBrowser,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    ImagePicker,
-    Crop,
-    Camera
   ]
 })
 export class AppModule { }
