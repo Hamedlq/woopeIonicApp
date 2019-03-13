@@ -66,4 +66,7 @@ butporo(){
        
         
 };
+butBack() {
+  this.navCtrl.pop();
+};
 }
