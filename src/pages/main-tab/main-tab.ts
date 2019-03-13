@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, App } from 'ionic-angular';
+import { NavController, NavParams, ToastController, App } from 'ionic-angular';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { StorePage } from '../store-page/store-page';
@@ -22,7 +22,6 @@ export class MainTabPage {
   ItemList:any[][];
   constructor(
     private http: HttpClient, 
-    private toastCtrl: ToastController,
     public navParams: NavParams,
     public navCtrl: NavController,
     public app: App ) {
@@ -91,7 +90,6 @@ export class MainTabPage {
       var body = new HttpParams().append('branchId', store.storeId);
       this.http.request('Post', this.baseUrl + 'api/Store/FollowStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data =>{
-        console.log(data);
     });
      event.target.classList.toggle('like');
   };
@@ -103,7 +101,6 @@ export class MainTabPage {
   }
   getList(k){
     if(this.ItemList[k] && this.ItemList[k].length>0){
-      console.log(this.ItemList[k]);
       let thelist = [];
       for(let j = 0; j < this.ItemList[k].length; j++){ 
         thelist.push(this.ItemList[k][j]);

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, NavParams, ItemSliding, App } from 'ionic-angular';
+import { NavController, ToastController, NavParams, App } from 'ionic-angular';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { StorePage } from '../store-page/store-page';
 import { GiftPage } from '../gift/gift';
-import { PayPage } from '../pay/pay';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 
 @Component({
@@ -34,13 +32,11 @@ export class StoreTabPage {
       .append('pageNumber', "0");
     this.http.request('Post', this.baseUrl + 'api/Store/GetStoresFilter', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        console.log(data);
         this.items = <any>data;
       });
   }
 
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
     this.page++;
     setTimeout(() => {
       var body = new HttpParams()
@@ -51,7 +47,6 @@ export class StoreTabPage {
       this.http.request('Post', this.baseUrl + 'api/Store/GetStoresbyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
         .subscribe(data => {
           let newitems=<any>data;
-          console.log(newitems);
           if(newitems.length>1){
             for (let i = 0; i < newitems.length; i++) {
               this.items.push( newitems[i] );
@@ -75,7 +70,6 @@ export class StoreTabPage {
     var body = new HttpParams().append('branchId', store.storeId);
     this.http.request('Post', this.baseUrl + 'api/Store/FollowStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data =>{
-      console.log(data);
   });
    event.target.classList.toggle('like');
 }

@@ -1,16 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { ResponseStatus } from '../Enum/enum';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
-
-/**
- * Generated class for the CashPayCodePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-cash-pay-code',
@@ -27,9 +20,6 @@ export class CashPayCodePage {
     this.disableButton=false;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CashPayCodePage');
-  }
 confirmCode(){
   this.disableButton=true;
   var body = new HttpParams()

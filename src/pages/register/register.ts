@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { ResponseStatus } from '../Enum/enum';
 import { ToastController } from 'ionic-angular';
 

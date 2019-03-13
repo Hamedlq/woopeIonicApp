@@ -62,4 +62,11 @@ page-TransactionHistory {
         ion-card img {
          width: 35px;
       }
+      .show{
+        visibility: visible;
+      }
+      .showi{
+        display:none;
+        visibility: hidden;
+      }
     }

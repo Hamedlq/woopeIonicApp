@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { serverUrl } from '../../Globals';
-import { HttpParams, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { PayPage } from '../pay/pay';
 
 @Component({
@@ -19,7 +19,6 @@ export class WoopeTabPage {
     this.profile = navParams.get('profile');
     this.http.request('Post', this.baseUrl + 'api/Transaction/GetUserAllActivePaylists', {})
       .subscribe(data => {
-        console.log(data);
         this.items = <any>data;
       });
   }

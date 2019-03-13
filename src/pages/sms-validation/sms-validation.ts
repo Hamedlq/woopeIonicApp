@@ -59,8 +59,6 @@ export class SmsValidationPage {
             .append('grant_type', "password");
           this.http.request('Post', baseUrl + 'connect/token', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
             .subscribe(data => {
-              console.log(data);
-              console.log(data["access_token"]);
               if (data["access_token"]) {
                 this.events.publish('user:login', data["access_token"]);
                 this.navCtrl.setRoot(TabsControllerPage);

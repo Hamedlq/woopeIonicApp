@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
-import { isObject } from 'ionic-angular/umd/util/util';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { ResponseStatus } from '../Enum/enum';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
-import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
-import { query } from '@angular/core/src/animation/dsl';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 
 @IonicPage({
   name: 'pay' ,
@@ -39,17 +38,12 @@ export class PayInPage {
   Btntxt: any;
   switch_credit: boolean;
   switch_woope: boolean;
-  //params: [];
   params: Map<string, string>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private iab: InAppBrowser) {
     this.disableButton=false;
     this.baseUrl = serverUrl;
     this.getparams();
-    
-    //let params = new URLSearchParams(window.location.search);
-    //console.log(this.params);
-    //console.log(this.params['amount']);
     if(this.params){
       this.profile={};
       this.profile.moneyCredit = this.params['profile.moneyCredit'];
@@ -135,7 +129,6 @@ export class PayInPage {
       .append('SwitchWoope', String(this.switch_woope));
     this.http.request('Post', serverUrl + 'api/Transaction/InsertUserPayList', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        console.log(data);
         if (!this.isOnline) {
           this.disableButton=false;
           //go to cash pay
@@ -179,28 +172,15 @@ export class PayInPage {
       .append('paylistId', payListId);
     this.http.request('Post', serverUrl + 'api/Pay/GetPayInfo', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        
         this.disableButton=false;
-        console.log(data);
-        // let browser = this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
-        // browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
-        //   var closeUrl = 'app.woope.ir';
-        //   if (event.url == closeUrl) {
-        //     browser.close();       //This will close InAppBrowser Automatically when closeUrl Started
-        //   }
-        // });
-        //this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
         window.open("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"], '_self');
       },onerror=>{this.disableButton=false;});
   }
   calculateValues() {
-    console.log(this.profile);
-    //int selectedId = payType.getCheckedRadioButtonId();
     let rw = 0;
     if (this.store.returnPoint != 0) {
       rw = Math.floor((this.totalPrice) / this.store.basePrice) * this.store.returnPoint;
     }
-    console.log(rw);
     this.return_woope = rw;
     if (!this.isOnline) {
       this.pay_price = this.totalPrice;

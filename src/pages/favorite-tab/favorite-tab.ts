@@ -7,11 +7,8 @@ import {
 } from "ionic-angular";
 import { HttpParams, HttpHeaders, HttpClient } from "@angular/common/http";
 import { serverUrl } from "../../Globals";
-import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { StorePage } from "../store-page/store-page";
-import { GiftPage } from "../gift/gift";
-import { PayPage } from "../pay/pay";
-import { ChangeDetectorRef } from "@angular/core";
+
 @Component({
   selector: "page-favorite-tab",
   templateUrl: "favorite-tab.html"

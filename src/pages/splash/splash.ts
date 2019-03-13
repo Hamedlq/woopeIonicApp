@@ -1,21 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, Events, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-
-import { LoginPage } from '../login/login';
-
-
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
-import { GiftPage } from '../gift/gift';
 import { ResponseStatus } from '../Enum/enum';
-import { global } from '@angular/core/src/util';
-import { PayPage } from '../pay/pay';
-import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
-import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
-import { SplashSelectPage } from '../splash-select/splash-select';
-import { EditPage } from '../Edit-Profile/Edit-Profile';
-import { TransactionHistoryPage } from '../TransactionHistory/TransactionHistory';
+
 
 @Component({
   selector: 'page-splash',
@@ -38,7 +27,6 @@ export class SplashPage {
     this.timer = setTimeout(function () {
       http.post(baseUrl + 'api/Profile/GetProfile', {})
         .subscribe(data => {
-          console.log(data);
           if (data["status"] == ResponseStatus.Success) {
             
             //navCtrl.push('bank');
