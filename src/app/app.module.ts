@@ -33,7 +33,6 @@ import { ModalConfirmations } from '../pages/store-page/modalConfirmations/modal
 import { PayPageModule } from '../pages/pay/pay.module';
 
 
-
 @NgModule({
   declarations: [
     AllPostPage,

@@ -1,13 +1,14 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "Woope",
+  "short_name": "Woope",
   "start_url": "index.html",
   "display": "standalone",
+  "description": "Woope",
   "icons": [{
-    "src": "assets/imgs/logo.png",
+    "src": "assets/img/fab_bg.png",
     "sizes": "512x512",
     "type": "image/png"
   }],
-  "background_color": "#4e8ef7",
-  "theme_color": "#4e8ef7"
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
 }

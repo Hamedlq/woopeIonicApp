@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let accessToken = localStorage.getItem("access_token");
-        console.log("intercept" + accessToken);
+        //console.log("intercept" + accessToken);
         if (accessToken) {
             request = request.clone({
                 setHeaders: {
@@ -30,14 +30,12 @@ export class AuthInterceptor implements HttpInterceptor {
             }
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
-                if (err.status === 401 || err.status === 403) {
+                if (err.status == 401) {
                     //handle authorization errors
                     //in this example I am navigating to login.
                     //console.log("Error_Token_Expired: redirecting to login.");
-
-                    
                     this.events.publish('user:logout');
-                } 
+                }
             }
         }));
     }
