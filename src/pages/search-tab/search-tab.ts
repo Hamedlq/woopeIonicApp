@@ -3,9 +3,6 @@ import { NavController, ToastController, NavParams, ItemSliding, App, Item } fro
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { StorePage } from '../store-page/store-page';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
 @Component({
   selector: 'page-search-tab',
   templateUrl: 'search-tab.html'
@@ -30,7 +27,6 @@ export class SearchTabPage {
       this.http.request('Post', this.baseUrl + 'api/Store/FindStorebyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
       this.Items = <any>data;
-      //console.log(<any>data);
       });  
   }
   searchBox(ev){
@@ -70,7 +66,6 @@ export class SearchTabPage {
       var body = new HttpParams().append('branchId', store.storeId);
       this.http.request('Post', this.baseUrl + 'api/Store/FollowStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data =>{
-        //console.log(data);
     });
      event.target.classList.toggle('like');
   };
@@ -79,7 +74,6 @@ export class SearchTabPage {
       this.http.request('Post', this.baseUrl + 'api/Store/FindStorebyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
       this.Items = <any>data;
-      //console.log(<any>data);
       }); 
   };
 }

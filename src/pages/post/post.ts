@@ -25,10 +25,9 @@ export class PostPage {
       this.http.get(serverUrl + 'api/Product/GetActiveProduct?',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
         .subscribe(data => {
           this.post = <any>data[0];
-         
     })
   };
-  like(post,event){
+  like(post){
     if(post.isLiked){
       post.countLike--;
       post.isLiked=false;
@@ -40,18 +39,29 @@ export class PostPage {
     this.http.request('Post', this.baseUrl + 'api/Product/ChangeLikeImage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
     });
-   event.target.classList.toggle('like');
-
-  //   var body = new HttpParams().append('ImageID', post.id);
-  //   this.http.request('Post', this.baseUrl + 'api/Product/ChangeLikeImage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-  //   .subscribe(data =>{
-  //     this.post['countLike']= data['countLike'];
-
-     
-  // });
-  //  event.target.classList.toggle('like');
 };
-  // ionViewWillEnter() {
+count : number = 0;
+Double(post , event){
+  this.count++;
+  setTimeout(() => {
+    if (this.count == 1) {
+      this.count = 0;
+    }
+    if(this.count > 1){
+      this.count = 0;
+      let elementOne = post.id;
+      var elementTow = document.getElementById(elementOne);
+      setTimeout(() => {
+        elementTow.classList.remove('icon','ion-ios-heart');
+      },700);
+        elementTow.classList.add('icon','ion-ios-heart');
+    if(!post.isLiked){
+        this.like(post);
+      }
+    }
+  }, 250);
+  };
+
 butporo(){
   var te = new HttpParams()
       .append('ProductId',this.postt.id);
@@ -60,9 +70,7 @@ butporo(){
           this.ionfo =<any>data ;
           let modalConfirm = this.modalC.create('ModalConfirmation', {message: this.ionfo['message']}  );
           modalConfirm.present();
-        });
-       
-        
+        });      
 };
 butBack() {
   this.navCtrl.pop();

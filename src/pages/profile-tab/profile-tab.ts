@@ -30,7 +30,6 @@ export class ProfileTabPage {
   ionViewWillEnter() {
     this.http.post(serverUrl + 'api/Profile/GetProfile', {})
     .subscribe(data => {
-      //console.log(data);
       this.profile=data;
     });
   };

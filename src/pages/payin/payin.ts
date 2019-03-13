@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
-import { isObject } from 'ionic-angular/umd/util/util';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { ResponseStatus } from '../Enum/enum';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
-import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
-import { query } from '@angular/core/src/animation/dsl';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 
 @IonicPage({
   name: 'pay' ,
@@ -44,7 +43,6 @@ export class PayInPage {
   Btntxt: any;
   switch_credit: boolean;
   switch_woope: boolean;
-  //params: [];
   params: Map<string, string>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private iab: InAppBrowser) {

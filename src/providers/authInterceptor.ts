@@ -1,9 +1,8 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Network } from "@ionic-native/network";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { map, filter, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { ToastController } from 'ionic-angular';
 import { Events } from 'ionic-angular';

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, App } from 'ionic-angular';
+import { NavController, NavParams, ToastController, App } from 'ionic-angular';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { StorePage } from '../store-page/store-page';

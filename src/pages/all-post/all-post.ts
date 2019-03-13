@@ -2,16 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,ModalController} from 'ionic-angular';
 import { App } from 'ionic-angular';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
-import { AlertController } from 'ionic-angular';
 import {serverUrl} from '../../Globals';
 import { StorePage } from '../store-page/store-page';
-
-/**
- * Generated class for the AllPostPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -29,11 +21,11 @@ export class AllPostPage {
     this.baseUrl = serverUrl;
     this.page = 0;
     this.profile = navParams.get('profile');
-    var param = new HttpParams().append('page', this.page ).append('count', '6' );
+    var param = new HttpParams().append('page', this.page ).append('count','6');
     this.http.get(this.baseUrl+ 'api/Product/GetAllActiveProducts',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
       this.ionfos =<any>data;
-      //console.log(this.ionfos)
+
     });
   }
   doInfinite(infiniteScroll) {
@@ -65,7 +57,7 @@ export class AllPostPage {
     this.http.request('Post', this.baseUrl + 'api/Product/ChangeLikeImage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
     });
-   event.target.classList.toggle('like');
+
 };
 butporo(ionfo){
   var te = new HttpParams()
@@ -73,7 +65,6 @@ butporo(ionfo){
       this.http.get(this.baseUrl + 'api/Product/SaveOnlineRequest',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
         .subscribe(data => {
           this.message =<any>data ;
-         
           let modalConfirm = this.modalC.create('ModalConfirmation', {message: this.message['message']}  );
           modalConfirm.present();
         });
@@ -83,7 +74,27 @@ butporo(ionfo){
 storeclick(store){
   store.storeId=store.branchId;
   this.app.getRootNav().setRoot(StorePage , { store: store,profile:this.profile});
-}
+}; 
+count : number = 0;
+Double(ionfo,event){
+this.count++;
+setTimeout(() => {
+  if (this.count == 1) {
+    this.count = 0;
+  }
+  if(this.count > 1){
+    this.count = 0;
+    let elementOne = ionfo.id;
+    var elementTow = document.getElementById(elementOne);
+    setTimeout(() => {
+      elementTow.classList.remove('icon','ion-ios-heart');
+    },700);
+      elementTow.classList.add('icon','ion-ios-heart');
+  if(!ionfo.isLiked){
+      this.like(ionfo,event);
+    }
+  }
+}, 250);
 
+  };
 };
-

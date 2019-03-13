@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { isObject } from 'ionic-angular/umd/util/util';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { ResponseStatus } from '../Enum/enum';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
-import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @Component({
@@ -126,7 +125,6 @@ export class PayPage {
       .append('paylistId', payListId);
     this.http.request('Post', serverUrl + 'api/Pay/GetPayInfo', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        
         this.disableButton=false;
         //console.log(data);
         // let browser = this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);

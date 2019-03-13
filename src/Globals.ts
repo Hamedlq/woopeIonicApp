@@ -8,7 +8,7 @@ export const serverUrl = 'https://mywoope.com/';
 
 //   // constructor() {
 //   //   // this.url = window.location.hostname;
-//   //   // console.log(this.url.toString());
+
 //   //   // this.serverUrl= 'http://localhost:80/';
 //   //  this.serverUrl = 'http://192.168.100.3:8090/';
 //   //   //  this.serverUrl= 'http://localhost:80/';

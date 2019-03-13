@@ -8,8 +8,6 @@ import { ForgetPassSmsValidationPage } from '../forgetpass-sms-validation/forget
 })
 export class ChangePassPage {
   mobile:string;
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
   sendConfirmSms(){

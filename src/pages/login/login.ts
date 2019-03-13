@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { ResponseStatus } from '../Enum/enum';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
 import { SmsValidationPage } from '../sms-validation/sms-validation';
@@ -57,7 +56,7 @@ export class LoginPage {
             position: 'bottom'
           });
           toast.onDidDismiss(() => {
-            //console.log('Dismissed toast');
+            ('Dismissed toast');
           });
           toast.present();
         }
@@ -68,7 +67,7 @@ export class LoginPage {
           position: 'bottom'
         });
         toast.onDidDismiss(() => {
-          //console.log('Dismissed toast');
+          ('Dismissed toast');
         });
         toast.present();
       });
