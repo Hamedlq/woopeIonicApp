@@ -39,7 +39,7 @@ export class FavoriteTabPage {
         )
       })
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.items = <any>data;
       });
   }
@@ -52,7 +52,7 @@ export class FavoriteTabPage {
         )
       })
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.items = <any>data;
       });
   }
@@ -72,7 +72,7 @@ export class FavoriteTabPage {
         )
       })
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
       });
     event.target.classList.toggle("like");
     this.http
@@ -83,7 +83,7 @@ export class FavoriteTabPage {
         )
       })
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.items = <any>data;
       });
   }

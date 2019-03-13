@@ -33,7 +33,7 @@ export class AllPostPage {
     this.http.get(this.baseUrl+ 'api/Product/GetAllActiveProducts',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
       this.ionfos =<any>data;
-      console.log(this.ionfos)
+      //console.log(this.ionfos)
     });
   }
   doInfinite(infiniteScroll) {

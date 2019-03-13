@@ -31,12 +31,12 @@ export class EditPage {
     ) {
       this.http.post(serverUrl + 'api/Profile/GetProfile', {})
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.profile=data;
       });
     this.http.request('post',this.baseUrl+'api/Profile/GetProfile',{headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {  
-      console.log(<any>data);
+      //console.log(<any>data);
       this.Itames=<any>data;
       this.lastName= data['name'];
       if(this.lastName=='undefined')
@@ -61,7 +61,7 @@ export class EditPage {
     });
   }
   setInformation(){
-    console.log('amir');
+    //console.log('amir');
     var body =new HttpParams()
     .append('Name',this.firstName)
     .append('Family',this.lastName)

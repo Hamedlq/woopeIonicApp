@@ -25,8 +25,7 @@ export class PostPage {
       this.http.get(serverUrl + 'api/Product/GetActiveProduct?',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
         .subscribe(data => {
           this.post = <any>data[0];
-          console.log(<any>data)
-
+         
     })
   };
   like(post,event){
@@ -59,7 +58,6 @@ butporo(){
       this.http.get(this.baseUrl + 'api/Product/SaveOnlineRequest?',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
         .subscribe(data => {
           this.ionfo =<any>data ;
-          console.log(this.ionfo['message']);
           let modalConfirm = this.modalC.create('ModalConfirmation', {message: this.ionfo['message']}  );
           modalConfirm.present();
         });

@@ -57,7 +57,7 @@ export class LoginPage {
             position: 'bottom'
           });
           toast.onDidDismiss(() => {
-            console.log('Dismissed toast');
+            //console.log('Dismissed toast');
           });
           toast.present();
         }
@@ -68,7 +68,7 @@ export class LoginPage {
           position: 'bottom'
         });
         toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
+          //console.log('Dismissed toast');
         });
         toast.present();
       });

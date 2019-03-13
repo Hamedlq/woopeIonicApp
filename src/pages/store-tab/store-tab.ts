@@ -27,6 +27,8 @@ export class StoreTabPage {
       this.storelist = navParams.get('storelist');
     this.page = 0;
     this.baseUrl = serverUrl;
+    console.log("omadd store");
+    console.log(this.storelist.id);
     var body = new HttpParams()
       .append('MallId', this.storelist.id) 
       .append('countOfList', '9')

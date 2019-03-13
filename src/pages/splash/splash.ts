@@ -38,7 +38,7 @@ export class SplashPage {
     this.timer = setTimeout(function () {
       http.post(baseUrl + 'api/Profile/GetProfile', {})
         .subscribe(data => {
-          console.log(data);
+          //console.log(data);
           if (data["status"] == ResponseStatus.Success) {
             
             //navCtrl.push('bank');

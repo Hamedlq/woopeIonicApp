@@ -28,7 +28,7 @@ export class CashPayCodePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CashPayCodePage');
+    //console.log('ionViewDidLoad CashPayCodePage');
   }
 confirmCode(){
   this.disableButton=true;
@@ -45,7 +45,7 @@ confirmCode(){
             position: 'bottom'
           });
           toast.onDidDismiss(() => {
-            console.log('Dismissed toast');
+            //console.log('Dismissed toast');
           });
 
           toast.present();
@@ -58,7 +58,7 @@ confirmCode(){
           position: 'bottom'
         });
         toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
+          //console.log('Dismissed toast');
         });
 
         toast.present();

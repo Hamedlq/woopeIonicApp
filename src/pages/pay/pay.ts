@@ -82,7 +82,7 @@ export class PayPage {
       .append('SwitchWoope', String(this.switch_woope));
     this.http.request('Post', serverUrl + 'api/Transaction/InsertUserPayList', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         if (!this.isOnline) {
           this.disableButton=false;
           //go to cash pay
@@ -128,7 +128,7 @@ export class PayPage {
       .subscribe(data => {
         
         this.disableButton=false;
-        console.log(data);
+        //console.log(data);
         // let browser = this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
         // browser.on('loadstart').subscribe((event: InAppBrowserEvent) => {
         //   var closeUrl = 'app.woope.ir';
@@ -141,13 +141,13 @@ export class PayPage {
       },onerror=>{this.disableButton=false;});
   }
   calculateValues() {
-    console.log(this.profile);
+    //console.log(this.profile);
     //int selectedId = payType.getCheckedRadioButtonId();
     let rw = 0;
     if (this.store.returnPoint != 0) {
       rw = Math.floor((this.totalPrice) / this.store.basePrice) * this.store.returnPoint;
     }
-    console.log(rw);
+    //console.log(rw);
     this.return_woope = rw;
     if (!this.isOnline) {
       this.pay_price = this.totalPrice;

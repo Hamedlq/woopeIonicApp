@@ -48,6 +48,9 @@ export class MyApp {
       events.subscribe('user:notverified', (token) => {
         localStorage.removeItem("access_token");
       });
+            
+      Pushe.init("2eymj455l78ykpje");
+      Pushe.subscribe();
     });
   }
 }

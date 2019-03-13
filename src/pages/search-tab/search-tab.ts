@@ -30,7 +30,7 @@ export class SearchTabPage {
       this.http.request('Post', this.baseUrl + 'api/Store/FindStorebyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
       this.Items = <any>data;
-      console.log(<any>data);
+      //console.log(<any>data);
       });  
   }
   searchBox(ev){
@@ -70,7 +70,7 @@ export class SearchTabPage {
       var body = new HttpParams().append('branchId', store.storeId);
       this.http.request('Post', this.baseUrl + 'api/Store/FollowStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data =>{
-        console.log(data);
+        //console.log(data);
     });
      event.target.classList.toggle('like');
   };
@@ -79,7 +79,7 @@ export class SearchTabPage {
       this.http.request('Post', this.baseUrl + 'api/Store/FindStorebyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
       this.Items = <any>data;
-      console.log(<any>data);
+      //console.log(<any>data);
       }); 
   };
 }
