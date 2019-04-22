@@ -132,23 +132,3 @@ export class StorePage {
       });
   };
 };
-order(){
-  var te = new HttpParams()
-  .append('branchId',this.store.storeId);
-  this.http.get(this.baseUrl + 'api/Branch/SaveVIPRequest',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-    .subscribe(data => {
-      this.ionfo =<any>data ;
-      let modalConfirm = this.modalC.create('ModalConfirmation', {message: this.ionfo['message']}  );
-      modalConfirm.present();
-    });
-};
-fault(){
-  var param = new HttpParams().append('BranchId', this.store.storeId);
-  this.http.get(this.baseUrl+ 'api/Branch/NonCooperation',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-  .subscribe(data => {
-    this.ionfo =<any>data ;
-    let modalConfirm = this.modalC.create('ModalConfirmation', {message: this.ionfo['message']});
-    modalConfirm.present();
-  });
-};
-};

@@ -33,6 +33,8 @@ export class PayPage {
   Btntxt: any;
   switch_credit: boolean;
   switch_woope: boolean;
+  persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
+  arabicNumbers  = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private iab: InAppBrowser) {
     this.disableButton=false;
     this.baseUrl = serverUrl;
@@ -40,12 +42,25 @@ export class PayPage {
     this.profile = navParams.get('profile');
     this.store = navParams.get('store');
     this.totalPrice = navParams.get('amount');
+    this.totalPrice=this.fixNumbers(this.totalPrice);
     this.isOnline = true;
     this.calculateValues();
     if(this.payListId){
       this.ConfirmPayment(this.payListId);
     }
   }
+  
+  fixNumbers = function (str)
+  {
+    if(typeof str === 'string')
+    {
+      for(var i=0; i<10; i++)
+      {
+        str = str.replace(this.persianNumbers[i], i).replace(this.arabicNumbers[i], i);
+      }
+    }
+    return str;
+  };
   paydraw() {
     this.show = !this.show;
     this.showi = !this.showi;
