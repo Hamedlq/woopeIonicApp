@@ -1,34 +1,70 @@
-<div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
+<div
+  style="width:100%; z-index: 10;height:150px; position: fixed;display:block;"
+  
+>
+
   <img src="assets/img/logo_white.png" class="logo" />
-  <img src="assets/img/home2.png" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
+  <img
+    src="assets/img/home2.png"
+    style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;"
+  />
   <!-- <img src="assets/img/home_shadow.png" style="margin-top:-50px; z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />-->
 </div>
 <ion-content style="background-color:#F7F6FB;margin-top: 90px;">
   <!-- <img src="assets/img/home2.png" style="position: fixed; overflow: hidden;position: fixed;top: 0; z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" /> -->
-  <img src="assets/img/home_shadow.png" style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />
+  <img
+    src="assets/img/home_shadow.png"
+    style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto"
+  />
   <!-- <ion-spinner  style="position:absolute;left:50%;top:50%"></ion-spinner> -->
   <div *ngFor="let ionfo of ionfos">
     <div col-12 style="float:right">
-      <h4 style=" margin-right:3%;  float: right; direction: ltr" on-click="storeclick(ionfo)">{{ionfo.storeName}}</h4>
-    </div>
-    <div col-12>
-      <img style=" width: 100%;height: 50%;margin: 0px" [src]="baseUrl+ionfo.productImageAddress" />
+      <h4
+        style=" margin-right:3%;  float: right; direction: ltr"
+        on-click="storeclick(ionfo)"
+      >
+        {{ ionfo.storeName }}
+      </h4>
     </div>
 
-    <div *ngIf="ionfo.canBeSold" col-6 style="float: right;direction: rtl;margin: 7px 10px 2px 10px">
+    <div col-12>
+      <div class="container" >
+          <img 
+          class="image"
+          (click)="Double(ionfo, $event)"
+          style="width:100% ; height:90% ; margin:0px;"
+          [src]="baseUrl + ionfo.productImageAddress"
+          />
+          <!-- <ion-icon id={{ionfo.id}} [name]="Name" (click)="Double(ionfo, $event)"  class="text"></ion-icon> -->
+           <i id={{ionfo.id}}  (click)="Double(ionfo, $event)"  class="icoon"></i> 
+          <!-- <i class="icon ion-android-favorite" (click)="Double(ionfo, $event)"  id="text" ></i> -->
+      </div>
+    </div>
+    <div
+      *ngIf="ionfo.canBeSold"
+      col-6
+      style="float: right;direction: rtl;margin: 7px 10px 2px 10px"
+    >
       <button (click)="butporo(ionfo)" class="but">خرید غیرحضوری</button>
     </div>
     <div col-6>
-      <div style="margin: 7px 10px 2px 10px">
-        <ion-icon [ngClass]="{'like': ionfo.isLiked}" (click)="like(ionfo,$event)" name="md-heart" style="font-weight: bold;float:left; text-align: left; margin: 0px; "></ion-icon>
-        <p style="margin: 0px"><span style="float: left; margin: 0px"> لایک</span>{{ionfo.countLike}}</p>
+      <div style="margin: 7px 10px 2px 10px">  
+        <i style="font-size:20px ; font-weight:bold ; float:left ; text-align:left ; margin:0px ;"
+          [ngClass]="ionfo.isLiked ? 'icon ion-ios-heart like' : 'icon ion-ios-heart-outline'"
+          (click)="like(ionfo, $event)"
+        ></i>
+        <p *ngIf="indexCount != 0" style="margin: 0px">
+          <span style="float: left; margin: 0px"> لایک</span>{{ ionfo.countLike }}
+        </p>
       </div>
     </div>
-    <div style="border-bottom: 1px solid black; direction: rtl;margin-right: 5px" col-12>
+    <div
+      style="border-bottom: 1px solid black; direction: rtl;margin-right: 5px"
+      col-12
+    >
       <div style="margin-right: 17px">
-          <p>{{ionfo.description}}</p>
+        <p>{{ ionfo.description }}</p>
       </div>
-      
     </div>
   </div>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

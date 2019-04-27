@@ -7,11 +7,8 @@ import {
 } from "ionic-angular";
 import { HttpParams, HttpHeaders, HttpClient } from "@angular/common/http";
 import { serverUrl } from "../../Globals";
-import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { StorePage } from "../store-page/store-page";
-import { GiftPage } from "../gift/gift";
-import { PayPage } from "../pay/pay";
-import { ChangeDetectorRef } from "@angular/core";
+
 @Component({
   selector: "page-favorite-tab",
   templateUrl: "favorite-tab.html"
@@ -39,7 +36,7 @@ export class FavoriteTabPage {
         )
       })
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.items = <any>data;
       });
   }
@@ -52,7 +49,7 @@ export class FavoriteTabPage {
         )
       })
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.items = <any>data;
       });
   }
@@ -72,7 +69,7 @@ export class FavoriteTabPage {
         )
       })
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
       });
     event.target.classList.toggle("like");
     this.http
@@ -83,7 +80,7 @@ export class FavoriteTabPage {
         )
       })
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.items = <any>data;
       });
   }

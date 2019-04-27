@@ -15,13 +15,10 @@ export class changePassValidationPage {
   password: string;
   mobile: string;
   profile: any;
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
+
   constructor(public navCtrl: NavController, private http: HttpClient,
     private toastCtrl: ToastController, public navParams: NavParams
     , public events: Events) {
-
-    let baseUrl = serverUrl;
     this.code = navParams.get('code');
     this.mobile = navParams.get('mobile');
 
@@ -55,7 +52,7 @@ export class changePassValidationPage {
             position: 'bottom'
           });
           toast.onDidDismiss(() => {
-            console.log('Dismissed toast');
+            //console.log('Dismissed toast');
           });
 
           toast.present();

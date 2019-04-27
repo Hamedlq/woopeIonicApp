@@ -16,10 +16,10 @@
 <ion-content dir="rtl"  style="background-color:#f7f6fb; margin-top: 180px;">
  
 <div *ngFor="let list of Lists;let k=index;" >
-    <ion-card>
-        <ion-card-header>
-          <ion-card-title class="fonthead">{{list.listTitle}}
-              <h6 on-click="showList(list)" col-12 style="width: 100px;float: left;">  
+    <ion-card >
+        <ion-card-header >
+          <ion-card-title class="title">{{list.listTitle}}
+              <h6 *ngIf="isStoreList(list);" on-click="showList(list)" col-12 style="width: 100px;float: left;">  
                   <span class="morestore">فروشگاه‌های بیشتر</span>             
                 </h6>  
           </ion-card-title>
@@ -63,11 +63,11 @@
   <ng-template #mall_filter>
       <ion-scroll scrollX="true" style="width:90%; height:120px; margin-left:auto;margin-right:auto;" >
           <ion-row nowrap class="headerChip">
-              <div *ngFor="let item of Items;let i = index" col-3>    
-                  <div style="position: relative; margin-top: 20px; ">
-                      <img style="width: 200px;height: 66px; border-radius: 20%;" [src]="item.logoSrc ? baseUrl+item.logoSrc : 'assets/img/default_store.png'" /> 
-                      <h6 style="position: absolute;width: 200px; top: 10px;text-align: center; ">        
-                      {{ item.storeName }}
+              <div *ngFor="let item of getMallList(k);let f=index;" >    
+                  <div on-click="showMall(item)"  style="position: relative; margin-top: 20px;width: 200px; ">
+                      <img style="width: 200px;height: 66px; border-radius: 20%;" [src]="baseUrl+item.srcImage" /> 
+                      <h6 style="position: absolute;width: 200px; top: 10px;text-align: center;color:white;font-size: 20px; ">        
+                      {{ item.name }}
                       </h6>
                   </div>
                 </div>

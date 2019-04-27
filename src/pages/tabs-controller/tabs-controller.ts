@@ -1,8 +1,6 @@
 import { Component ,ViewChild} from '@angular/core';
 import { NavController, NavParams ,App,Content,ViewController } from 'ionic-angular';
-import { StoreTabPage } from '../store-tab/store-tab';
 import { SearchTabPage } from '../search-tab/search-tab';
-import { WoopeTabPage } from '../woope-tab/woope-tab';
 import { FavoriteTabPage } from '../favorite-tab/favorite-tab';
 import { ProfileTabPage } from '../profile-tab/profile-tab';
 import { HttpClient } from '@angular/common/http';
@@ -30,7 +28,6 @@ export class TabsControllerPage {
     
     this.http.post(serverUrl + 'api/Profile/GetProfile', {})
     .subscribe(data => {
-      console.log(data);
       this.profile=data;
     });
   };

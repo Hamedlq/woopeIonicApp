@@ -9,6 +9,9 @@ page-main-tab {
             padding-bottom: 0px !important;
         }
     
+        .title{
+            font-family: Iransans !important;
+        }
 .logo{
     width:20%!important;
     height:auto !important;
@@ -44,6 +47,7 @@ page-main-tab {
     }
     .elementinCadr{
         text-align: center !important;
+        font-size: 11px;
     }
     .imgelement{
         margin-left: auto;margin-right: auto;display: block;width: 66px;height: 66px;
@@ -56,12 +60,14 @@ page-main-tab {
         padding: 3px;
         background-color:#7AE09F; 
         border-radius: 5px; 
+        font-size: 11px;
     };
     .morestore{
         border: 1px;
         background-color:#7AE09F; 
         border-radius: 5px; 
-        
+        font-size: 12px;
+        padding: 3px;
     }
     .fonthead{
         font-family:  IRANSans !important
@@ -70,6 +76,10 @@ page-main-tab {
     .searchbar-ios .searchbar-input {
         background-color: #ffffff !important;
     };
+
+    .headerChip{
+        width: 200px !important;
+    }
     
     .headerChipGray{
         ion-chip.chip.chip-md{

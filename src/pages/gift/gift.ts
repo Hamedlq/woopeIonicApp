@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, ToastController, App } from 'ionic-angular';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
-import { ResponseStatus } from '../Enum/enum';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 
 @Component({
@@ -34,7 +33,7 @@ export class GiftPage {
           position: 'bottom'
         });
         toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
+          //console.log('Dismissed toast');
         });
 
         toast.present();

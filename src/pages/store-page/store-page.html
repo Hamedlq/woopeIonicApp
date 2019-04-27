@@ -1,6 +1,6 @@
 <ion-content [ngSwitch]="pet" id="page2" style="background:rgba(247, 246, 251, 0.884);">
     <div style="width:100%; z-index: 10;height:150px;display:block;background-color:rgba(247, 246, 251, 0.884);">
-        <i style="position: absolute;color: #ffffff; margin: 20px; ;font-size: 35px;font-weight: bold" class="ion-ios-help"></i>
+        <!-- <i style="position: absolute;color: #ffffff; margin: 20px; ;font-size: 35px;font-weight: bold" class="ion-ios-help"></i> -->
         <ion-icon on-click="backpressed()" style="z-index: 100; direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold"
           name="arrow-forward"></ion-icon>
         <span class="store" style="position: absolute;color: #ffffff;margin-top: 30px;font-size: 20px;font-weight: bold;display:block;margin-right:auto!important">{{store.storeName}}</span>
@@ -96,7 +96,7 @@
 
 </ion-content>
 <ion-footer>
-  <button (click)="presentAlert()" style="padding: 0;margin: 0;margin-top: -4px; background-color:#7ae097" id="pay-button4"
+  <button *ngIf="showpay" (click)="presentAlert()" style="padding: 0;margin: 0;margin-top: -4px; background-color:#7ae097" id="pay-button4"
     ion-button color="positive" block>
     پرداخت
   </button>

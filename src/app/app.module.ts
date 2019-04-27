@@ -1,10 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, ToastController } from 'ionic-angular';
-import { RouterModule } from '@angular/router';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { MyApp } from './app.component';
 import { StoreTabPage } from '../pages/store-tab/store-tab';
 import { SearchTabPage } from '../pages/search-tab/search-tab';
@@ -19,12 +16,7 @@ import { RegisterPage } from '../pages/register/register';
 import { SmsValidationPage } from '../pages/sms-validation/sms-validation';
 import { ChangePassPage } from '../pages/change-pass/change-pass';
 import { GiftPage } from '../pages/gift/gift';
-import { PayPage } from '../pages/pay/pay';
-
 import { StatusBar } from '@ionic-native/status-bar';
-
-import { Http, XHRBackend, RequestOptions } from '@angular/http';
-import { ExtendedHttpService } from '../providers/authInterceptor.ts';
 import { AuthInterceptor } from '../providers/authInterceptor';
 import { ForgetPassSmsValidationPage } from '../pages/forgetpass-sms-validation/forgetpass-sms-validation';
 import { changePassValidationPage } from '../pages/change-pass-validation/change-pass-validation';
@@ -36,11 +28,9 @@ import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
 import { AllPostPage } from '../pages/all-post/all-post';
 import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionHistory';
 import { MainTabPage } from '../pages/main-tab/main-tab';
-
 import { PostPage } from '../pages/post/post'
 import { ModalConfirmations } from '../pages/store-page/modalConfirmations/modalConfirmations';
 import { PayPageModule } from '../pages/pay/pay.module';
-
 
 
 @NgModule({
@@ -73,7 +63,7 @@ import { PayPageModule } from '../pages/pay/pay.module';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule ,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     PayPageModule,
     // RouterModule.forRoot([
@@ -113,8 +103,8 @@ import { PayPageModule } from '../pages/pay/pay.module';
     StatusBar,
     ToastController,
     InAppBrowser,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi: true },
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ]
 })
-export class AppModule {}
+export class AppModule { }

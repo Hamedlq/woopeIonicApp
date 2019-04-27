@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { ResponseStatus } from '../Enum/enum';
-import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { changePassValidationPage } from '../change-pass-validation/change-pass-validation';
 import { serverUrl } from '../../Globals';
 
@@ -30,7 +28,7 @@ export class ForgetPassSmsValidationPage {
           position: 'bottom'
         });
         toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
+          //console.log('Dismissed toast');
         });
         toast.present();
       });
