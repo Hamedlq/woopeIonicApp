@@ -6,10 +6,11 @@ import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { ResponseStatus } from '../Enum/enum';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { count } from 'rxjs/operators';
 
 
 @IonicPage({
-  name: 'pay' ,
+  name: 'pay',
   segment: 'pay'
 })
 
@@ -39,53 +40,54 @@ export class PayInPage {
   remain_toman: any;
   isOnline: boolean;
   tax: any;
-  dataloaded:boolean=false;
+  dataloaded: boolean = false;
   Btntxt: any;
   switch_credit: boolean;
   switch_woope: boolean;
   params: Map<string, string>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private iab: InAppBrowser) {
-    this.dataloaded=false;
+    this.dataloaded = false;
     this.baseUrl = serverUrl;
 
     this.getparams();
-    this.profile={};
-    this.store={};
-    if(this.params){
+    this.profile = {};
+    this.store = {};
+    if (this.params) {
       this.productId = this.params['productId'];
       this.user = this.params['user'];
       this.totalPrice = this.params['amount'];
-      this.count= this.params['count'];
+      this.count = this.params['count'];
+
       this.getInfo();
     }
     this.isOnline = true;
   }
 
-  getInfo(){
-      var te = new HttpParams()
-      .append('productId' ,this.productId).append('user' ,this.user ).append('totalPrice' ,this.totalPrice).append('count' ,this.count);
+  getInfo() {
+    var te = new HttpParams()
+      .append('productId', this.productId).append('user', this.user).append('totalPrice', this.totalPrice).append('count', this.count);
 
-      this.http.request('Post', serverUrl + 'api/Product/GetPurchaseInfo', { body: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+    this.http.request('Post', serverUrl + 'api/Product/GetPurchaseInfo', { body: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         this.model = <any>data;
-        this.profile={};
-        this.store={};
-        this.profile.moneyCredit=this.model.moneyCredit;
-        this.profile.woopeCredit=this.model.woopeCredit;
-        this.profile.storeName=this.model.storeName;
-        this.store.storeId=this.model.storeId;
-        this.store.storeName=this.model.storeName;
-        this.store.basePrice=this.model.basePrice;
-        this.store.returnPoint=this.model.returnPoint;
-        this.dataloaded=true;
+        this.profile = {};
+        this.store = {};
+        this.profile.moneyCredit = this.model.moneyCredit;
+        this.profile.woopeCredit = this.model.woopeCredit;
+        this.profile.storeName = this.model.storeName;
+        this.store.storeId = this.model.storeId;
+        this.store.storeName = this.model.storeName;
+        this.store.basePrice = this.model.basePrice;
+        this.store.returnPoint = this.model.returnPoint;
+        this.dataloaded = true;
         this.calculateValues();
-      },onerror=>{this.dataloaded=false;});
+      }, onerror => { this.dataloaded = false; });
 
 
   }
 
-  getparams(){
+  getparams() {
     let category;
     let id;
     if (document.URL.indexOf("?") > 0) {
@@ -93,21 +95,21 @@ export class PayInPage {
       let splitParams = splitURL[1].split("&");
       let i: any;
       this.params = new Map<string, string>();
-      for (i in splitParams){
+      for (i in splitParams) {
         let singleURLParam = splitParams[i].split('=');
-        if (singleURLParam[0] == "category"){
+        if (singleURLParam[0] == "category") {
           category = singleURLParam[1];
         }
-        if (singleURLParam[0] == "id"){
+        if (singleURLParam[0] == "id") {
           id = singleURLParam[1];
         }
-      //   let urlParameter = {
-      //   'name': singleURLParam[0],
-      //   'value': singleURLParam[1]
-      // };
-      //this.params: Map<string, string>;
-      
-      this.params[singleURLParam[0]] = singleURLParam[1];
+        //   let urlParameter = {
+        //   'name': singleURLParam[0],
+        //   'value': singleURLParam[1]
+        // };
+        //this.params: Map<string, string>;
+
+        this.params[singleURLParam[0]] = singleURLParam[1];
         //this.params.push(urlParameter);
       }
     }
@@ -129,7 +131,7 @@ export class PayInPage {
     this.calculateValues();
   }
   doPay() {
-    this.dataloaded=true;
+    this.dataloaded = true;
     let pt = "1";
     if (!this.isOnline) {
       pt = "1";
@@ -141,20 +143,20 @@ export class PayInPage {
       .append('BranchId', this.store.storeId)
       .append('TotalPrice', this.totalPrice)
       .append('PayType', pt)
-      .append('user' ,this.user )
+      .append('user', this.user)
       .append('SwitchCredit', String(this.switch_credit))
       .append('SwitchWoope', String(this.switch_woope));
     this.http.request('Post', serverUrl + 'api/Transaction/InsertTheUserPayList', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         if (!this.isOnline) {
-          this.dataloaded=false;
+          this.dataloaded = false;
           //go to cash pay
           this.navCtrl.push(CashPayCodePage, { store: this.store, profile: this.profile, payListId: data["id"] });
         } else {
           //go to credit pay
           this.setNext(data["id"]);
         }
-      },onerror=>{this.dataloaded=false;});
+      }, onerror => { this.dataloaded = false; });
   }
 
   setNext(payListId) {
@@ -167,35 +169,35 @@ export class PayInPage {
   }
 
   ConfirmPayment(payListId) {
-    
-    this.dataloaded=true;
+
+    this.dataloaded = true;
     var body = new HttpParams()
-      .append('user' ,this.user )
+      .append('user', this.user)
       .append('Id', payListId);
     this.http.request('Post', serverUrl + 'api/Transaction/GetTheConfirmCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        this.dataloaded=false;
+        this.dataloaded = false;
         if (data["status"] == ResponseStatus.Success) {
 
-          this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile,code:data["message"] });
+          this.navCtrl.push(CreditePayCodePage, { store: this.store, profile: this.profile, code: data["message"] });
         } else {
           this.calculateValues();
         }
-      },onerror=>{this.dataloaded=false;});
+      }, onerror => { this.dataloaded = false; });
   }
   GetPayInfo(payListId) {
-    
-    this.dataloaded=true;
+
+    this.dataloaded = true;
     var body = new HttpParams()
-      .append('user' ,this.user )
+      .append('user', this.user)
       .append('paylistId', payListId);
     this.http.request('Post', serverUrl + 'api/Pay/GetThePayInfo', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
-        
-        this.dataloaded=false;
 
-        window.open("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"], '_self');
-      },onerror=>{this.dataloaded=false;});
+        this.dataloaded = false;
+
+        window.open("http://mywoope.com/api/Pay/GoToBankFromWeb?token=" + data["token"], '_self');
+      }, onerror => { this.dataloaded = false; });
   }
   calculateValues() {
     //int selectedId = payType.getCheckedRadioButtonId();

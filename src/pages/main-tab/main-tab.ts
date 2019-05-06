@@ -53,20 +53,21 @@ export class MainTabPage {
                   this.ItemList[i].push(theItems[j]);
                 }
               });
-          } else if (this.Lists[i].listType == ListTypes.MallList) {
-            var body = new HttpParams()
-              .append('pageNumber', '0')
-              .append('countOfList', this.Lists[i].numberPerList);
-            var req = this.http.request('Post', this.baseUrl + 'api/Store/GetMallList', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-              .subscribe(storedata => {
-                let theMalls = [];
-                this.MallList[i] = [];
-                theMalls = <any>storedata;
-                for (let j = 0; j < theMalls.length; j++) {
-                  this.MallList[i].push(theMalls[j]);
-                }
-              })
           }
+          // else if (this.Lists[i].listType == ListTypes.MallList) {
+          //   var body = new HttpParams()
+          //     .append('pageNumber', '0')
+          //     .append('countOfList', this.Lists[i].numberPerList);
+          //   var req = this.http.request('Post', this.baseUrl + 'api/Store/GetMallList', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+          //     .subscribe(storedata => {
+          //       let theMalls = [];
+          //       this.MallList[i] = [];
+          //       theMalls = <any>storedata;
+          //       for (let j = 0; j < theMalls.length; j++) {
+          //         this.MallList[i].push(theMalls[j]);
+          //       }
+          //     })
+          // }
         }
       });
   }
@@ -113,18 +114,18 @@ export class MainTabPage {
       return [];
     }
   }
-  getMallList(k) {
-    if (this.MallList[k] && this.MallList[k].length > 0) {
-      //console.log(this.MallList[k]);
-      let thelist = [];
-      for (let j = 0; j < this.MallList[k].length; j++) {
-        thelist.push(this.MallList[k][j]);
-      }
-      return this.MallList[k];
-    } else {
-      return [];
-    }
-  }
+  // getMallList(k) {
+  //   if (this.MallList[k] && this.MallList[k].length > 0) {
+  //     //console.log(this.MallList[k]);
+  //     let thelist = [];
+  //     for (let j = 0; j < this.MallList[k].length; j++) {
+  //       thelist.push(this.MallList[k][j]);
+  //     }
+  //     return this.MallList[k];
+  //   } else {
+  //     return [];
+  //   }
+  // }
   openGift() {
     this.app.getRootNav().setRoot(GiftPage);
   }
@@ -137,10 +138,10 @@ export class MainTabPage {
     this.app.getRootNav().setRoot(StoreTabPage, { storelist: theitem });
   }
 
-  showMall(item) {
-    var theitem: any;
-    theitem = { listOrder: 84 ,id:item.id};
-    this.app.getRootNav().setRoot(StoreTabPage, { storelist: theitem });
-  }
+  // showMall(item) {
+  //   var theitem: any;
+  //   theitem = { listOrder: 84 ,id:item.id};
+  //   this.app.getRootNav().setRoot(StoreTabPage, { storelist: theitem });
+  // }
 
 }

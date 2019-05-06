@@ -31,6 +31,11 @@ import { MainTabPage } from '../pages/main-tab/main-tab';
 import { PostPage } from '../pages/post/post'
 import { ModalConfirmations } from '../pages/store-page/modalConfirmations/modalConfirmations';
 import { PayPageModule } from '../pages/pay/pay.module';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Component, OnInit } from '@angular/core';
+import { TooltipsModule } from 'ionic-tooltips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -65,6 +70,8 @@ import { PayPageModule } from '../pages/pay/pay.module';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    TooltipsModule.forRoot(),
+    BrowserAnimationsModule,
     PayPageModule,
     // RouterModule.forRoot([
     //   { path: '', component: LoginPage },
@@ -100,6 +107,7 @@ import { PayPageModule } from '../pages/pay/pay.module';
     ModalConfirmations
   ],
   providers: [
+    SocialSharing,
     StatusBar,
     ToastController,
     InAppBrowser,

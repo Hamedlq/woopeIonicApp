@@ -6,6 +6,12 @@ import { AlertController } from 'ionic-angular'
 import { PayPage } from '../pay/pay';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { PostPage } from '../post/post';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
+import { ResponseStatus } from '../Enum/enum';
+
+
 @Component({
   selector: 'store-page',
   templateUrl: 'store-page.html'
@@ -13,6 +19,7 @@ import { PostPage } from '../post/post';
 export class StorePage {
   isVip: boolean = false;
   store: any;
+  giftwoope: string;
   scroll: string = 'null';
   profile: any;
   baseUrl: any;
@@ -21,13 +28,18 @@ export class StorePage {
   items = [];
   page: any;
   showpay: boolean = false;
+  message: string;
+  whatsapphref = "whatsapp://send?text=";
+  smshref = "sms:''?body=";
+  result: any;
+  tittle: string = "مبلغ پرداختی خود را وارد کنید";
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private http: HttpClient,
     public navParams: NavParams,
     private alertCtrl: AlertController,
     public app: App,
-    private modalC: ModalController) {
+    private modalC: ModalController, private socialSharing: SocialSharing) {
     this.pet = 'info';
     this.page = 0;
     this.baseUrl = serverUrl;
@@ -60,12 +72,70 @@ export class StorePage {
       });
 
   }
+  modal() {
+    let modal = document.querySelector('.modal');
+    modal.classList.add('modal1');
+    this.share()
+  }
+  close() {
+    let modal = document.querySelector('.modal');
+    modal.classList.remove('modal1');
+    modal.classList.add('modal');
+    this.message = "";
+    this.whatsapphref = "whatsapp://send?text=";
+    this.smshref = "sms:''?body=";
+  }
+  share() {
+    var body = new HttpParams().append('BranchId', this.store.storeId);
+    this.http.request('Post', this.baseUrl + 'api/Store/ShareStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+      .subscribe(data => {
+        this.result = data;
+        console.log(this.result["status"]);
+        this.message = data["message"];
+        this.whatsapphref = this.whatsapphref + this.message;
+
+        let whatsapp = document.querySelector('.whatssapp');
+        whatsapp.setAttribute("href", this.whatsapphref);
+
+        this.smshref = this.smshref + this.message;
+        let sms = document.querySelector('.sms');
+        sms.setAttribute("href", this.smshref);
+      });
+  }
+  action() {
+    if (this.result["status"] != ResponseStatus.Success) {
+      event.preventDefault();
+    }
+  }
   presentAlert() {
     let alert = this.alertCtrl.create({
-      title: 'مبلغ پرداختی خود را وارد کنید',
+      title: this.tittle,
       buttons: [{
         text: 'تایید', handler: data => {
-          this.navCtrl.push(PayPage, { store: this.store, profile: this.profile, amount: data.amount });
+          if (data.discount != '') {
+            var body = new HttpParams().append('DiscountCode', data.discount).append('BranchId', this.store.storeId);
+            this.http.request('Post', this.baseUrl + 'api/Transaction/CheckDiscountCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+              .subscribe(info => {
+                console.log(info);
+                if (info['status'] != ResponseStatus.Success) {
+                  this.tittle = info['message'];
+                  this.presentAlert();
+
+                }
+                else if (info['status'] == ResponseStatus.Success) {
+                  this.tittle = "مبلغ پرداختی خود را وارد کنید";
+                  this.giftwoope = info['message'];
+                  this.navCtrl.push(PayPage, { store: this.store, profile: this.profile, amount: data.amount, discount: data.discount, giftwoope: this.giftwoope });
+                }
+              });
+
+          }
+          else {
+            this.tittle = "مبلغ پرداختی خود را وارد کنید";
+            this.giftwoope = '0'
+            this.navCtrl.push(PayPage, { store: this.store, profile: this.profile, amount: data.amount, discount: data.discount, giftwoope: this.giftwoope });
+          }
+
         }
       }],
       cssClass: "myalert",
@@ -74,7 +144,11 @@ export class StorePage {
           name: 'amount',
           placeholder: 'مبلغ به تومان'
         },
-      ],
+        {
+          name: 'discount',
+          placeholder: 'کد تخفیف اختصاصی'
+        },
+      ]
     });
     alert.present();
   };
@@ -102,7 +176,7 @@ export class StorePage {
   };
 
   doInfiniteTop(infiniteScroll) {
-    this.scroll='topScroll';
+    this.scroll = 'topScroll';
     infiniteScroll.complete();
   };
   storeP(post) {
@@ -131,4 +205,5 @@ export class StorePage {
         modalConfirm.present();
       });
   };
-};
+
+}

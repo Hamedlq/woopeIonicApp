@@ -1,70 +1,79 @@
 <div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
   <img src="assets/img/logo_white.png" class="logo" />
-  <img src="assets/img/home2.png" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
+  <img src="assets/img/home2.png"
+    style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
 </div>
 <header>
-  <ion-icon name="create" on-click="openEditPage()" style="position: relative;margin-top: 15px;  color: #ffffff;z-index: 100; margin-bottom: 0px; ;font-size: 25px;font-weight: bold;float:right ; margin-right:10px;"></ion-icon> 
+  <ion-icon name="create" on-click="openEditPage()"
+    style="position: relative;margin-top: 15px;  color: #ffffff;z-index: 100; margin-bottom: 0px; ;font-size: 25px;font-weight: bold;float:right ; margin-right:10px;">
+  </ion-icon>
 </header>
 <ion-content id="page6" style="display:block;background-color:#F7F6FB;">
   <div id="profileTab-markdown17" style="text-align:center; margin-top:120px;" class="show-list-numbers-and-dots">
-    <img style="width: 66px;height: 66px;   border-radius: 50%;" [src]="profile.imageSrc ? baseUrl+profile.imageSrc : 'assets/img/default_store.png'" /> 
+    <img style="width: 66px;height: 66px;   border-radius: 50%;"
+      [src]="profile.imageSrc ? baseUrl+profile.imageSrc : 'assets/img/default_store.png'" />
     <p style="color:#8100F9;">
       {{profile.username}}
     </p>
     <p style="color:#8100F9;">
       {{profile.name + " " + profile.family}}
     </p>
-    <p style="color:#8100F9;">
-      {{profile.userBio}}
+    <p style="margin-top: 5px; color:#8100F9;">
+      <!-- {{profile.userBio}} -->
     </p>
   </div>
   <div class="row" style="justify-content:space-around">
     <div class="col-4">
-        <ion-card style="background-color: #F7F6FB;width:100px;height:100px;">
-            <img src="assets/img/i6rid4x0Q3aSWZcuoxsb_wallet_mini.png" style="margin-top:5px; display:block;width:50%;height:50%;margin-left:auto;margin-right:auto;" />
-            <div style="text-align:center;" >
-              <p style="color:#8100F9;font-size:14px;">
-                {{profile.moneyCredit}}
-              </p>
-            </div>
-            <div style="text-align:center;" >
-              <p style="color:#8100F9;font-size:12px;">
-                اعتبار
-              </p>
-            </div>
-          </ion-card>
+      <ion-card style="background-color: #F7F6FB;width:100px;height:100px;">
+        <img src="assets/img/i6rid4x0Q3aSWZcuoxsb_wallet_mini.png"
+          style="margin-top:5px; display:block;width:50%;height:50%;margin-left:auto;margin-right:auto;" />
+        <div style="text-align:center;">
+          <p style="color:#8100F9;font-size:14px;">
+            {{profile.moneyCredit}}
+          </p>
+        </div>
+        <div style="text-align:center;">
+          <p style="color:#8100F9;font-size:12px;">
+            اعتبار
+          </p>
+        </div>
+      </ion-card>
 
     </div>
     <div class="col-4">
       <ion-card style="background-color: #F7F6FB;width:100px;height:100px;">
-          <img src="assets/img/mrlpD9QSiajCsN1jnaTA_group103.png" style="margin-top:5px; display:block;width:50%;height:50%;margin-left:auto;margin-right:auto;" />
-          <div  style="text-align:center;" >
-            <p style="color:#8100F9;font-size:14px;">
-              {{profile.woopeCredit}}
-            </p>
-          </div>
-          <div  style="text-align:center;">
-            <p style="color:#8100F9;font-size:12px;">
-              ووپ
-            </p>
-          </div>
+        <img src="assets/img/mrlpD9QSiajCsN1jnaTA_group103.png"
+          style="margin-top:5px; display:block;width:50%;height:50%;margin-left:auto;margin-right:auto;" />
+        <div style="text-align:center;">
+          <p style="color:#8100F9;font-size:14px;">
+            {{profile.woopeCredit}}
+          </p>
+        </div>
+        <div style="text-align:center;">
+          <p style="color:#8100F9;font-size:12px;">
+            ووپ
+          </p>
+        </div>
       </ion-card>
     </div>
     <div class="col-4">
-      <ion-card style="background-color: #F7F6FB;width:100px;height:100px;" >
-          <img src="assets/img/DZC7AaKgTPaKF5vO6QsY_group101.png" style="margin-top:5px; display:block;width:45%;height:45%;margin-left:auto;margin-right:auto;" />
-          <div style="text-align:center;" >
-            <p style="color:#8100F9;font-size:14px;">
-              {{profile.transactionCount}}
-            </p>
-          </div>
-          <div style="text-align:center;" >
-            <p style="color:#8100F9;font-size:12px;">
-              تعداد خرید
-            </p>
-          </div>
+      <ion-card leftOffset='2000' arrow [event]='tooltipEvent' duration='3000'  positionV="top" tooltip="با اشتراک گذاری فروشگاه ها بین دوستان خود ووپ هدیه بگیرید" 
+        style="text-align: center; background-color: #F7F6FB;width:100px;height:100px;">
+        <ion-icon style="margin-top: 5px;border: solid;border-radius:50%;  font-size: 25px; color: #AF60FA"
+          name="share"></ion-icon>
+        <!-- <img src="assets/img/DZC7AaKgTPaKF5vO6QsY_group101.png"
+          style="margin-top:5px; display:block;width:45%;height:45%;margin-left:auto;margin-right:auto;" /> -->
+        <div style="text-align:center;">
+          <p style="color:#8100F9;font-size:14px;">
+            {{profile.countDiscountCode}}
+          </p>
+        </div>
+        <div style="text-align:center;">
+          <p style="color:#8100F9;font-size:12px;">
+            اشتراک گذاری موفق
+          </p>
+        </div>
       </ion-card>
-     
     </div>
   </div>
   <ion-grid>
@@ -72,10 +81,11 @@
       <ion-col>
         <ion-card style="background:#F7F6FB" id="profileTab-card26" on-click="transactionhistory()">
           <div style="font-family: IRANSans; text-align: right; background: #F7F6FB;padding: 10px;">
-            تاریخچه پرداخت ها
+            صورتحساب
           </div>
         </ion-card>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 </ion-content>

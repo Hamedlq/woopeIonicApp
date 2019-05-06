@@ -1,42 +1,47 @@
 <div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
   <img src="assets/img/logo_white.png" class="logo" />
-  <img src="assets/img/home2.png" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
-  <ion-searchbar  [(ngModel)]="valueSearch" (input)="searchBox($event.target.value)" class="search" placeholder="جستجوی فروشگاه..."
-    name="searchquery" id="searchTab-search5"></ion-searchbar>
+  <img src="assets/img/home2.png"
+    style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
+  <ion-searchbar [(ngModel)]="valueSearch" (input)="searchBox($event.target.value)" class="search"
+    placeholder="جستجوی فروشگاه..." name="searchquery" id="searchTab-search5"></ion-searchbar>
 </div>
-<ion-content dir="rtl"  style="background-color:#F7F6FB; margin-top: 180px;">
-  
-    <div class="row" style=" margin-bottom: 100px" >
-    <div *ngFor="let item of Items" col-4>    
+<ion-content dir="rtl" style="background-color:#F7F6FB; margin-top: 180px;">
+
+  <div class="row" style=" margin-bottom: 100px">
+    <div *ngFor="let item of Items" col-4>
       <div class="cadr">
-          <ion-icon [ngClass]="{'like': item.isFollowed}" on-click="like(item,$event)" col-4 name="md-heart" style="font-weight: bold;float:left; text-align: left; margin-top: 7px"></ion-icon>
-    <div  on-click="storeclick(item)">
-        <div class="row" dir="rtl"> 
-            <p style=" font-size: 10px" col-12>      
-              <span dir="rtl">تخفیف</span>  
+        <div class="row" style="float: left;">
+          <ion-icon [ngClass]="{'like': item.isFollowed}" on-click="like(item,$event)" col-4 name="md-heart"
+            style="font-weight: bold;float:left; text-align: left; margin-top: 7px"></ion-icon>
+        </div>
+        <div on-click="storeclick(item)">
+          <!-- <div class="row" style="float: left;">
+            <p style=" font-size: 10px" col-12>
+              <span dir="rtl">تخفیف</span>
               {{item.discountPercent}}%
-            </p>    
-        </div>                     
-      <div  class="row">
-        <div class="elementinCadr" col-12>
-          <img style="width: 66px;height: 66px;   border-radius: 50%;" [src]="item.logoSrc ? baseUrl+item.logoSrc : 'assets/img/default_store.png'" />   
+            </p>
+          </div> -->
+          <div class="row">
+            <div class="elementinCadr" style="margin-top: 15px;" col-12>
+              <img style="width: 66px;height: 66px;   border-radius: 50%;"
+                [src]="item.logoSrc ? baseUrl+item.logoSrc : 'assets/img/default_store.png'" />
+            </div>
+          </div>
+          <div style=" height: 20px; text-align: center;" class="row elementinCadr">
+            <h6 class="elementinCadr" col-12>
+              <span class="returnPointCadr"><span dir="rtl">عدد ووپ</span>{{item.returnPoint}}</span>
+            </h6>
+          </div>
+          <div class="row">
+            <h6 class="elementinCadr" col-12>
+              {{ item.storeName }}
+            </h6>
+          </div>
         </div>
       </div>
-      <div style=" height: 20px; text-align: center;"  class="row elementinCadr">    
-              <h6 class="elementinCadr" col-12>  
-                <span class="returnPointCadr"><span dir="rtl">عدد ووپ</span>{{item.returnPoint}}</span>             
-              </h6>           
-      </div> 
-      <div  class="row">
-          <h6 class="elementinCadr" col-12>        
-          {{ item.storeName }}
-          </h6>          
-      </div>
     </div>
-    </div>
-</div>
-</div>
-<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
