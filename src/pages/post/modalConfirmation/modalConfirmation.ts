@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController ,ModalController} from 'ionic-angular';
+import { NavParams,ViewController} from 'ionic-angular';
 /**
  * Generated class for the ModalConfirmationPage page.
  *
@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams,ViewController ,ModalController} fr
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-modal-confirmation',
   templateUrl: 'modalConfirmation.html',
@@ -15,7 +15,7 @@ import { IonicPage, NavController, NavParams,ViewController ,ModalController} fr
 export class ModalConfirmation {
   message : any ;
   
-  constructor(private viewCtrl:ViewController , private modalC :ModalController, private navCtrl: NavController, public navParams: NavParams) {
+  constructor(private viewCtrl:ViewController , public navParams: NavParams) {
     this.message=navParams.get('message');
 
   };

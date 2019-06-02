@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import {
   NavController,
-  ToastController,
   NavParams,
   App
 } from "ionic-angular";
@@ -21,13 +20,11 @@ export class FavoriteTabPage {
   constructor(
     public navCtrl: NavController,
     private http: HttpClient,
-    private toastCtrl: ToastController,
     public navParams: NavParams,
     public app: App
   ) {
     this.profile = navParams.get("profile");
     this.baseUrl = serverUrl;
-    var body = new HttpParams();
     this.http
       .request("Get", this.baseUrl + "api/Store/GetFollowingStores", {
         headers: new HttpHeaders().set(

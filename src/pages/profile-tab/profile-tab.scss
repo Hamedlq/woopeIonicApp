@@ -1,29 +1,29 @@
 page-profile-tab {
-    .logo{
-        width:20%!important;
-        height:auto !important;
-        position: absolute; 
-        margin: 20px; 
-        }
+  .logo {
+    width: 20% !important;
+    height: auto !important;
+    position: absolute;
+    margin: 20px;
+  }
 }
-.imgPorfile{
-    
+.imgPorfile {
 }
-[_nghost-c0] {
-    font-family: "IRANSans";
-    background-color:rgba(145, 51, 233, 0.486) !important ;
-    background-color:#A776D5 !important ;
-    color: white;
-    display: inline-block;
-    position: fixed;
-    // padding: 15px 25px;
-    font-size: 11px !important;
-    direction: rtl;
-    border-radius:10px; 
+tooltip-box.has-arrow.arrow-bottom {
+  font-family: "IRANSans";
+  background-color: rgba(145, 51, 233, 0.486) !important ;
+  background-color: #a776d5 !important ;
+  color: white;
+  display: inline-block;
+  position: fixed;
+  // padding: 15px 25px;
+  font-size: 11px !important;
+  direction: rtl;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-top: 30px;
 }
-.has-arrow.arrow-bottom[_nghost-c0]:before {
-    border-top: 5px solid #A776D5 !important;
-    // background-color:#A776D5 !important ;
-    bottom: -10px;
-    margin-left: 80%
+.has-arrow.arrow-bottom:before {
+  border-top: 5px solid #a776d5 !important;
+  bottom: -10px;
+  margin-left: 75%;
 }

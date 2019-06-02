@@ -1,5 +1,5 @@
-import { Component, ElementRef } from "@angular/core";
-import { NavController, ToastController, App } from "ionic-angular";
+import { Component } from "@angular/core";
+import { NavController, App } from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
 import { serverUrl } from "../../Globals";
 
@@ -16,7 +16,6 @@ export class TransactionHistoryPage {
   constructor(
     public navCtrl: NavController,
     private http: HttpClient,
-    private toastCtrl: ToastController,
     public app: App
   ) {
     this.http

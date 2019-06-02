@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, App } from 'ionic-angular';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { NavController, NavParams, App } from 'ionic-angular';
 import { serverUrl } from '../../Globals';
-import { ResponseStatus } from '../Enum/enum';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 
 @Component({
@@ -13,12 +11,16 @@ export class CashPayCodePage {
   payListId: any;
   code: any;
   store: any;
+  baseUrl = serverUrl;
+  logo: any;
+
   disableButton;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private toastCtrl: ToastController,
+  constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App) {
     this.payListId = navParams.get('payListId');
     this.store = navParams.get('store');
     this.disableButton = false;
+    this.baseUrl = serverUrl;
   }
 
   // confirmCode(){

@@ -16,14 +16,12 @@ import { RegisterPage } from '../pages/register/register';
 import { SmsValidationPage } from '../pages/sms-validation/sms-validation';
 import { ChangePassPage } from '../pages/change-pass/change-pass';
 import { GiftPage } from '../pages/gift/gift';
-import { StatusBar } from '@ionic-native/status-bar';
 import { AuthInterceptor } from '../providers/authInterceptor';
 import { ForgetPassSmsValidationPage } from '../pages/forgetpass-sms-validation/forgetpass-sms-validation';
 import { changePassValidationPage } from '../pages/change-pass-validation/change-pass-validation';
 import { StorePage } from '../pages/store-page/store-page';
 import { CreditePayCodePage } from '../pages/creditepaycode/creditepaycode';
 import { CashPayCodePage } from '../pages/cash-pay-code/cash-pay-code';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EditPage } from '../pages/Edit-Profile/Edit-Profile';
 import { AllPostPage } from '../pages/all-post/all-post';
 import { TransactionHistoryPage } from '../pages/TransactionHistory/TransactionHistory';
@@ -32,16 +30,15 @@ import { PostPage } from '../pages/post/post'
 import { ModalConfirmations } from '../pages/store-page/modalConfirmations/modalConfirmations';
 import { PayPageModule } from '../pages/pay/pay.module';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { Component, OnInit } from '@angular/core';
 import { TooltipsModule } from 'ionic-tooltips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { contactUsPage } from '../pages/ContactUS/ContactUS';
+import { DataProvider } from '../providers/data/data';
 
 @NgModule({
   declarations: [
-    AllPostPage,
     MyApp,
+    AllPostPage,
     StoreTabPage,
     SearchTabPage,
     MainTabPage,
@@ -65,6 +62,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EditPage,
     TransactionHistoryPage,
     ModalConfirmations,
+    contactUsPage,
+    
   ],
   imports: [
     BrowserModule,
@@ -104,15 +103,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CashPayCodePage,
     EditPage,
     TransactionHistoryPage,
-    ModalConfirmations
+    ModalConfirmations,
+    contactUsPage,
   ],
   providers: [
     SocialSharing,
-    StatusBar,
+    // StatusBar,
     ToastController,
-    InAppBrowser,
+    // InAppBrowser,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    DataProvider,
   ]
 })
 export class AppModule { }

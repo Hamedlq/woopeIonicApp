@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, Events, NavParams } from 'ionic-angular';
+import { NavController, ToastController, Events } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
@@ -17,8 +17,8 @@ export class SplashPage {
   duration: any;
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  constructor(private http: HttpClient, public navCtrl: NavController,
-    public toastCtrl: ToastController,public events: Events,navParams: NavParams) {
+  constructor(http: HttpClient, public navCtrl: NavController,
+    public toastCtrl: ToastController,public events: Events) {
 
     let baseUrl = serverUrl;
     this.duration = 1000;

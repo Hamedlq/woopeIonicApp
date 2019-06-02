@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,ModalController} from 'ionic-angular';
+import { NavController, NavParams ,ModalController} from 'ionic-angular';
 import { App } from 'ionic-angular';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import {serverUrl} from '../../Globals';
 import { StorePage } from '../store-page/store-page';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'all-post',
   templateUrl: 'all-post.html',
@@ -22,7 +22,7 @@ export class AllPostPage {
     this.page = 0;
     this.profile = navParams.get('profile');
     var param = new HttpParams().append('page', this.page ).append('count','6');
-    this.http.get(this.baseUrl+ 'api/Product/GetAllActiveProducts',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+    this.http.get(this.baseUrl+ 'api/Post/GetAllActivePosts',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
       this.ionfos =<any>data;
 
@@ -32,7 +32,7 @@ export class AllPostPage {
     this.page++;
     setTimeout(() => {
       var param = new HttpParams().append('page', this.page ).append('count', '6');
-    this.http.get(this.baseUrl+ 'api/Product/GetAllActiveProducts',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+    this.http.get(this.baseUrl+ 'api/Post/GetAllActivePosts',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
           let newitems=<any>data;
           if(newitems.length>1){
@@ -54,23 +54,23 @@ export class AllPostPage {
       ionfo.isLiked=true;
     }
     var body = new HttpParams().append('ImageID', ionfo['id']);
-    this.http.request('Post', this.baseUrl + 'api/Product/ChangeLikeImage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+    this.http.request('Post', this.baseUrl + 'api/Post/ChangeLikeImage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
     });
 
 };
-butporo(ionfo){
-  var te = new HttpParams()
-      .append('ProductId',ionfo['id']);
-      this.http.get(this.baseUrl + 'api/Product/SaveOnlineRequest',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-        .subscribe(data => {
-          this.message =<any>data ;
-          let modalConfirm = this.modalC.create('ModalConfirmation', {message: this.message['message']}  );
-          modalConfirm.present();
-        });
+// butporo(ionfo){
+//   var te = new HttpParams()
+//       .append('ProductId',ionfo['id']);
+//       this.http.get(this.baseUrl + 'api/Post/SaveOnlineRequest',  { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+//         .subscribe(data => {
+//           this.message =<any>data ;
+//           let modalConfirm = this.modalC.create('ModalConfirmation', {message: this.message['message']}  );
+//           modalConfirm.present();
+//         });
        
         
-};
+// };
 storeclick(store){
   store.storeId=store.branchId;
   this.app.getRootNav().setRoot(StorePage , { store: store,profile:this.profile});

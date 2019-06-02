@@ -1,13 +1,100 @@
-<div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
-  <img src="assets/img/logo_white.png" class="logo" />
-  <img src="assets/img/home2.png"
-    style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
-  <ion-searchbar [(ngModel)]="valueSearch" (input)="searchBox($event.target.value)" class="search"
-    placeholder="جستجوی فروشگاه..." name="searchquery" id="searchTab-search5"></ion-searchbar>
-</div>
-<ion-content dir="rtl" style="background-color:#F7F6FB; margin-top: 180px;">
+<ion-content style="background-color:#9132E9;">
+  <ion-icon (click)="backpressed()" class="back"
+    style="font-size: 25px; top: 13px;z-index: 100;right: 0; position: absolute; margin-right: 5px;color:#9132E9"
+    name="arrow-forward"></ion-icon>
+  <ion-searchbar [(ngModel)]="valueSearch" (click)="searchBox($event)" (change)="searchBox($event)"
+    (input)="searchBox($event)" class="search searchbox" placeholder="جستجوی فروشگاه..." name="searchquery"
+    id="searchTab-search5"></ion-searchbar>
+  <button *ngIf="categoryzone" on-click="choosecategory()"
+    style="margin-top:8px;margin-left: 8px;width: 43%; float: left;background-color: #F7F6FB " ion-button>
+    <ion-icon style="position: absolute;float: left;left: 0; margin-right: 20px;color:#9132E9" name="arrow-dropdown"></ion-icon>
+    <span style="position: absolute;right: 0; float: right;margin-right: 10px; font-size: 11px;color:#4D4C4E;font-size: 12px;font-weight: bold">{{CategoryName}}</span>
+  </button>
+  <ion-content [hidden]="categoris" style="text-align: center; margin-top:8px; background-color:transparent;">
+    <button on-click="back()"
+      style="font-size: 14px; margin-top: 68px !important;background-color: #F7F6FB;color:#4D4C4E;z-index: 100; margin-top: 65px;width: 95%"
+      ion-button>تایید</button>
+    <ion-scroll dir="rtl" scrollX="true"
+      style="display: contents; width:90%;height:220px;margin-left:auto;margin-right:auto;">
+      <ion-row nowrap class="headerChip">
+        <div *ngFor="let item of MenuList">
+          <div id=cardCat{{item.id}} (click)="SelectCat(item.id)" class="cadrmenu">
+            <div class="row">
+              <div class="elementinCadrmenu" col-12>
+                <ion-icon id=ch{{item.id}} class="checkcat checkcatHide" name="checkmark-circle"></ion-icon>
+                <ion-icon id=un{{item.id}} class="uncheckcat" name="radio-button-off"></ion-icon>
+                <img class="imgelementmenu" style="width: 40px;height: 40px; border-radius: 50%;"
+                  [src]="item.image ? baseUrl+item.image : 'assets/img/default_store.png'" />
+                <span>{{item.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-row>
+    </ion-scroll>
+  </ion-content>
+  <button on-click="choosezone()" *ngIf="categoryzone"
+    style="margin-top:8px;margin-right: 8px;width: 43%;float: right;background-color: #F7F6FB" ion-button>
+    <ion-icon style="position: absolute;float: left;left: 0;margin-right: 35px;color:#9132E9" name="arrow-dropdown"></ion-icon>
+    <span style="position: absolute;right: -50px; float: right;margin-right: 10px;font-size: 11px;display:block; width:150px;word-wrap:break-word;margin-right: 10px;color:#4D4C4E;font-weight: bold">{{ZoneName}}</span>
+  </button>
+  <ion-content [hidden]="zones" style="margin-top:8px;height: 220px; background-color:transparent;">
+    <button on-click="back()"
+      style="font-size: 14px; margin-top: 68px !important;margin-left: 8px;background-color:#F7F6FB;color:#4D4C4E; z-index: 100; margin-top: 65px;width: 43%;height: 45px;"
+      ion-button>تایید</button>
+    <ion-searchbar (ionChange)="searchzone($event)" class="searchbox search input" placeholder="نام محله..."
+      name="searchquery" id="searchTab-search6"
+      style="z-index: 120;padding: 6px; border-radius:5px; direction: rtl !important; float: right; ; margin-top: 57px;width: 48%;height: 37%;">
+    </ion-searchbar>
 
-  <div class="row" style=" margin-bottom: 100px">
+    <ion-scroll dir="rtl" scrollX="true"
+      style="display: contents; width:90%;height:220px;margin-left:auto;margin-right:auto;">
+      <ion-row nowrap class="headerChip">
+        <div *ngFor="let item of ZoneList;">
+          <div id=card{{item.id}} (click)="SelectZone(item.id)" class="cadrmenu">
+            <div class="row">
+              <div class="elementinCadrmenu" col-12>
+                <ion-icon id={{item.id}} class="checkzone checkzoneHide" name="checkmark-circle"></ion-icon>
+                <ion-icon id=u{{item.id}} class="uncheckzone" name="radio-button-off"></ion-icon>
+                <!-- <img class="imgelementmenu" style="width: 40px;height: 40px; border-radius: 50%;"
+                  [src]="item.image ? baseUrl+item.image : 'assets/img/default_store.png'" /> -->
+                <div>
+                  <span>{{item.name}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-row>
+    </ion-scroll>
+  </ion-content>
+  <ion-content [hidden]="filter" style="margin-top:60px;height: 120px; background-color:transparent;">
+    <ion-scroll dir="rtl" scrollX="true"
+      style="display: contents; width:90%;height:220px;margin-left:auto;margin-right:auto;">
+      <div style="">
+        <ion-icon style="font-size: 11px; font-family: IRANSans !important; color: #ffffff;margin-right: 10px;" name="funnel"> مرتب سازی بر اساس :</ion-icon>
+      </div>
+      <ion-row nowrap class="headerChipsort">
+        <div *ngFor="let item of SortList">
+          <div id=cardi{{item.id}} (click)="SelectSort(item.id)" class="cadrsort">
+            <div class="row">
+              <div class="elementinCadrSort" col-12>
+                <!-- <ion-icon id=cs{{item.id}} class="checksort checksortHide" name="checkmark-circle"></ion-icon>
+                <ion-icon id=us{{item.id}} class="unchecksort" name="radio-button-off"></ion-icon> -->
+                <!-- <img class="imgelementmenu" style="width: 40px;height: 40px; border-radius: 50%;"
+                  [src]="item.imgUrl? baseUrl+item.imgUrl : 'assets/img/default_store.png'" /> -->
+                <span>{{item.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-row>
+    </ion-scroll>
+  </ion-content>
+</ion-content>
+
+<!-- <ion-content [hidden]="!searchview" dir="rtl" style="background-color:#F7F6FB; margin-top: 230px;">
+  <div class="row" style=" margin-bottom: 150px">
     <div *ngFor="let item of Items" col-4>
       <div class="cadr">
         <div class="row" style="float: left;">
@@ -15,12 +102,12 @@
             style="font-weight: bold;float:left; text-align: left; margin-top: 7px"></ion-icon>
         </div>
         <div on-click="storeclick(item)">
-          <!-- <div class="row" style="float: left;">
+          <div class="row" style="float: left;">
             <p style=" font-size: 10px" col-12>
               <span dir="rtl">تخفیف</span>
               {{item.discountPercent}}%
             </p>
-          </div> -->
+          </div>
           <div class="row">
             <div class="elementinCadr" style="margin-top: 15px;" col-12>
               <img style="width: 66px;height: 66px;   border-radius: 50%;"
@@ -29,7 +116,8 @@
           </div>
           <div style=" height: 20px; text-align: center;" class="row elementinCadr">
             <h6 class="elementinCadr" col-12>
-              <span class="returnPointCadr"><span dir="rtl">عدد ووپ</span>{{item.returnPoint}}</span>
+              <span *ngIf="item.returnPoint != 0" class="returnPointCadr"><span dir="rtl">عدد
+                  ووپ</span>{{item.returnPoint}}</span>
             </h6>
           </div>
           <div class="row">
@@ -37,7 +125,40 @@
               {{ item.storeName }}
             </h6>
           </div>
+          <div style=" text-align: center;">
+            <ion-icon style="color:#9133E9 " name="pin"></ion-icon>
+            <span>{{item.zone}}</span>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content> -->
+
+<ion-content class="contentsearch">
+  <div class="row griddirection">
+    <div (click)="storeclick(item)" *ngFor="let item of Items" class="cart">
+      <div class=" cartbadge">
+        <div class="checkout-price">
+          <span>{{item.returnPoint}} ووپ</span>
+        </div>
+      </div>
+      <div class="cartimg" col-4>
+        <img [src]="item.logoSrc? baseUrl+item.logoSrc : 'assets/img/fab.png'" />
+      </div>
+      <div class="cartDescription" col-8>
+        <h5>{{ item.storeName }}</h5>
+        <span class="spanDescription">به ازای هر {{item.basePriceStr}} تومان خرید {{item.returnPoint}} عدد
+          ووپ
+          هدیه
+          بگیرید </span>
+        <p class="PDescription">
+          <ion-icon name="pin"></ion-icon>
+          {{item.zone}}
+        </p>
       </div>
     </div>
   </div>

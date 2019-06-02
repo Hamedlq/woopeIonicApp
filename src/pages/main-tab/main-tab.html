@@ -1,66 +1,95 @@
 <div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
-  <img src="assets/img/gift.png" class="icon-right" on-click="openGift()"  />
+  <img src="assets/img/gift.png" class="icon-right" on-click="openGift()" />
+  <a on-click="contactUs()">
+    <ion-icon name="call" class="icon-contactUs"></ion-icon>
+  </a>
   <img src="assets/img/logo_white.png" class="logo" />
-  <img src="assets/img/home2.png" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
-  <img src="assets/img/home_shadow.png" style="position: fixed; margin-top: -120px; z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />
-  <ion-card style="background-color: #FFFFFF;width:90%;height:40px;margin-left:auto;margin-right:auto;" >
-    <div  style="text-align:center;" on-click="showAll()">
+  <img src="assets/img/home2.png"
+    style="z-index: 100; width:100%;height:100px !important;margin-left:auto;margin-right:auto;" />
+
+  <img src="assets/img/home_shadow.png"
+    style="position: fixed; margin-top: -120px; z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />
+  <!-- <ion-card
+    style="border-radius: 10px; background-color: #FFFFFF;width:90%;height:40px;margin-left:auto;margin-right:auto;">
+    <div style="text-align:center;" on-click="showAll()">
       <p style="color:#8100F9;font-size:12px;margin-top:10px">
-        <img src="assets/img/left_arrow.png" style="position: fixed; display:block;margin:5px;width:10px;height:10px;" />  
-        مشاهده همه فروشگاه‌ها
+        <ion-icon name="arrow-back" style="position: fixed; display:block;margin:-5px;font-size:20px"></ion-icon>
+        <span style="float: right;margin-right: 5px;font-size:12px;font-weight: bold ">مشاهده همه فروشگاه‌ها</span>
+
       </p>
     </div>
-</ion-card>
-
+  </ion-card> -->
+  <ion-content style="height: 120px; background-color:transparent;">
+    <ion-scroll dir="rtl" scrollX="true"
+      style="display: contents; width:90%;height:220px;margin-left:auto;margin-right:auto;">
+      <ion-row nowrap class="headerChip">
+        <div *ngFor="let item of MenuList">
+          <div (click)="SelectCategory(item.id)" class="cadrmenu">
+            <div class="row">
+              <div class="elementinCadrmenu" col-12>
+                <img class="imgelementmenu" style="width: 40px;height: 40px; border-radius: 50%;"
+                  [src]="item.image ? baseUrl+item.image : 'assets/img/default_store.png'" />
+                <span>{{item.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-row>
+    </ion-scroll>
+  </ion-content>
 </div>
-<ion-content dir="rtl"  style="background-color:#f7f6fb; margin-top: 180px;">
- 
-<div *ngFor="let list of Lists;let k=index;" >
-    <ion-card >
-        <ion-card-header >
-          <ion-card-title class="title">{{list.listTitle}}
-              <h6 *ngIf="isStoreList(list);" on-click="showList(list)" col-12 style="width: 100px;float: left;">  
-                  <span class="morestore">فروشگاه‌های بیشتر</span>             
-                </h6>  
-          </ion-card-title>
-          
-        </ion-card-header>
-        <ion-card-content>
-  <ion-scroll *ngIf="isStoreList(list);else mall_filter" scrollX="true" style="width:90%; height:230px;margin-left:auto;margin-right:auto;" >
-    <ion-row nowrap class="headerChip">
-        <div *ngFor="let item of getList(k);let f=index;" >
-            <div class="cadr">
-          <div  on-click="storeclick(item)">
-              <div class="row" dir="rtl"> 
-                  <!-- <p style=" font-size: 10px; padding:10px" col-12>      
+<ion-content dir="rtl" style="background-color:#f7f6fb; margin-top: 190px; z-index: 10 !important;">
+
+  <div style="height: 200px;" *ngFor="let list of Lists;let k=index;">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="title">{{list.listTitle}}
+          <h6 *ngIf="isStoreList(list);" on-click="showList(list)" col-12
+            style="width: 100px;margin-left: -35px; float: left;">
+            <button class="morestore">فروشگاه‌های بیشتر</button>
+          </h6>
+        </ion-card-title>
+
+      </ion-card-header>
+      <ion-card-content>
+        <ion-scroll *ngIf="isStoreList(list);else mall_filter" scrollX="true"
+          style="width:90%; height:230px;margin-left:auto;margin-right:auto;">
+          <ion-row nowrap class="headerChip">
+            <div *ngFor="let item of getList(k);let f=index;">
+              <div class="cadr">
+                <div on-click="storeclick(item)">
+                  <div class="row" dir="rtl">
+                    <!-- <p style=" font-size: 10px; padding:10px" col-12>      
                     <span dir="rtl">تخفیف</span>  
                     {{item.discountPercent}}%
                   </p>     -->
-              </div>                     
-            <div  class="row">
-              <div class="elementinCadr" col-12>
-                <img class="imgelement" style="width: 66px;height: 66px; border-radius: 50%;" [src]="item.logoSrc ? baseUrl+item.logoSrc : 'assets/img/default_store.png'" />   
+                  </div>
+                  <div class="row">
+                    <div class="elementinCadr" col-12>
+                      <img class="imgelement" style="width: 66px;height: 66px; border-radius: 50%;"
+                        [src]="item.logoSrc ? baseUrl+item.logoSrc : 'assets/img/default_store.png'" />
+                    </div>
+                  </div>
+                  <div style=" height: 20px; text-align: center;" class="row elementinCadr">
+                    <h6 class="elementinCadr" col-12>
+                      <span *ngIf="item.returnPoint != 0" class="returnPointCadr"><span dir="rtl">عدد
+                          ووپ</span>{{item.returnPoint}}</span>
+                    </h6>
+                  </div>
+                  <div class="row">
+                    <h6 class="elementinCadrtext" col-12>
+                      {{ item.storeName }}
+                    </h6>
+                  </div>
+                </div>
               </div>
             </div>
-            <div style=" height: 20px; text-align: center;"  class="row elementinCadr">    
-                    <h6 class="elementinCadr" col-12>  
-                      <span class="returnPointCadr"><span dir="rtl">عدد ووپ</span>{{item.returnPoint}}</span>             
-                    </h6>           
-            </div> 
-            <div  class="row">
-                <h6 class="elementinCadr" col-12>        
-                {{ item.storeName }}
-                </h6>          
-            </div>
-          </div> 
-        </div>
-</div>
-    </ion-row>
-  </ion-scroll>
-  
-</ion-card-content>
-</ion-card>
-  <!-- <ng-template #mall_filter>
+          </ion-row>
+        </ion-scroll>
+
+      </ion-card-content>
+    </ion-card>
+    <!-- <ng-template #mall_filter>
       <ion-scroll scrollX="true" style="width:90%; height:120px; margin-left:auto;margin-right:auto;" >
           <ion-row nowrap class="headerChip">
               <div *ngFor="let item of getMallList(k);let f=index;" >    
@@ -77,10 +106,10 @@
 
 
   </ng-template> -->
-</div>
-    <div class="row" style=" margin-bottom: 200px" >
-</div>
-<!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  </div>
+  <div class="row" style=" margin-bottom: 200px">
+  </div>
+  <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll> -->
 </ion-content>

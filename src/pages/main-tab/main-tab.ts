@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, App } from 'ionic-angular';
+import { NavController, NavParams, App } from 'ionic-angular';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { StorePage } from '../store-page/store-page';
 import { ListTypes } from './ListTypes';
 import { StoreTabPage } from '../store-tab/store-tab';
 import { GiftPage } from '../gift/gift';
+import { contactUsPage } from '../ContactUS/ContactUS';
+import { SearchTabPage } from '../search-tab/search-tab';
+import { query } from '@angular/animations';
+import { DataProvider } from '../../providers/data/data';
 
 @Component({
   selector: 'page-main-tab',
@@ -21,11 +25,12 @@ export class MainTabPage {
   Lists: any[];
   ItemList: any[][];
   MallList: any[][];
+  MenuList: any[];
   constructor(
     private http: HttpClient,
-    private toastCtrl: ToastController,
     public navParams: NavParams,
     public navCtrl: NavController,
+    public data: DataProvider,
     public app: App) {
     this.profile = navParams.get('profile');
     this.page = 0;
@@ -35,6 +40,10 @@ export class MainTabPage {
     this.Items = [];
     this.Lists = [];
 
+    this.http.request('Post', this.baseUrl + 'api/Branch/GetCategories', { headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+      .subscribe(data => {
+        this.MenuList = <any>data;
+      });
     this.http.request('Get', this.baseUrl + 'api/Branch/GetMainLists', { headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
         this.Lists = <any>data;
@@ -44,7 +53,7 @@ export class MainTabPage {
               .append('pageNumber', '0')
               .append('countOfList', this.Lists[i].numberPerList)
               .append('listOrder', this.Lists[i].listOrder);
-            var req = this.http.request('Post', this.baseUrl + 'api/Store/GetStoresFilter', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+            this.http.request('Post', this.baseUrl + 'api/Store/GetStoresFilter', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
               .subscribe(storedata => {
                 let theItems = [];
                 this.ItemList[i] = [];
@@ -70,6 +79,9 @@ export class MainTabPage {
           // }
         }
       });
+  }
+  contactUs() {
+    this.app.getRootNav().setRoot(contactUsPage);
   }
   searchBox(ev) {
     this.page = 0;
@@ -129,6 +141,7 @@ export class MainTabPage {
   openGift() {
     this.app.getRootNav().setRoot(GiftPage);
   }
+
   showList(item) {
     this.app.getRootNav().setRoot(StoreTabPage, { storelist: item });
   }
@@ -138,6 +151,10 @@ export class MainTabPage {
     this.app.getRootNav().setRoot(StoreTabPage, { storelist: theitem });
   }
 
+  SelectCategory(categoryid) {
+    this.data.paramData = categoryid;
+    this.navCtrl.parent.select(1);
+  }
   // showMall(item) {
   //   var theitem: any;
   //   theitem = { listOrder: 84 ,id:item.id};

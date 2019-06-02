@@ -9,13 +9,13 @@
   <img src="assets/img/home2.png"
     style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
   <img [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'"
-    style="margin-top:-50px;margin-left: 43% !important; display:block;width:80px;height:auto;margin-left:auto;margin-right:auto;" />
+    style="margin-top:-50px;margin-left: 43% !important; display:block;width: 77px;height: 77px; border-radius: 50%;margin-left:auto;margin-right:auto;" />
 </div>
 <ion-content id="page2" style="background-color:#F7F6FB;margin-top: 60px;">
   <img src="assets/img/home_shadow.png"
     style="z-index: -20;display:block;width:100%;height:100px;margin-left:auto;margin-right:auto" />
   <div class="row" style="justify-content:space-around">
-    <div class="col-6">
+    <div *ngIf="showCash" class="col-6">
       <ion-card on-click="cashSelected()" style="background-color: #F7F6FB;width:100px;height:100px;">
         <div class="row" style=" display:block;width:30%;height:2%;">
           <img *ngIf="!isOnline" src="assets/img/ic_ok.png" style=" display:block;margin-left:10px;" />
@@ -26,7 +26,7 @@
     </div>
     <div class="col-6">
       <ion-card on-click="onlineSelected()" style="background-color: #F7F6FB;width:100px;height:100px;">
-        <div class="row" style=" display:block;width:30%;height:2%;">
+        <div class="row cash" style=" display:block;width:30%;height:2%;">
           <img *ngIf="isOnline" src="assets/img/ic_ok.png" style=" display:block;margin-left:10px;" />
         </div>
         <div class="row">
@@ -41,7 +41,7 @@
       <div col-10>
         <ion-item id="pay-toggle1"
           style="font-size: 15px; border: none; border-radius: 5px; background-color: #ffffff;margin-top: 10px;box-shadow: 5px 5px #f1f1f1;">
-          <ion-label>
+          <ion-label style="font-size: 13px">
             استفاده از موجودی تومانی({{profile.moneyCredit}})
           </ion-label>
           <ion-toggle [(ngModel)]="switch_credit" (ionChange)="updateItem(item)"

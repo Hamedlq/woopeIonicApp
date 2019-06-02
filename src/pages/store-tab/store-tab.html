@@ -1,55 +1,70 @@
 <div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
   <!-- <img src="assets/img/gift.png" class="icon-right" on-click="openGift()"  /> -->
   <img src="assets/img/logo_white.png" class="logo" />
-  <ion-icon on-click="backpressed()" style="z-index: 100; direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold"
-  name="arrow-forward"></ion-icon>
-  <img src="assets/img/home2.png" style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
+  <ion-icon on-click="backpressed()"
+    style="z-index: 100; direction: rtl; position: absolute;color: #ffffff; margin: 20px;margin-top: 30px;margin-left: 90%;font-size: 25px;font-weight: bold"
+    name="arrow-forward"></ion-icon>
+  <img src="assets/img/home2.png"
+    style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
   <!-- <img src="assets/img/home_shadow.png" style="margin-top:-50px; z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />-->
 </div>
 <ion-content id="page2" style="background-color:#F7F6FB;">
   <!-- <img src="assets/img/home2.png" style="position: fixed; overflow: hidden;position: fixed;top: 0; z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" /> -->
-  <img src="assets/img/home_shadow.png" style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto; margin-bottom: 65px" />
+  <img src="assets/img/home_shadow.png"
+    style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto; margin-bottom: 65px" />
 
   <ion-list class="border-avatar" id="storeTab-list1" style="direction: rtl">
-    <ion-item color="none" *ngFor="let store of items" style=" margin-top: 3px;border: none;border-radius: 5px; background-color:transparent">
-      <div class="slider" *ngIf="store.isAdvertise; else elsetag" style="text-align: center" on-click="bannerclick(store)">
-        <img class="imgbaner" style="z-index: 100; border:none;border-radius: 5px !important;" [src]="baseUrl+store.logoSrc" style="border-radius:10px;" />
+    <ion-item color="none" *ngFor="let store of items;let i = index"
+      style=" margin-top: 3px;border: none;border-radius: 5px; background-color:transparent">
+      <div class="slider" *ngIf="store.isAdvertise; else elsetag" style="text-align: center"
+        on-click="bannerclick(store)">
+        <img class="imgbaner" style="z-index: 100; border:none;border-radius: 5px !important;"
+          [src]="baseUrl+store.logoSrc" style="border-radius:10px;" />
       </div>
       <ng-template style="border-top-right-radius: 200px;border-bottom-right-radius: 200px;" #elsetag>
-        <div class="storeitem"  style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff">
+        <div class="storeitem"
+          style="border:none;border-top-right-radius: 200px;border-bottom-right-radius: 200px; margin-top: 7px;background-color:#ffffff">
           <div class="row">
-            
+
             <div col-3 on-click="storeclick(store)">
               <ion-avatar style="border:none;margin: 3px;margin-top: 0px;" item-left>
-                <img style="width: 66px;height: 66px;" [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'" />
+                <img style="width: 66px;height: 66px;"
+                  [src]="store.logoSrc ? baseUrl+store.logoSrc : 'assets/img/default_store.png'" />
               </ion-avatar>
             </div>
             <div col-9>
               <div class="row" on-click="storeclick(store)">
                 <div col-6 style="padding: 0px;margin: 0px">
-                  <span> {{store.storeName}}</span>
+                  <span style="font-size: 12px;font-weight: bold"> {{store.storeName}}</span>
                 </div>
                 <div style="padding: 0px;margin: 0px;direction: ltr" col-6>
-                  <span style="padding: 3px; font-size:10px;  border-radius:5px;  color: #ffffff; background-color: #7ae09f;">
+                  <span *ngIf="store.returnPoint != 0"
+                    style="padding: 3px; font-size:10px;  border-radius:5px;  color: #ffffff; background-color: #7ae09f;">
                     {{store.returnPoint}} عدد ووپ
                   </span>
                 </div>
               </div>
               <div class="row" on-click="storeclick(store)">
                 <div col-12 style="padding: 0px;margin: 0px">
-                  <span style="font-size:10px;">به ازای هر {{store.basePrice}} تومان خرید {{store.returnPoint}} عدد ووپ
+                  <span style="font-size:8px;">به ازای هر {{store.basePriceStr}} تومان خرید {{store.returnPoint}} عدد
+                    ووپ
                     هدیه
                     بگیرید</span>
-                  </div>
+                </div>
               </div>
-              <div class="row" style=" height:25px;padding: 0px;margin: 0px">
+              <div class="row" style="float: left; height:25px;padding: 0px;margin: 0px">
                 <!-- <div col-10  on-click="storeclick(store)">
                   <span style="font-size:10px; color:#Ed0000; float: right">
                     {{store.discountPercent}}% تخفیف
                   </span>
                 </div> -->
-                <div col-2 >
-                  <ion-icon [ngClass]="{'like': store.isFollowed}" on-click="like(store,$event)"  name="md-heart" style="padding: 0px;margin: 0px ; float: lef;text-align: center"  ></ion-icon>
+                <div col-2>
+                  <ion-icon id="l{{i}}" [ngClass]="{disp: !store.isFollowed,like:store.isFollowed}"
+                    on-click="like(store,$event)" name="bookmark" style="padding: 0px;margin: 0px ;text-align: center">
+                  </ion-icon>
+                  <ion-icon id="d{{i}}" [ngClass]="{disp: store.isFollowed}" on-click="like(store,$event)"
+                    name="ios-bookmark" style="color: #000000; padding: 0px;margin: 0px ;text-align: center">
+                  </ion-icon>
                 </div>
               </div>
             </div>
