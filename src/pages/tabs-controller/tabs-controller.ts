@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, Events } from 'ionic-angular';
+import { Component ,ViewChild} from '@angular/core';
+import { NavController, NavParams ,App,Content,ViewController } from 'ionic-angular';
 import { SearchTabPage } from '../search-tab/search-tab';
 import { FavoriteTabPage } from '../favorite-tab/favorite-tab';
 import { ProfileTabPage } from '../profile-tab/profile-tab';
@@ -8,7 +8,6 @@ import { serverUrl } from '../../Globals';
 import { MainTabPage } from '../main-tab/main-tab';
 import {AllPostPage} from '../all-post/all-post'
 import { LoginSignupTabPage } from '../login-signup-tab/login-signup-tab';
-import { DataProvider } from '../../providers/data/data';
 @Component({
   selector: 'page-tabs-controller',
   templateUrl: 'tabs-controller.html'
@@ -16,7 +15,6 @@ import { DataProvider } from '../../providers/data/data';
 export class TabsControllerPage {
   @ViewChild(Content) content: Content;
   profile: any;
-  categoryid: any;
   // this tells the tabs component which Pages
   // should be each tab's root Page
   //tab1Root: any = StoreTabPage;

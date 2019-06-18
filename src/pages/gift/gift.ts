@@ -3,6 +3,8 @@ import { NavController, ToastController, App } from 'ionic-angular';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
+import { RegisterPage } from '../register/register';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-gift',
@@ -49,5 +51,14 @@ export class GiftPage {
   backpressed() {
     
     this.app.getRootNav().setRoot(TabsControllerPage);
+  }
+
+  goToRegister(params){
+    if (!params) params = {};
+    this.navCtrl.push(RegisterPage);
+  }
+  goToLogin(params){
+    if (!params) params = {};
+    this.navCtrl.push(LoginPage);
   }
 }

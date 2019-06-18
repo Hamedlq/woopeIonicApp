@@ -7,6 +7,8 @@ import { PayPage } from '../pay/pay';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { PostPage } from '../post/post';
 import { ResponseStatus } from '../Enum/enum';
+import { LoginPage } from '../login/login';
+import { SplashSelectPage } from '../splash-select/splash-select';
 
 
 @Component({
@@ -148,6 +150,8 @@ export class StorePage {
     }
   }
   presentAlert() {
+    let accessToken = localStorage.getItem("access_token");
+    if(accessToken){
     let alert = this.alertCtrl.create({
       title: this.tittle,
       buttons: [{
@@ -196,6 +200,9 @@ export class StorePage {
 
     });
     alert.present();
+    }else{
+      this.navCtrl.push(SplashSelectPage);
+    }
   };
   backpressed() {
     this.app.getRootNav().setRoot(TabsControllerPage);
