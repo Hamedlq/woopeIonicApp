@@ -5,8 +5,6 @@ import { serverUrl } from '../../Globals';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { ResponseStatus } from '../Enum/enum';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { count } from 'rxjs/operators';
 
 
 @IonicPage({
@@ -46,7 +44,7 @@ export class PayInPage {
   switch_woope: boolean;
   params: Map<string, string>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private iab: InAppBrowser) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
     this.dataloaded = false;
     this.baseUrl = serverUrl;
 
@@ -88,8 +86,8 @@ export class PayInPage {
   }
 
   getparams() {
-    let category;
-    let id;
+    // let category;
+    // let id;
     if (document.URL.indexOf("?") > 0) {
       let splitURL = document.URL.split("?");
       let splitParams = splitURL[1].split("&");
@@ -98,10 +96,12 @@ export class PayInPage {
       for (i in splitParams) {
         let singleURLParam = splitParams[i].split('=');
         if (singleURLParam[0] == "category") {
-          category = singleURLParam[1];
+          //  category = singleURLParam[1];
+          singleURLParam[1];
         }
         if (singleURLParam[0] == "id") {
-          id = singleURLParam[1];
+          // id = singleURLParam[1];
+          singleURLParam[1];
         }
         //   let urlParameter = {
         //   'name': singleURLParam[0],

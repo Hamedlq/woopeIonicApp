@@ -20,7 +20,6 @@ export class SmsValidationPage {
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController, public navParams: NavParams, public events: Events) {
     this.IsShowResend = false;
-    let baseUrl = serverUrl;
     this.mobile = navParams.get('mobile');
     this.password = navParams.get('password');
     setInterval(() => {

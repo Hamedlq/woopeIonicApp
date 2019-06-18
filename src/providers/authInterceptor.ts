@@ -3,15 +3,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { tap } from 'rxjs/operators';
-
-import { ToastController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(public events: Events, private toastCtrl: ToastController) {
+    constructor(public events: Events) {
 
     }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

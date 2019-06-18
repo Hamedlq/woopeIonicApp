@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Platform, Events} from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
 import {ViewChild} from '@angular/core';
 import {Nav} from 'ionic-angular';
 import { SplashPage } from '../pages/splash/splash';
@@ -16,13 +15,13 @@ export class MyApp {
 
   @ViewChild(Nav) navChild:Nav;
 
-  constructor(public platform: Platform, statusBar: StatusBar, public events: Events) {
+  constructor(public platform: Platform, public events: Events) {
    
     platform.ready().then(() => {
       
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
+      // statusBar.styleDefault();
 
         events.subscribe('user:logout', () => {
         localStorage.removeItem("access_token");

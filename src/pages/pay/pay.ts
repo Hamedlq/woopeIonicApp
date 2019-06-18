@@ -5,7 +5,6 @@ import { serverUrl } from '../../Globals';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { ResponseStatus } from '../Enum/enum';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @Component({
@@ -15,6 +14,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 export class PayPage {
   disableButton;
+  showCash: boolean = true;
   show = false;
   giftwoope: any;
   showi = true;
@@ -37,8 +37,9 @@ export class PayPage {
   switch_woope: boolean;
   persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
   arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private iab: InAppBrowser) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
     this.disableButton = false;
+    this.showCash = true;
     this.baseUrl = serverUrl;
     this.payListId = navParams.get('payListId');
     this.profile = navParams.get('profile');
@@ -54,6 +55,7 @@ export class PayPage {
       this.ConfirmPayment(this.payListId);
     }
   }
+
 
   fixNumbers = function (str) {
     if (typeof str === 'string') {
@@ -162,6 +164,9 @@ export class PayPage {
     let rw = 0;
     if (this.store.returnPoint != 0) {
       rw = Math.floor((this.totalPrice) / this.store.basePrice) * this.store.returnPoint;
+      if (rw > this.store.woopeThreshold) {
+        this.showCash = false
+      }
     }
     //console.log(rw);
     this.return_woope = rw;

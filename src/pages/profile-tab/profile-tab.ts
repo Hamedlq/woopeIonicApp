@@ -17,7 +17,7 @@ export class ProfileTabPage {
   constructor(public app: App,
     public navCtrl: NavController,
     private http: HttpClient,
-    private navParams: NavParams, ) {
+    navParams: NavParams, ) {
     this.profile = navParams.get('profile');
   };
 
