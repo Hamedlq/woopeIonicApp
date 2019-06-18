@@ -60,10 +60,13 @@ export class StorePage {
         this.store = data;
         this.showpay = true;
       });
+      let accessToken = localStorage.getItem("access_token");
+    if(accessToken){
     this.http.post(serverUrl + 'api/Profile/GetProfile', {})
       .subscribe(data => {
         this.profile = data;
       });
+    }
     var te = new HttpParams()
       .append('ProductId', 'null').append('branchId', this.store.storeId).append('page', this.page).append('count', '12');
     this.http.get(serverUrl + 'api/Product/GetActiveProduct', { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
@@ -110,7 +113,7 @@ export class StorePage {
   presentAlert() {
     let alert = this.alertCtrl.create({
       title: this.tittle,
-      buttons: [{
+      buttons: [{ 
         text: 'تایید', handler: data => {
           if (data.discount != '') {
             var body = new HttpParams().append('DiscountCode', data.discount).append('BranchId', this.store.storeId);

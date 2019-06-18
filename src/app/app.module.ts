@@ -35,6 +35,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Component, OnInit } from '@angular/core';
 import { TooltipsModule } from 'ionic-tooltips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginSignupTabPage } from '../pages/login-signup-tab/login-signup-tab';
 
 
 
@@ -65,6 +66,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EditPage,
     TransactionHistoryPage,
     ModalConfirmations,
+    LoginSignupTabPage,
   ],
   imports: [
     BrowserModule,
@@ -104,7 +106,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CashPayCodePage,
     EditPage,
     TransactionHistoryPage,
-    ModalConfirmations
+    ModalConfirmations,
+    LoginSignupTabPage
   ],
   providers: [
     SocialSharing,

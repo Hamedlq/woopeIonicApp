@@ -10,12 +10,19 @@ import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 })
 export class GiftPage {
   gift: any;
-  
+  logedIn:boolean;
   disableButton;
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController,public app: App) {
     this.disableButton=false;
+    let accessToken = localStorage.getItem("access_token");
+    if(!accessToken){
+      this.logedIn=false;
+      
+    }else{
+      this.logedIn=true;
+    }
   }
   submitGiftCode() {
     

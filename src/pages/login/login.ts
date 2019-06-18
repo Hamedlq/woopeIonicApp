@@ -46,7 +46,8 @@ export class LoginPage {
               this.events.publish('user:notverified');
               this.navCtrl.push(SmsValidationPage,{mobile:this.profile["mobile"],password:this.password});
             }else{
-              this.navCtrl.push(TabsControllerPage);
+              //this.navCtrl.push(TabsControllerPage);
+              this.navCtrl.setRoot(TabsControllerPage);
             }
           });
         } else {

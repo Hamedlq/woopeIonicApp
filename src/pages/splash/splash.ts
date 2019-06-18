@@ -25,7 +25,7 @@ export class SplashPage {
     //this.url ;
     clearInterval(this.timer);
     this.timer = setTimeout(function () {
-      http.post(baseUrl + 'api/Profile/GetProfile', {})
+      http.post(baseUrl + 'api/Profile/AndroidVersion', {})
         .subscribe(data => {
           if (data["status"] == ResponseStatus.Success) {
             

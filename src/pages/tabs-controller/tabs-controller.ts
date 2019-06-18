@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { MainTabPage } from '../main-tab/main-tab';
 import {AllPostPage} from '../all-post/all-post'
+import { LoginSignupTabPage } from '../login-signup-tab/login-signup-tab';
 @Component({
   selector: 'page-tabs-controller',
   templateUrl: 'tabs-controller.html'
@@ -21,14 +22,21 @@ export class TabsControllerPage {
   tab2Root: any = SearchTabPage;
   //tab3Root: any = WoopeTabPage;
   tab3Root: any = AllPostPage;
-  tab4Root: any = FavoriteTabPage;
-  tab5Root: any = ProfileTabPage;
+  tab4Root: any;
+  tab5Root: any ;
   constructor(private viewCtrl :ViewController, private http: HttpClient,public navCtrl: NavController,navParams: NavParams,private app:App) {
     this.profile = navParams.get('profile');
-    
-    this.http.post(serverUrl + 'api/Profile/GetProfile', {})
-    .subscribe(data => {
-      this.profile=data;
-    });
+    let accessToken = localStorage.getItem("access_token");
+    if(!accessToken){
+      this.tab4Root = LoginSignupTabPage;
+      this.tab5Root = LoginSignupTabPage;
+    }else{
+      this.http.post(serverUrl + 'api/Profile/GetProfile', {})
+      .subscribe(data => {
+        this.profile=data;
+      });
+      this.tab4Root = FavoriteTabPage;
+      this.tab5Root = ProfileTabPage;
+    }
   };
 }

@@ -28,7 +28,9 @@ export class FavoriteTabPage {
     this.profile = navParams.get("profile");
     this.baseUrl = serverUrl;
     var body = new HttpParams();
-    this.http
+    let accessToken = localStorage.getItem("access_token");
+    if(accessToken){
+      this.http
       .request("Get", this.baseUrl + "api/Store/GetFollowingStores", {
         headers: new HttpHeaders().set(
           "Content-Type",
@@ -39,6 +41,9 @@ export class FavoriteTabPage {
         //console.log(data);
         this.items = <any>data;
       });
+
+    }
+    
   }
   ionViewWillEnter() {
     this.http

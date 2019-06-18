@@ -1,0 +1,46 @@
+login-signup-tab {
+    .btncontainer {
+        position: relative;
+        width: 200px;
+        height: 50px;
+        margin-left:auto;
+        margin-right:auto;
+        cursor: pointer;
+      }
+      
+      /* Make the image responsive */
+      .btncontainer img {
+        width: 200px;
+        height: 50px
+      }
+      
+      /* Style the button and place it in the middle of the container/image */
+    //   .btncontainer .btn {
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    //     -ms-transform: translate(-50%, -50%);
+    //     background-color: #FF000000;
+    //     font-size: 12px;
+    //     border: none;
+        
+    //   }
+
+      .btn{
+        margin-left:auto;
+        margin-right:auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        
+         }
+         #userlogin{
+            padding-left: 65px;
+            padding-right: 65px;
+         }
+         #newuser{
+          padding-left: 38px;
+          padding-right: 38px;
+         }
+}
+    

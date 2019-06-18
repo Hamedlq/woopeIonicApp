@@ -4,11 +4,13 @@ import { TransactionHistoryPage } from '../TransactionHistory/TransactionHistory
 import { EditPage } from '../Edit-Profile/Edit-Profile';
 import { serverUrl } from '../../Globals'
 import { HttpClient } from '@angular/common/http';
+import { RegisterPage } from '../register/register';
+import { LoginPage } from '../login/login';
 @Component({
-  selector: 'page-profile-tab',
-  templateUrl: 'profile-tab.html'
+  selector: 'login-signup-tab',
+  templateUrl: 'login-signup-tab.html'
 })
-export class ProfileTabPage {
+export class LoginSignupTabPage {
   profile: any;
   baseUrl = serverUrl;
   tooltipEvent = 'click';
@@ -36,6 +38,14 @@ export class ProfileTabPage {
         this.profile = data;
         console.log(this.profile);
       });
+    }
   };
+  goToRegister(params){
+    if (!params) params = {};
+    this.navCtrl.push(RegisterPage);
+  }
+  goToLogin(params){
+    if (!params) params = {};
+    this.navCtrl.push(LoginPage);
   }
 };
