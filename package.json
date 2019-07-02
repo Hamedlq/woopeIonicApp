@@ -105,7 +105,8 @@
     },
     "platforms": [
       "ios",
-      "browser"
+      "browser",
+      "android"
     ]
   },
   "cordovaPlatforms": []

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController, Events } from 'ionic-angular';
 import {SplashSelectPage} from '../../splash-select/splash-select';
+import { MainTabPage } from '../../main-tab/main-tab';
+import { TabsControllerPage } from '../../tabs-controller/tabs-controller';
 
 @IonicPage()
 @Component({
@@ -8,7 +10,8 @@ import {SplashSelectPage} from '../../splash-select/splash-select';
   templateUrl: 'modal-confirmation.html',
 })
 export class ModalConfirmationPage {
-  constructor(private viewCtrl:ViewController , private navCtrl: NavController, public navParams: NavParams) {
+  constructor(private viewCtrl:ViewController , private navCtrl: NavController, 
+    public navParams: NavParams, public events: Events) {
   };
   
   closeModal(){
@@ -16,7 +19,8 @@ export class ModalConfirmationPage {
   };
   logout(){
     localStorage.clear(); 
-    this.navCtrl.push(SplashSelectPage);
+    this.events.publish('user:logout');
+    this.navCtrl.push(TabsControllerPage);
   };
 
 }

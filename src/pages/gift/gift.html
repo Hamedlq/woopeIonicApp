@@ -13,7 +13,7 @@
 </ion-header>
 <ion-content padding style="background-color:#F7F6FB;">
   <img src="assets/img/Yjzlc2uRhSGxZUguOdFg_gift_ico.png" style="display:block;width:200px;height:auto;margin-left:auto;margin-right:auto;" />
-  <form id="gift-form7">
+  <form *ngIf="logedIn" id="gift-form7">
     <div id="gift">
       <ion-item id="gift-input4">
         <ion-label></ion-label>
@@ -21,7 +21,16 @@
       </ion-item>
     </div>
   </form>
+  <div id="login_block" *ngIf="!logedIn" style="text-align:center; margin-top:50px;">
+    <div class="btncontainer" on-click="goToRegister()">
+    <button id="newuser" class="btn" ion-button color="light" round >ثبت نام کاربر جدید</button> 
+   </div> 
+  
+    <div class="btncontainer" on-click="goToLogin()" style="margin-top: 30px">
+      <button id="userlogin" class="btn" ion-button color="secondary" round >ورود کاربر</button>
+      </div> 
+  </div>
 </ion-content>
-<ion-footer no-shadow>
+<ion-footer *ngIf="logedIn" no-shadow>
   <button [disabled]="disableButton" on-click="submitGiftCode()" ion-button color="secondary" full >تایید کد هدیه</button>
 </ion-footer>

@@ -7,6 +7,8 @@ import { PayPage } from '../pay/pay';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { PostPage } from '../post/post';
 import { ResponseStatus } from '../Enum/enum';
+import { LoginPage } from '../login/login';
+import { SplashSelectPage } from '../splash-select/splash-select';
 
 
 @Component({
@@ -62,10 +64,13 @@ export class StorePage {
         this.IsFollow = data['isFollowed'];
         this.showpay = true;
       });
+      let accessToken = localStorage.getItem("access_token");
+    if(accessToken){
     this.http.post(serverUrl + 'api/Profile/GetProfile', {})
       .subscribe(data => {
         this.profile = data;
       });
+    }
     var te = new HttpParams()
       .append('PostId', 'null').append('branchId', this.store.storeId).append('page', this.page).append('count', '12');
     this.http.get(serverUrl + 'api/Post/GetActivePost', { params: te, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
@@ -103,9 +108,14 @@ export class StorePage {
   // }
 
   modal() {
-    let modal = document.querySelector('.modal');
-    modal.classList.add('modal1');
-    this.share()
+    let accessToken = localStorage.getItem("access_token");
+    if(accessToken){
+      let modal = document.querySelector('.modal');
+      modal.classList.add('modal1');
+      this.share()
+    }else{
+      this.navCtrl.push(SplashSelectPage);
+    }
   }
   close() {
     let modal = document.querySelector('.modal');
@@ -116,6 +126,7 @@ export class StorePage {
     this.smshref = "sms:''?body=";
   }
   share() {
+   
     var body = new HttpParams()
       .append('branchId', this.store.storeId);
     this.http.request('Post', serverUrl + 'api/Store/GetUserStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
@@ -138,6 +149,7 @@ export class StorePage {
             });
         }
       });
+    
   }
   action() {
     if (this.result["status"] != ResponseStatus.Success) {
@@ -145,6 +157,8 @@ export class StorePage {
     }
   }
   presentAlert() {
+    let accessToken = localStorage.getItem("access_token");
+    if(accessToken){
     let alert = this.alertCtrl.create({
       title: this.tittle,
       buttons: [{
@@ -193,6 +207,9 @@ export class StorePage {
 
     });
     alert.present();
+    }else{
+      this.navCtrl.push(SplashSelectPage);
+    }
   };
   backpressed() {
     this.app.getRootNav().setRoot(TabsControllerPage);
@@ -235,6 +252,8 @@ export class StorePage {
       });
   };
   fault() {
+    let accessToken = localStorage.getItem("access_token");
+    if(accessToken){
     var param = new HttpParams().append('BranchId', this.store.storeId);
     this.http.get(this.baseUrl + 'api/Branch/NonCooperation', { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
@@ -242,8 +261,13 @@ export class StorePage {
         let modalConfirm = this.modalC.create('ModalConfirmation', { message: this.ionfo['message'] });
         modalConfirm.present();
       });
+      }else{
+        this.navCtrl.push(SplashSelectPage);
+      }
   };
   Follow() {
+    let accessToken = localStorage.getItem("access_token");
+    if(accessToken){
     var body = new HttpParams().append('branchId', this.store.storeId);
     this.http.request('Post', this.baseUrl + 'api/Store/FollowStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
       .subscribe(data => {
@@ -254,5 +278,8 @@ export class StorePage {
           this.IsFollow = false;
         }
       });
+    }else{
+      this.navCtrl.push(SplashSelectPage);
+    }
   }
 }

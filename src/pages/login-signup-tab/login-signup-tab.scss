@@ -1,23 +1,4 @@
-page-splash-select {
-  ion-header {
-    .toolbar {
-      position: absolute;
-  
-      .toolbar-background {
-        background: transparent;
-      }
-      .toolbar-title {
-        color: white;
-      }
-    }
-  }
-.header{
-    background: #FF000000;
-}
-.item-md.item-block .item-inner{
-  border-bottom: none !important;
-  box-shadow: none !important;
-}
+login-signup-tab {
     .btncontainer {
         position: relative;
         width: 200px;
@@ -62,3 +43,4 @@ page-splash-select {
           padding-right: 38px;
          }
 }
+    

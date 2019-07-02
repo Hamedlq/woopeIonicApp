@@ -32,6 +32,7 @@ import { PayPageModule } from '../pages/pay/pay.module';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { TooltipsModule } from 'ionic-tooltips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginSignupTabPage } from '../pages/login-signup-tab/login-signup-tab';
 import { contactUsPage } from '../pages/ContactUS/ContactUS';
 import { DataProvider } from '../providers/data/data';
 import { CacheModule } from 'ionic-cache';
@@ -63,6 +64,7 @@ import { CacheModule } from 'ionic-cache';
     EditPage,
     TransactionHistoryPage,
     ModalConfirmations,
+    LoginSignupTabPage,
     contactUsPage,
     
   ],
@@ -107,6 +109,8 @@ import { CacheModule } from 'ionic-cache';
     TransactionHistoryPage,
     ModalConfirmations,
     contactUsPage,
+    ModalConfirmations,
+    LoginSignupTabPage
   ],
   providers: [
     SocialSharing,

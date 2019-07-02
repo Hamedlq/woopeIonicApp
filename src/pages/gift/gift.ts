@@ -3,6 +3,8 @@ import { NavController, ToastController, App } from 'ionic-angular';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { serverUrl } from '../../Globals';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
+import { RegisterPage } from '../register/register';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-gift',
@@ -10,12 +12,19 @@ import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 })
 export class GiftPage {
   gift: any;
-  
+  logedIn:boolean;
   disableButton;
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private http: HttpClient, private toastCtrl: ToastController,public app: App) {
     this.disableButton=false;
+    let accessToken = localStorage.getItem("access_token");
+    if(!accessToken){
+      this.logedIn=false;
+      
+    }else{
+      this.logedIn=true;
+    }
   }
   submitGiftCode() {
     
@@ -42,5 +51,14 @@ export class GiftPage {
   backpressed() {
     
     this.app.getRootNav().setRoot(TabsControllerPage);
+  }
+
+  goToRegister(params){
+    if (!params) params = {};
+    this.navCtrl.push(RegisterPage);
+  }
+  goToLogin(params){
+    if (!params) params = {};
+    this.navCtrl.push(LoginPage);
   }
 }

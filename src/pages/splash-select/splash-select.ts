@@ -20,4 +20,6 @@ export class SplashSelectPage {
     if (!params) params = {};
     this.navCtrl.push(LoginPage);
   }
+  
+
 }
