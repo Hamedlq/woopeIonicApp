@@ -129,6 +129,18 @@ export class SearchTabPage {
       document.querySelector(".back").classList.remove("checkzoneHide");
     }
     if (ev.target.className === "button-inner") {
+      this.valueSearch = "";
+      this.page = 0;
+      var body = new HttpParams();
+      this.SelectedZone.forEach(id => {
+        body = body.append('Zones', id);
+      });
+      body = body.append('query', this.valueSearch).append('pageNumber', this.page).append('CategoryId', this.SelectedCategoryId).append("SortType", this.SelectedSort);
+      this.http.request('Post', this.baseUrl + 'api/Store/FindStorebyPage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+        .subscribe(data => {
+          this.Items = <any>data;
+          console.log(this.Items);
+        });
       document.querySelector(".back").classList.remove("checkzoneHide");
     }
   }

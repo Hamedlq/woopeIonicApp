@@ -1,18 +1,36 @@
 page-main-tab {
   background-color: #f7f6fb !important;
   ion-card {
-    background: #ffffff !important;
+    background: #f7f6fb !important;
     font-family: Irsansans !important;
     height: 200px;
+    padding: 0;
+    margin: 0;
   }
   ion-card-header {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
   }
+  .card {
+    // margin: 12px;
+    /* border-radius: 2px; */
+    /* width: calc(100% - 24px); */
+    /* font-size: 1.4rem; */
+    /* background: #8100f9; */
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .card-content {
+    padding: 13px 16px 14px;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    padding: 0;
+    margin: 0;
+  }
 
   .title {
     font-family: Iransans !important;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
   }
   .logo {
@@ -28,7 +46,6 @@ page-main-tab {
     direction: rtl;
     position: absolute;
     margin: 20px;
-    margin-top: 30px;
     margin-left: 90%;
   }
   .label-ios {
@@ -39,30 +56,42 @@ page-main-tab {
   }
 
   .cadr {
-    height: 145px;
-    min-width: 150px;
-    margin-left: 2px;
-    margin-right: 2px;
-    // border: 1px solid rgb(168, 168, 168);
-    // border-radius: 5px;
-    // box-shadow: 1px 1px 0.5px rgb(192, 192, 192);
+    height: 105px;
+    min-width: 100px;
+    margin-left: 3px;
+    margin-right: 3px;
+    background-color: #ffffff !important;
+    border: none;
+    border-radius: 5px;
+    margin: 3px;
+    -webkit-box-shadow: 1px 0.5px 0.9px silver;
+    box-shadow: 1px 1px 0.5px silver;
+    position: relative;
+  }
+  .storeimage {
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: 37%;
+    margin-bottom: 15px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
   }
   .elementinCadr {
     text-align: center !important;
     font-size: 11px;
-    margin-bottom: -8px
+    margin-bottom: -8px;
   }
   .elementinCadrtext {
     text-align: center !important;
     font-size: 11px;
-    margin-top: 9px;
   }
   .cadrmenu {
     height: 60px;
     min-width: 80px;
     margin-left: 2px;
     margin-right: 2px;
-    border: 1px solid rgb(168, 168, 168);
+    // border: 1px solid rgb(168, 168, 168);
     border-radius: 5px;
     box-shadow: 1px 1px 0.5px rgb(192, 192, 192);
   }
@@ -96,14 +125,15 @@ page-main-tab {
     color: #ffffff;
   }
   .morestore {
-    border: 1px;
-    background-color: #5fcf8d;
-    border-radius: 5px;
+    border:solid 1px #5fcf8d ;
+    background-color: transparent;
+    border-radius: 50px;
     font-size: 9px;
     padding: 8px;
     margin-bottom: 5px;
     margin-right: -15px;
-    color: #ffffff
+    color: #000000;
+    font-weight: bold;
   }
   .fonthead {
     font-family: IRANSans !important;
@@ -155,11 +185,76 @@ page-main-tab {
     direction: rtl;
     position: absolute;
     margin: 20px;
-    margin-top: 32px;
+    // margin-top: 32px;
     margin-left: 79%;
     font-size: 12px;
     border: solid 1px;
     border-radius: 150%;
     color: #ffffff;
+  }
+  .headercolor {
+    width: 100%;
+    // z-index: 10;
+    height: 100px;
+    position: fixed;
+    display: block;
+    background-color: #9132e9;
+  }
+  .menu {
+    z-index: 100;
+    height: 110px;
+    margin-top: 67px;
+    background-color: transparent;
+  }
+  .contentstore {
+    background-color: #f7f6fb;
+    margin-top: 130px;
+    z-index: 10 !important;
+  }
+  .cadrs {
+    // height: 150px;
+    width: 115%;
+  }
+  hr.style14 {
+    border: 0;
+    margin-left: 100px;
+    width: 70%;
+    margin-top: -40px;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, #8c8b8b, #f0f0f0, #8c8b8b);
+    background-image: -moz-linear-gradient(left, #8c8b8b, #f0f0f0, #8c8b8b);
+    background-image: -ms-linear-gradient(left, #8c8b8b, #f0f0f0, #8c8b8b);
+    background-image: -o-linear-gradient(left, #8c8b8b, #f0f0f0, #8c8b8b);
+  }
+  .cartbadge {
+    width: 0;
+    height: 0;
+    border-bottom: 35px solid #fff;
+    border-left: 35px solid transparent !important;
+    background-color: #9132e9;
+    border-top-left-radius: 5px;
+    position:unset;
+    float: left;
+    left: 0;
+    top: 0; 
+    // -webkit-transform: rotate(-50deg);
+
+    // /* Firefox */
+    // -moz-transform: rotate(-50deg);
+
+    // /* IE */
+    // -ms-transform: rotate(-50deg);
+
+    // /* Opera */
+    // -o-transform: rotate(-50deg);
+  }
+  .checkout-price {
+    color: #ffffff;
+    font-weight: bold;
+    position: absolute;
+    top: 6px;
+    left: 0px;
+    transform: rotate(-44deg);
+    font-size: 9px;
   }
 }

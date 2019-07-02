@@ -7,8 +7,10 @@
     id="searchTab-search5"></ion-searchbar>
   <button *ngIf="categoryzone" on-click="choosecategory()"
     style="margin-top:8px;margin-left: 8px;width: 43%; float: left;background-color: #F7F6FB " ion-button>
-    <ion-icon style="position: absolute;float: left;left: 0; margin-right: 20px;color:#9132E9" name="arrow-dropdown"></ion-icon>
-    <span style="position: absolute;right: 0; float: right;margin-right: 10px; font-size: 11px;color:#4D4C4E;font-size: 12px;font-weight: bold">{{CategoryName}}</span>
+    <ion-icon style="position: absolute;float: left;left: 0; margin-right: 20px;color:#9132E9" name="arrow-dropdown">
+    </ion-icon>
+    <span
+      style="position: absolute;right: 0; float: right;margin-right: 10px; font-size: 11px;color:#4D4C4E;font-size: 12px;font-weight: bold">{{CategoryName}}</span>
   </button>
   <ion-content [hidden]="categoris" style="text-align: center; margin-top:8px; background-color:transparent;">
     <button on-click="back()"
@@ -35,8 +37,10 @@
   </ion-content>
   <button on-click="choosezone()" *ngIf="categoryzone"
     style="margin-top:8px;margin-right: 8px;width: 43%;float: right;background-color: #F7F6FB" ion-button>
-    <ion-icon style="position: absolute;float: left;left: 0;margin-right: 35px;color:#9132E9" name="arrow-dropdown"></ion-icon>
-    <span style="position: absolute;right: -50px; float: right;margin-right: 10px;font-size: 11px;display:block; width:150px;word-wrap:break-word;margin-right: 10px;color:#4D4C4E;font-weight: bold">{{ZoneName}}</span>
+    <ion-icon style="position: absolute;float: left;left: 0;margin-right: 35px;color:#9132E9" name="arrow-dropdown">
+    </ion-icon>
+    <span
+      style="position: absolute;right: -50px; float: right;margin-right: 10px;font-size: 11px;display:block; width:150px;word-wrap:break-word;margin-right: 10px;color:#4D4C4E;font-weight: bold">{{ZoneName}}</span>
   </button>
   <ion-content [hidden]="zones" style="margin-top:8px;height: 220px; background-color:transparent;">
     <button on-click="back()"
@@ -72,7 +76,8 @@
     <ion-scroll dir="rtl" scrollX="true"
       style="display: contents; width:90%;height:220px;margin-left:auto;margin-right:auto;">
       <div style="">
-        <ion-icon style="font-size: 11px; font-family: IRANSans !important; color: #ffffff;margin-right: 10px;" name="funnel"> مرتب سازی بر اساس :</ion-icon>
+        <ion-icon style="font-size: 11px; font-family: IRANSans !important; color: #ffffff;margin-right: 10px;"
+          name="funnel"> مرتب سازی بر اساس :</ion-icon>
       </div>
       <ion-row nowrap class="headerChipsort">
         <div *ngFor="let item of SortList">
@@ -151,10 +156,16 @@
       </div>
       <div class="cartDescription" col-8>
         <h5>{{ item.storeName }}</h5>
-        <span class="spanDescription">به ازای هر {{item.basePriceStr}} تومان خرید {{item.returnPoint}} عدد
-          ووپ
-          هدیه
-          بگیرید </span>
+        <div *ngIf="item.returnPoint != 0" class="des">
+          <span class="spanDescription">به ازای هر {{item.basePriceStr}} تومان خرید
+            {{item.returnPoint}} عدد
+            ووپ
+            هدیه
+            بگیرید </span>
+        </div>
+        <div class="desw">
+          <span *ngIf="item.returnPoint == 0" class="spanDescription">{{item.storeDescription}} </span>
+        </div>
         <p class="PDescription">
           <ion-icon name="pin"></ion-icon>
           {{item.zone}}

@@ -114,6 +114,7 @@ export class MainTabPage {
       return true;
     }
   }
+
   getList(k) {
     if (this.ItemList[k] && this.ItemList[k].length > 0) {
       //console.log(this.ItemList[k]);

@@ -34,6 +34,7 @@ import { TooltipsModule } from 'ionic-tooltips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { contactUsPage } from '../pages/ContactUS/ContactUS';
 import { DataProvider } from '../providers/data/data';
+import { CacheModule } from 'ionic-cache';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { DataProvider } from '../providers/data/data';
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     TooltipsModule.forRoot(),
+    // CacheModule.forRoot(),
     BrowserAnimationsModule,
     PayPageModule,
     // RouterModule.forRoot([

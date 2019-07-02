@@ -45,7 +45,7 @@ page-search-tab {
   margin: 2px;
   box-shadow: 1px 1px 0.5px rgb(192, 192, 192);
 }
-.elementinCadr {
+.imgelement {
   text-align: center;
 }
 .returnPointCadr {
@@ -253,6 +253,17 @@ page-search-tab {
   color: rgb(104, 103, 103);
   font-size: 11px;
 }
+.des{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+.desw{
+  white-space: nowrap; 
+  width: 80%; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
 .PDescription {
   font-size: 11px;
   background-color: #9132E9;
@@ -260,7 +271,7 @@ page-search-tab {
   color: #ffffff;
   border-radius: 35px;
   padding-left: 5px;
-  margin-top: 15px;
+  margin-top: -5px;
 }
 .cartbadge {
   width: 0;
@@ -271,6 +282,7 @@ page-search-tab {
   top: 0;
   left: 0;
   background-color: #9132E9;
+  border-top-left-radius: 5px;
   // -webkit-transform: rotate(-50deg);
 
   // /* Firefox */

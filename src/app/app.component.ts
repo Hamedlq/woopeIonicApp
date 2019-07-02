@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Platform, Events} from 'ionic-angular';
-import {ViewChild} from '@angular/core';
-import {Nav} from 'ionic-angular';
+import { Platform, Events } from 'ionic-angular';
+import { ViewChild } from '@angular/core';
+import { Nav } from 'ionic-angular';
 import { SplashPage } from '../pages/splash/splash';
 import { SplashSelectPage } from '../pages/splash-select/splash-select';
 
@@ -13,17 +13,17 @@ export class MyApp {
 
   rootPage: any = SplashPage;
 
-  @ViewChild(Nav) navChild:Nav;
+  @ViewChild(Nav) navChild: Nav;
 
   constructor(public platform: Platform, public events: Events) {
-   
+    // cache.setDefaultTTL(1 * 1); //set default cache TTL for 1 hour
     platform.ready().then(() => {
-      
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       // statusBar.styleDefault();
 
-        events.subscribe('user:logout', () => {
+      events.subscribe('user:logout', () => {
         localStorage.removeItem("access_token");
         this.rootPage = SplashSelectPage;
       });
