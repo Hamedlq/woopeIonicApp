@@ -8,6 +8,7 @@ import { serverUrl } from '../../Globals';
 import { MainTabPage } from '../main-tab/main-tab';
 import {AllPostPage} from '../all-post/all-post'
 import { LoginSignupTabPage } from '../login-signup-tab/login-signup-tab';
+import { Platform } from 'ionic-angular';
 @Component({
   selector: 'page-tabs-controller',
   templateUrl: 'tabs-controller.html'
@@ -25,6 +26,7 @@ export class TabsControllerPage {
   tab4Root: any;
   tab5Root: any ;
   constructor(private viewCtrl :ViewController, private http: HttpClient,public navCtrl: NavController,navParams: NavParams,private app:App) {
+    
     this.profile = navParams.get('profile');
     let accessToken = localStorage.getItem("access_token");
     if(!accessToken){
@@ -39,4 +41,5 @@ export class TabsControllerPage {
       this.tab5Root = ProfileTabPage;
     }
   };
+  
 }

@@ -36,6 +36,7 @@ import { LoginSignupTabPage } from '../pages/login-signup-tab/login-signup-tab';
 import { contactUsPage } from '../pages/ContactUS/ContactUS';
 import { DataProvider } from '../providers/data/data';
 import { CacheModule } from 'ionic-cache';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { CacheModule } from 'ionic-cache';
     ModalConfirmations,
     LoginSignupTabPage,
     contactUsPage,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -76,6 +77,7 @@ import { CacheModule } from 'ionic-cache';
     // CacheModule.forRoot(),
     BrowserAnimationsModule,
     PayPageModule,
+    IonicStorageModule.forRoot()
     // RouterModule.forRoot([
     //   { path: '', component: LoginPage },
     //   { path: 'login', component: LoginPage },

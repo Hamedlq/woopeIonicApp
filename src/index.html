@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Woope</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
 
@@ -28,7 +29,19 @@
   </script>-->
 
   <link href="build/main.css" rel="stylesheet">
+  <script>
+    const isIos = () => {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/.test(userAgent);
+    }
+    // Detects if device is in standalone mode
+    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
+    // Checks if should display install popup notification:
+    if (isIos() && !isInStandaloneMode()) {
+      // this.setState({ showInstallMessage: true });
+    }
+  </script>
 </head>
 
 <body>
@@ -47,10 +60,11 @@
   <script src="build/main.js"></script>
 
   <script src="https://static.pushe.co/pusheweb.js"></script>
-<script>
+  <script>
     Pushe.init("2eymj455l78ykpje");
     Pushe.subscribe();
-</script>
+  </script>
+
 </body>
 
 </html>

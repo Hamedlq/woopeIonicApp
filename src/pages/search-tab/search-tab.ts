@@ -145,7 +145,7 @@ export class SearchTabPage {
     }
   }
   storeclick(store) {
-    this.app.getRootNav().setRoot(StorePage, { store: store, profile: this.profile });
+    this.app.getRootNav().setRoot(StorePage, { store: store, profile: this.profile ,view:"search"});
   }
   doInfinite(infiniteScroll) {
     this.searchview = false;

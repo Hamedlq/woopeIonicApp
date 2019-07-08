@@ -9,6 +9,7 @@ import { PostPage } from '../post/post';
 import { ResponseStatus } from '../Enum/enum';
 import { LoginPage } from '../login/login';
 import { SplashSelectPage } from '../splash-select/splash-select';
+import { SearchTabPage } from '../search-tab/search-tab';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { SplashSelectPage } from '../splash-select/splash-select';
   templateUrl: 'store-page.html'
 })
 export class StorePage {
+  view: any
   isVip: boolean = false;
   store: any;
   giftwoope: string;
@@ -45,6 +47,7 @@ export class StorePage {
     this.baseUrl = serverUrl;
     this.store = navParams.get('store');
     this.profile = navParams.get('profile');
+    this.view = navParams.get('view');
     if (this.store.categoryId != null) {
       this.store.categoryId.forEach(function (value) {
         if (value == 10) {
@@ -64,12 +67,12 @@ export class StorePage {
         this.IsFollow = data['isFollowed'];
         this.showpay = true;
       });
-      let accessToken = localStorage.getItem("access_token");
-    if(accessToken){
-    this.http.post(serverUrl + 'api/Profile/GetProfile', {})
-      .subscribe(data => {
-        this.profile = data;
-      });
+    let accessToken = localStorage.getItem("access_token");
+    if (accessToken) {
+      this.http.post(serverUrl + 'api/Profile/GetProfile', {})
+        .subscribe(data => {
+          this.profile = data;
+        });
     }
     var te = new HttpParams()
       .append('PostId', 'null').append('branchId', this.store.storeId).append('page', this.page).append('count', '12');
@@ -109,11 +112,11 @@ export class StorePage {
 
   modal() {
     let accessToken = localStorage.getItem("access_token");
-    if(accessToken){
+    if (accessToken) {
       let modal = document.querySelector('.modal');
       modal.classList.add('modal1');
       this.share()
-    }else{
+    } else {
       this.navCtrl.push(SplashSelectPage);
     }
   }
@@ -126,7 +129,7 @@ export class StorePage {
     this.smshref = "sms:''?body=";
   }
   share() {
-   
+
     var body = new HttpParams()
       .append('branchId', this.store.storeId);
     this.http.request('Post', serverUrl + 'api/Store/GetUserStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
@@ -149,7 +152,7 @@ export class StorePage {
             });
         }
       });
-    
+
   }
   action() {
     if (this.result["status"] != ResponseStatus.Success) {
@@ -158,61 +161,64 @@ export class StorePage {
   }
   presentAlert() {
     let accessToken = localStorage.getItem("access_token");
-    if(accessToken){
-    let alert = this.alertCtrl.create({
-      title: this.tittle,
-      buttons: [{
-        text: 'تایید',
-        handler: data => {
-          if (data.amount != '' && data.amount != '0') {
-            if (data.discount != '') {
-              var body = new HttpParams().append('DiscountCode', data.discount).append('BranchId', this.store.storeId).append('Amount', data.amount);
-              this.http.request('Post', this.baseUrl + 'api/Transaction/CheckDiscountCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-                .subscribe(info => {
-                  if (info['status'] != ResponseStatus.Success) {
-                    alert.setSubTitle(info['message'])
-                    //this.presentAlert();
-                  }
-                  else if (info['status'] == ResponseStatus.Success) {
-                    this.tittle = "مبلغ پرداختی خود را وارد کنید";
-                    this.giftwoope = info['message'];
-                    this.navCtrl.push(PayPage, { store: this.store, profile: this.profile, amount: data.amount, discount: data.discount, giftwoope: this.giftwoope });
-                    alert.dismiss();
-                  }
-                });
+    if (accessToken) {
+      let alert = this.alertCtrl.create({
+        title: this.tittle,
+        buttons: [{
+          text: 'تایید',
+          handler: data => {
+            if (data.amount != '' && data.amount != '0') {
+              if (data.discount != '') {
+                var body = new HttpParams().append('DiscountCode', data.discount).append('BranchId', this.store.storeId).append('Amount', data.amount);
+                this.http.request('Post', this.baseUrl + 'api/Transaction/CheckDiscountCode', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+                  .subscribe(info => {
+                    if (info['status'] != ResponseStatus.Success) {
+                      alert.setSubTitle(info['message'])
+                      //this.presentAlert();
+                    }
+                    else if (info['status'] == ResponseStatus.Success) {
+                      this.tittle = "مبلغ پرداختی خود را وارد کنید";
+                      this.giftwoope = info['message'];
+                      this.navCtrl.push(PayPage, { store: this.store, profile: this.profile, amount: data.amount, discount: data.discount, giftwoope: this.giftwoope });
+                      alert.dismiss();
+                    }
+                  });
 
+              }
+              else {
+                this.tittle = "مبلغ پرداختی خود را وارد کنید";
+                this.giftwoope = '0'
+                this.navCtrl.push(PayPage, { store: this.store, profile: this.profile, amount: data.amount, discount: data.discount, giftwoope: this.giftwoope });
+                alert.dismiss();
+              }
             }
-            else {
-              this.tittle = "مبلغ پرداختی خود را وارد کنید";
-              this.giftwoope = '0'
-              this.navCtrl.push(PayPage, { store: this.store, profile: this.profile, amount: data.amount, discount: data.discount, giftwoope: this.giftwoope });
-              alert.dismiss();
-            }
-          }
-          return false;
-        },
-      }],
-      cssClass: "myalert",
-      inputs: [
-        {
-          name: 'amount',
-          type: 'tel',
-          placeholder: 'مبلغ به تومان',
-        },
-        {
-          name: 'discount',
-          placeholder: 'کد هدیه'
-        },
-      ]
+            return false;
+          },
+        }],
+        cssClass: "myalert",
+        inputs: [
+          {
+            name: 'amount',
+            type: 'tel',
+            placeholder: 'مبلغ به تومان',
+          },
+          {
+            name: 'discount',
+            placeholder: 'کد هدیه'
+          },
+        ]
 
-    });
-    alert.present();
-    }else{
+      });
+      alert.present();
+    } else {
       this.navCtrl.push(SplashSelectPage);
     }
   };
   backpressed() {
-    this.app.getRootNav().setRoot(TabsControllerPage);
+    // if (this.view == 'search')
+    //   this.navCtrl.setRoot(SearchTabPage);
+    // else
+      this.app.getRootNav().setRoot(TabsControllerPage);
   };
   doInfinite(infiniteScroll) {
     this.scroll = 'topScroll';
@@ -253,32 +259,32 @@ export class StorePage {
   };
   fault() {
     let accessToken = localStorage.getItem("access_token");
-    if(accessToken){
-    var param = new HttpParams().append('BranchId', this.store.storeId);
-    this.http.get(this.baseUrl + 'api/Branch/NonCooperation', { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-      .subscribe(data => {
-        this.ionfo = <any>data;
-        let modalConfirm = this.modalC.create('ModalConfirmation', { message: this.ionfo['message'] });
-        modalConfirm.present();
-      });
-      }else{
-        this.navCtrl.push(SplashSelectPage);
-      }
+    if (accessToken) {
+      var param = new HttpParams().append('BranchId', this.store.storeId);
+      this.http.get(this.baseUrl + 'api/Branch/NonCooperation', { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+        .subscribe(data => {
+          this.ionfo = <any>data;
+          let modalConfirm = this.modalC.create('ModalConfirmation', { message: this.ionfo['message'] });
+          modalConfirm.present();
+        });
+    } else {
+      this.navCtrl.push(SplashSelectPage);
+    }
   };
   Follow() {
     let accessToken = localStorage.getItem("access_token");
-    if(accessToken){
-    var body = new HttpParams().append('branchId', this.store.storeId);
-    this.http.request('Post', this.baseUrl + 'api/Store/FollowStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-      .subscribe(data => {
-        if (data['info'] == "true") {
-          this.IsFollow = true;
-        }
-        else if (data['info'] == "false") {
-          this.IsFollow = false;
-        }
-      });
-    }else{
+    if (accessToken) {
+      var body = new HttpParams().append('branchId', this.store.storeId);
+      this.http.request('Post', this.baseUrl + 'api/Store/FollowStore', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+        .subscribe(data => {
+          if (data['info'] == "true") {
+            this.IsFollow = true;
+          }
+          else if (data['info'] == "false") {
+            this.IsFollow = false;
+          }
+        });
+    } else {
       this.navCtrl.push(SplashSelectPage);
     }
   }

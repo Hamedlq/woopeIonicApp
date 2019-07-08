@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/v2/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,76 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.android .alert-title {
+  font-weight: bold !important;
+  margin-bottom: 15px !important;
+}
+.android .alert-button {
+  font-weight: 500;
+  border-radius: 50px !important;
+  text-transform: uppercase;
+  color: #172d20;
+  background-color: transparent;
+  margin: 0 8px 0 0;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: #6ad195;
+  margin-top: -23px;
+  -webkit-box-shadow: 5;
+  box-shadow: 5;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  margin-bottom: 20px !important;
+  text-align: center !important;
+}
+.android .alert-button span {
+  text-align: center !important;
+  color: #fff;
+}
+.android .alert-message {
+  text-align: center !important;
+  text-decoration: none !important;
+  margin-bottom: 15px !important;
+}
+.android .alert-message a {
+  text-align: center !important;
+  text-decoration: none !important;
+  margin-bottom: 15px !important;
+  font-weight: bold !important;
+  font-size: 20px;
+}
+// ---- ios
+.ios .alert-button {
+  font-weight: 500;
+  border-radius: 50px !important;
+  text-transform: uppercase;
+  color: #172d20;
+  background-color: transparent;
+  margin: 0 8px 0 0;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: #6ad195;
+  margin-top: -23px;
+  -webkit-box-shadow: 5;
+  box-shadow: 5;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  margin-bottom: 20px !important;
+  text-align: center !important;
+  color: #fff !important;
+}
+.ios .alert-title {
+  line-height: 1.8;
+}
+.ios .alert-message {
+  color: #000 !important;
+  direction: rtl !important;
+  font-size: 12px !important;
+  font-family: Iransans !important;
+}
+.ios .alert-message div {
+  margin: 10px;
+}
+.ios .alert-sub-title{
+    text-align: center;
+}
