@@ -22,7 +22,7 @@ export class AllPostPage {
     this.page = 0;
     this.profile = navParams.get('profile');
     var param = new HttpParams().append('page', this.page ).append('count','6');
-    this.http.get(this.baseUrl+ 'api/Post/GetAllActivePosts',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+    this.http.get(this.baseUrl+ 'api/SpecialOffer/GetActiveSpecialOffers',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
       this.ionfos =<any>data;
 
@@ -32,7 +32,7 @@ export class AllPostPage {
     this.page++;
     setTimeout(() => {
       var param = new HttpParams().append('page', this.page ).append('count', '6');
-    this.http.get(this.baseUrl+ 'api/Post/GetAllActivePosts',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+    this.http.get(this.baseUrl+ 'api/SpecialOffer/GetActiveSpecialOffers',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
           let newitems=<any>data;
           if(newitems.length>1){
@@ -45,20 +45,20 @@ export class AllPostPage {
     }, 500);
   };
 
-  like(ionfo,event){
-    if(ionfo.isLiked){
-      ionfo.countLike--;
-      ionfo.isLiked=false;
-    }else{
-      ionfo.countLike++;
-      ionfo.isLiked=true;
-    }
-    var body = new HttpParams().append('ImageID', ionfo['id']);
-    this.http.request('Post', this.baseUrl + 'api/Post/ChangeLikeImage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
-    .subscribe(data => {
-    });
+//   like(ionfo,event){
+//     if(ionfo.isLiked){
+//       ionfo.countLike--;
+//       ionfo.isLiked=false;
+//     }else{
+//       ionfo.countLike++;
+//       ionfo.isLiked=true;
+//     }
+//     var body = new HttpParams().append('ImageID', ionfo['id']);
+//     this.http.request('Post', this.baseUrl + 'api/Post/ChangeLikeImage', { body: body, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
+//     .subscribe(data => {
+//     });
 
-};
+// };
 // butporo(ionfo){
 //   var te = new HttpParams()
 //       .append('ProductId',ionfo['id']);
@@ -76,25 +76,25 @@ storeclick(store){
   this.app.getRootNav().setRoot(StorePage , { store: store,profile:this.profile});
 }; 
 count : number = 0;
-Double(ionfo,event){
-this.count++;
-setTimeout(() => {
-  if (this.count == 1) {
-    this.count = 0;
-  }
-  if(this.count > 1){
-    this.count = 0;
-    let elementOne = ionfo.id;
-    var elementTow = document.getElementById(elementOne);
-    setTimeout(() => {
-      elementTow.classList.remove('icon','ion-ios-heart');
-    },700);
-      elementTow.classList.add('icon','ion-ios-heart');
-  if(!ionfo.isLiked){
-      this.like(ionfo,event);
-    }
-  }
-}, 250);
+// Double(ionfo,event){
+// this.count++;
+// setTimeout(() => {
+//   if (this.count == 1) {
+//     this.count = 0;
+//   }
+//   if(this.count > 1){
+//     this.count = 0;
+//     let elementOne = ionfo.id;
+//     var elementTow = document.getElementById(elementOne);
+//     setTimeout(() => {
+//       elementTow.classList.remove('icon','ion-ios-heart');
+//     },700);
+//       elementTow.classList.add('icon','ion-ios-heart');
+//   if(!ionfo.isLiked){
+//       this.like(ionfo,event);
+//     }
+//   }
+// }, 250);
 
-  };
+//   };
 };

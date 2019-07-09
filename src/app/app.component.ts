@@ -62,7 +62,7 @@ export class MyApp {
     let alert = this.alertCtrl.create({
       title: 'به ووپ خوش آمدید',
       subTitle: 'لینک دانلود اپلیکیشن اندروید ووپ',
-      message: '<a href="https://cafebazaar.ir/app/ir.woope.woopeapp/?l=en">لینک دانلود</a>',
+      message: '<a href="https://cafebazaar.ir/app/ir.woope.woopeapp/?l=fa">لینک دانلود</a>',
       buttons: ['!متوجه شدم'],
       cssClass: 'android',
     });

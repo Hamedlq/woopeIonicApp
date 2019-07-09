@@ -1,6 +1,6 @@
-// export const serverUrl = 'http://192.168.100.3:80/';
+export const serverUrl = 'http://192.168.100.3:80/';
 // export const serverUrl = 'http://localhost/';
-export const serverUrl = 'https://mywoope.com/';
+// export const serverUrl = 'https://mywoope.com/';
 // export const serverUrl = 'http://localhost/';
 // export const serverUrl = 'http://192.168.100.4:80/';
 // {
