@@ -25,7 +25,11 @@ export class AllPostPage {
     this.http.get(this.baseUrl+ 'api/SpecialOffer/GetActiveSpecialOffers',  { params: param, headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') })
     .subscribe(data => {
       this.ionfos =<any>data;
-
+      if(this.ionfos.length>1){
+        for (let i = 0; i < this.ionfos.length; i++) {
+          this.ionfos[i].show=false;
+        }
+      }
     });
   }
   doInfinite(infiniteScroll) {
@@ -72,6 +76,7 @@ export class AllPostPage {
         
 // };
 storeclick(store){
+  console.log(store);
   store.storeId=store.branchId;
   this.app.getRootNav().setRoot(StorePage , { store: store,profile:this.profile});
 }; 

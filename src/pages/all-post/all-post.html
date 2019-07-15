@@ -1,29 +1,30 @@
-<div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
+<!-- <div style="width:100%; z-index: 10;height:150px; position: fixed;display:block;">
 
   <img src="assets/img/logo_white.png" class="logo" />
   <img src="assets/img/home2.png"
     style="z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" />
-  <!-- <img src="assets/img/home_shadow.png" style="margin-top:-50px; z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />-->
-</div>
-<ion-content style="background-color:#F7F6FB;margin-top: 90px;">
+   <img src="assets/img/home_shadow.png" style="margin-top:-50px; z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />
+</div> -->
+<ion-content style="background-color:#F7F6FB;margin-top: 0px;">
   <!-- <img src="assets/img/home2.png" style="position: fixed; overflow: hidden;position: fixed;top: 0; z-index: 100; width:100%;height:120px !important;margin-left:auto;margin-right:auto;" /> -->
-  <img src="assets/img/home_shadow.png"
-    style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" />
+  <!-- <img src="assets/img/home_shadow.png"
+    style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" /> -->
   <!-- <ion-spinner  style="position:absolute;left:50%;top:50%"></ion-spinner> -->
   <div *ngFor="let ionfo of ionfos">
-    <div col-12 style="float:right">
-      <h4 style=" margin-right:3%;  float: right; direction: ltr" on-click="storeclick(ionfo)">
+    <ion-card>
+    <div col-12 style="float:right" on-click="storeclick(ionfo)">
+      <h4 style=" margin-right:3%; text-align: center;" >
         {{ ionfo.storeName }}
       </h4>
     </div>
 
     <div col-12>
       <div class="container">
-          <ion-slides pager="true" style="width:100% ; height:90% ; margin:0px;">
+          <ion-slides pager="true" style="width:100% ; height:85% ; margin:0px;">
           <div *ngFor="let imageAddress of ionfo.listOfImageAddress">
               <ion-slide>
-        <img class="image" style="width:100% ; height:90% ; margin:0px;"
-          [src]="baseUrl + imageAddress" />
+        <img class="image" style="width:100% ; height:85% ; margin:0px;"
+          [src]="baseUrl + imageAddress" on-click="storeclick(ionfo)"/>
         </ion-slide>
         <!-- <ion-icon id={{ionfo.id}} [name]="Name" (click)="Double(ionfo, $event)"  class="text"></ion-icon> -->
         <!-- <i id={{ionfo.id}} (click)="Double(ionfo, $event)" class="icoon"></i>
@@ -35,14 +36,11 @@
       <!-- <button (click)="butporo(ionfo)" class="but">خرید غیرحضوری</button> -->
     </div>
     <div style="direction: rtl;margin-right: 5px" col-12>
-        <div style="margin-right: 15px">
-            <p>{{ ionfo.weekDayName }}</p>
-        </div>
-        <div style="margin-right: 15px">
-            <p>{{ ionfo.persianRegisterDate }} - {{ ionfo.persianExpireDate }}</p>
-        </div>
-        <div style="margin-right: 15px">
-            <p>{{ ionfo.title }}</p>
+      <div style="margin-right: 15px;text-align: center; ">
+        <p>{{ ionfo.title }}</p>
+      </div>
+        <div style="margin: 15px;">
+            <p>از  {{ ionfo.persianRegisterDate }} تا  {{ ionfo.persianExpireDate }}</p>
         </div>
       <!-- <div style="margin: 7px 10px 2px 10px">
         <i style="font-size:20px ; font-weight:bold ; float:left ; text-align:left ; margin:0px ;"
@@ -55,10 +53,14 @@
     </div>
     <div style="border-bottom: 1px solid black; direction: rtl;margin-right: 5px" col-12>
       <div style="margin-right: 17px">
-        <p>{{ ionfo.description }}</p>
-        
+        <p class="desc" [ngClass]="ionfo.show ? 'show' : ''">{{ ionfo.description }}</p>
+        <span *ngIf="ionfo.description.length > 40" on-click="ionfo.show =ionfo.show ? false : true">{{ ionfo.show ? 'نمایش کمتر' : 'نمایش بیشتر' }}</span>
       </div>
     </div>
+    <div style="margin-right: 15px;text-align: center; ">
+        <p>{{ ionfo.weekDayName }}</p>
+      </div>
+  </ion-card>
   </div>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
