@@ -11,7 +11,7 @@
     style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" /> -->
   <!-- <ion-spinner  style="position:absolute;left:50%;top:50%"></ion-spinner> -->
   <div *ngFor="let ionfo of ionfos">
-    <ion-card>
+    <ion-card style="border-radius: 20px;">
     <div col-12 style="float:right" on-click="storeclick(ionfo)">
       <h4 style=" margin-right:3%; text-align: center;" >
         {{ ionfo.storeName }}
@@ -51,13 +51,13 @@
         </p>-->
       </div> 
     </div>
-    <div style="border-bottom: 1px solid black; direction: rtl;margin-right: 5px" col-12>
-      <div style="margin-right: 17px">
+    <div style="direction: rtl;margin-right: 5px" col-12>
+      <div style="margin-right: 17px;margin-left: 17px">
         <p class="desc" [ngClass]="ionfo.show ? 'show' : ''">{{ ionfo.description }}</p>
-        <span *ngIf="ionfo.description.length > 40" on-click="ionfo.show =ionfo.show ? false : true">{{ ionfo.show ? 'نمایش کمتر' : 'نمایش بیشتر' }}</span>
+        <span *ngIf="ionfo.description.length > 60" on-click="ionfo.show =ionfo.show ? false : true">{{ ionfo.show ? 'نمایش کمتر' : 'نمایش بیشتر' }}</span>
       </div>
     </div>
-    <div style="margin-right: 15px;text-align: center; ">
+    <div style="margin-right: 0px;text-align: center; background-color: #7ae09f;height:25px; ">
         <p>{{ ionfo.weekDayName }}</p>
       </div>
   </ion-card>
