@@ -4,6 +4,7 @@ import { TransactionHistoryPage } from '../TransactionHistory/TransactionHistory
 import { EditPage } from '../Edit-Profile/Edit-Profile';
 import { serverUrl } from '../../Globals'
 import { HttpClient } from '@angular/common/http';
+import { FavoriteTabPage } from '../favorite-tab/favorite-tab';
 @Component({
   selector: 'page-profile-tab',
   templateUrl: 'profile-tab.html'
@@ -28,6 +29,9 @@ export class ProfileTabPage {
   transactionhistory() {
     this.navCtrl.push(TransactionHistoryPage);
   };
+  bookMarked() {
+    this.navCtrl.push(FavoriteTabPage);
+  };
   ionViewWillEnter() {
     let accessToken = localStorage.getItem("access_token");
     if(accessToken){
@@ -38,4 +42,5 @@ export class ProfileTabPage {
       });
   };
   }
+
 };

@@ -145,7 +145,8 @@ export class SearchTabPage {
     }
   }
   storeclick(store) {
-    this.app.getRootNav().setRoot(StorePage, { store: store, profile: this.profile ,view:"search"});
+    //this.app.getRootNav().setRoot(StorePage, { store: store, profile: this.profile ,view:"search"});
+    this.app.getRootNav().push(StorePage, { store: store, profile: this.profile ,view:"search"});
   }
   doInfinite(infiniteScroll) {
     this.searchview = false;
@@ -303,7 +304,8 @@ export class SearchTabPage {
     }
   }
   backpressed() {
-    this.app.getRootNav().setRoot(TabsControllerPage);
+    //this.app.getRootNav().setRoot(TabsControllerPage);
+    this.navCtrl.popTo(TabsControllerPage);
   }
   SelectSort(id) {
     this.searchview = false;

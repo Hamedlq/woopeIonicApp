@@ -37,6 +37,10 @@ import { contactUsPage } from '../pages/ContactUS/ContactUS';
 import { DataProvider } from '../providers/data/data';
 import { CacheModule } from 'ionic-cache';
 import { IonicStorageModule } from '@ionic/storage';
+import { SelectPurpose } from '../pages/SelectPurpose/select-purpose-tab';
+import { EarnMoneyPage } from '../pages/earn-money-page/earn-money-page';
+import { SpendMoneyPage } from '../pages/spend-money-page/spend-money-page';
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -67,7 +71,9 @@ import { IonicStorageModule } from '@ionic/storage';
     ModalConfirmations,
     LoginSignupTabPage,
     contactUsPage,
-
+    SelectPurpose,
+    EarnMoneyPage,
+    SpendMoneyPage
   ],
   imports: [
     BrowserModule,
@@ -112,12 +118,16 @@ import { IonicStorageModule } from '@ionic/storage';
     ModalConfirmations,
     contactUsPage,
     ModalConfirmations,
-    LoginSignupTabPage
+    LoginSignupTabPage,
+    SelectPurpose,
+    EarnMoneyPage,
+    SpendMoneyPage
   ],
   providers: [
     SocialSharing,
     // StatusBar,
     ToastController,
+    DecimalPipe,
     // InAppBrowser,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

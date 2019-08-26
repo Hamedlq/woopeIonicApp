@@ -78,8 +78,10 @@ export class AllPostPage {
 storeclick(store){
   console.log(store);
   store.storeId=store.branchId;
-  this.app.getRootNav().setRoot(StorePage , { store: store,profile:this.profile});
+  //this.app.getRootNav().setRoot(StorePage , { store: store,profile:this.profile});
+  this.app.getRootNav().push(StorePage , { store: store,profile:this.profile});
 }; 
+
 count : number = 0;
 // Double(ionfo,event){
 // this.count++;

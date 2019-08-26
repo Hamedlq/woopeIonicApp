@@ -11,14 +11,29 @@
     style="z-index: -20;display:block;width:100%;height:15dp;margin-left:auto;margin-right:auto" /> -->
   <!-- <ion-spinner  style="position:absolute;left:50%;top:50%"></ion-spinner> -->
   <div *ngFor="let ionfo of ionfos">
-    <ion-card style="border-radius: 20px;">
-    <div col-12 style="float:right" on-click="storeclick(ionfo)">
-      <h4 style=" margin-right:3%; text-align: center;" >
-        {{ ionfo.storeName }}
-      </h4>
+    <ion-card style="border-radius: 20px;" >
+    <div col-4 style="float:right;text-align: center;margin-top: 10px;" >
+          <button class="button button-stable">
+              <h4 style="padding: 5px;">
+                  تخفیف ٪<span>{{ ionfo.discountPercent }}</span>
+              </h4>
+          </button>
     </div>
-
-    <div col-12>
+    <div col-4 style="float:right;text-align: center;margin-top: 10px;">
+        <button class="button button-stable" on-click="storeclick(ionfo)">
+            <h4 style="padding: 5px;">
+            {{ ionfo.storeName }}
+            </h4>
+        </button>
+  </div>
+  <div col-4 style="float:right;text-align: center;margin-top: 10px;">
+      <button class="button button-royal" style="background-color: #8100F9; ">
+          <h4 style="padding: 5px;color: white;">
+              {{ ionfo.weekDayName }}
+          </h4>
+      </button>
+</div>
+<div col-12>
       <div class="container">
           <ion-slides pager="true" style="width:100% ; height:85% ; margin:0px;">
           <div *ngFor="let imageAddress of ionfo.listOfImageAddress">
@@ -31,11 +46,12 @@
         <i class="icon ion-android-favorite" (click)="Double(ionfo, $event)"  id="text" ></i> -->
       </div>
     </ion-slides>
+      </div>
     </div>
-    <div *ngIf="ionfo.canBeSold" col-6 style="float: right;direction: rtl;margin: 7px 10px 2px 10px">
-      <!-- <button (click)="butporo(ionfo)" class="but">خرید غیرحضوری</button> -->
-    </div>
-    <div style="direction: rtl;margin-right: 5px" col-12>
+    <!-- <div *ngIf="ionfo.canBeSold" col-6 style="float: right;direction: rtl;margin: 7px 10px 2px 10px">
+       <button (click)="butporo(ionfo)" class="but">خرید غیرحضوری</button>
+    </div> -->
+    <div col-12 style="direction: rtl;margin-right: 5px;margin-top: 20px;" >
       <div style="margin-right: 15px;text-align: center; ">
         <p>{{ ionfo.title }}</p>
       </div>
@@ -50,16 +66,16 @@
           <span style="float: left; margin: 0px"></span>{{ ionfo.countLike }}
         </p>-->
       </div> 
-    </div>
     <div style="direction: rtl;margin-right: 5px" col-12>
-      <div style="margin-right: 17px;margin-left: 17px">
-        <p class="desc" [ngClass]="ionfo.show ? 'show' : ''">{{ ionfo.description }}</p>
-        <span *ngIf="ionfo.description.length > 60" on-click="ionfo.show =ionfo.show ? false : true">{{ ionfo.show ? 'نمایش کمتر' : 'نمایش بیشتر' }}</span>
+      <div style="margin-right: 17px;margin-left: 17px;margin-bottom: 20px;">
+        <h6 class="desc" [ngClass]="ionfo.show ? 'show' : ''">{{ ionfo.description }}</h6>
+        <p style="text-align: center;" *ngIf="ionfo.description.length > 60" on-click="ionfo.show =ionfo.show ? false : true">{{ ionfo.show ? '' : 'نمایش بیشتر' }}</p>
       </div>
     </div>
-    <div style="margin-right: 0px;text-align: center; background-color: #7ae09f;height:25px; ">
+  <!-- </div>  -->
+    <!-- <div style="margin-right: 0px;text-align: center; background-color: #7ae09f;height:25px; ">
         <p>{{ ionfo.weekDayName }}</p>
-      </div>
+      </div> -->
   </ion-card>
   </div>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

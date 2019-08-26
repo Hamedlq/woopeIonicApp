@@ -1,0 +1,103 @@
+<ion-content style="background-color:#9132E9;">
+  <ion-icon (click)="backpressed()" class="back"
+    style="font-size: 25px; top: 13px;z-index: 100;right: 0; position: absolute; margin-right: 5px;color:#ffffff"
+    name="arrow-forward"></ion-icon>
+    <ion-item>
+    <div class="search-form">
+      <div class="search-box">
+        <input [(ngModel)]="valueSearch" type="text" (ngModelChange)="newsearch()"/>
+        <span></span>
+      </div>
+    </div>
+    <p style="text-align: center;color:white">پول در بیار</p>
+  </ion-item>
+  <button full on-click="choosecategorydialog()"
+    style="width: 49%; float: left;background-color: #F7F6FB;" ion-button>
+    <span
+      style="position: absolute; font-size: 11px;color:#4D4C4E;font-size: 12px;font-weight: bold">{{CategoryName}}</span>
+  </button>
+ 
+  <button full on-click="choosesortdialog()" 
+    style="width: 49%;float: right;background-color: #F7F6FB; " ion-button>
+    <span
+      style="position: absolute;font-size: 11px;display:block; width:150px;word-wrap:break-word;margin-right: 10px;color:#4D4C4E;font-weight: bold">{{SelectedSortName}}</span>
+  </button>
+ </ion-content>
+ <div id="myModal" class="modal">
+  <div class="modal-content">
+      <span style="float: left;margin-top: 0;" (click)="close()" class="close">&times;</span>
+      <div style="font-family: IRANSans;font-weight:bold ; float: right; display: block">
+        اشتراک گذاری</div>
+      <div style="margin-top: 35px; border-bottom: solid 1px #000000">
+      </div>
+      <div style="direction: rtl;margin-top: 10px; ">
+        <a style="color: #000000;  text-decoration: none" (click)="action()"
+          href="https://telegram.me/share/url?url=%20&text={{message}}">اشتراک گذاری در تلگرام
+          <img style="background-color: #ffffff; float: left;margin-left: 5px" width="18px" height="auto"
+            src="../assets/img/tele.png">
+        </a>
+      </div>
+      <!-- <div style="direction: rtl; margin-top: 15px">
+      <a style="color: #000000;text-decoration: none"
+      (click)="action()"
+       href="https://telegram.me/share/url?url=%20&text={{message}}"
+        target="_blank">اشتراک گذاری در اینستاگرام
+        <ion-icon style="float: left; font-size: 20px; color:#CE2580" name="logo-instagram"></ion-icon>
+      </a>
+    </div> -->
+      <div style="direction: rtl; margin-top: 15px">
+        <a class="whatssapp" style="color: #000000;text-decoration: none" (click)="action()" href="#">اشتراک گذاری
+          در
+          واتس اپ
+          <ion-icon style="float: left; font-size: 20px; color:#41C152" name="logo-whatsapp"></ion-icon>
+        </a>
+      </div>
+      <div style="direction: rtl; margin-top: 15px">
+        <a style="color: #000000;text-decoration: none" (click)="action()"
+          href="https://twitter.com/intent/tweet?url=%20&text={{message}}&via=%20">اشتراک گذاری در توییتر
+          <ion-icon style="float: left; font-size: 20px; color:#55ADED" name="logo-twitter"></ion-icon>
+        </a>
+      </div>
+      <div style="direction: rtl; margin-top: 15px">
+        <a class="sms" style="color: #000000;text-decoration: none" (click)="action()" href="#">اشتراک گذاری در
+          پیامک
+          <img style="background-color: #ffffff; float: left;margin-left: 5px" width="18px" height="auto"
+            src="../assets/img/sms.png">
+        </a>
+      </div>
+  </div>
+</div>
+<ion-content class="contentmoneysearch">
+  <div class="row griddirection">
+    <div (click)="storeclick(item)" *ngFor="let item of Items" class="cart">
+      <div class=" cartbadge">
+        <div class="checkout-price">
+          <span>{{item.returnPoint}} ووپ</span>
+        </div>
+      </div>
+      <div class="cartimg" col-4>
+        <img [src]="item.logoSrc? baseUrl+item.logoSrc : 'assets/img/fab.png'" />
+      </div>
+      <div class="cartDescription" col-8>
+        <h5>{{ item.storeName }}</h5>
+        <div *ngIf="item.returnPoint != 0" class="des">
+          <span class="spanDescription">به ازای هر {{item.basePriceStr}} تومان خرید
+            {{item.returnPoint}} عدد
+            ووپ
+            هدیه
+            بگیرید </span>
+        </div>
+        <div class="desw">
+          <span *ngIf="item.returnPoint == 0" class="spanDescription">{{item.storeDescription}} </span>
+        </div>
+        <p class="PDescription">
+          <ion-icon name="pin"></ion-icon>
+          {{item.zone}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

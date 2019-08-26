@@ -57,9 +57,10 @@ export class FavoriteTabPage {
       });
   }
   storeclick(store) {
-    this.app
-      .getRootNav()
-      .setRoot(StorePage, { store: store, profile: this.profile });
+    // this.app
+    //   .getRootNav()
+    //   .setRoot(StorePage, { store: store, profile: this.profile });
+    this.app.getRootNav().push(StorePage, { store: store, profile: this.profile ,view:"favorite"});
   }
   like(store, event) {
     var body = new HttpParams().append("branchId", store.storeId);
@@ -87,5 +88,7 @@ export class FavoriteTabPage {
         this.items = <any>data;
       });
   }
-
+  backpressed() {
+    this.navCtrl.pop();
+  }
 }

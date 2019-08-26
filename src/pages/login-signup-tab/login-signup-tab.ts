@@ -44,6 +44,7 @@ export class LoginSignupTabPage {
     if (!params) params = {};
     this.navCtrl.push(RegisterPage);
   }
+  
   goToLogin(params){
     if (!params) params = {};
     this.navCtrl.push(LoginPage);

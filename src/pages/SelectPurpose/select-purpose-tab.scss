@@ -1,0 +1,59 @@
+page-select-purpose {
+
+
+.title_image{
+  max-height: 150px;
+}
+.centering{
+  text-align:center;
+}
+.android .alert-title {
+  font-weight: bold !important;
+  margin-bottom: 15px !important;
+}
+.android .alert-button {
+  text-transform: uppercase;
+  color: #172d20;
+  background-color: transparent;
+  text-align: center !important;
+}
+.android .alert-button span {
+  text-align: center !important;
+  color: #fff;
+}
+.android .alert-message {
+  text-align: center !important;
+  text-decoration: none !important;
+  margin-bottom: 15px !important;
+  background: #fff
+}
+.android .alert-message a {
+  text-align: center !important;
+  text-decoration: none !important;
+  margin-bottom: 15px !important;
+  font-weight: bold !important;
+  font-size: 20px;
+}
+// ---- ios
+.ios .alert-button {
+  text-transform: uppercase;
+  color: #172d20;
+  background-color: transparent;
+}
+.ios .alert-title {
+  line-height: 1.8;
+}
+.ios .alert-message {
+  direction: rtl !important;
+  font-size: 12px !important;
+  font-family: Iransans !important;
+  background: #fff
+}
+.ios .alert-message div {
+  margin: 10px;
+}
+.ios .alert-sub-title{
+    text-align: center;
+}
+
+}

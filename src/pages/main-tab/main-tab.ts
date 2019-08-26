@@ -81,7 +81,8 @@ export class MainTabPage {
       });
   }
   contactUs() {
-    this.app.getRootNav().setRoot(contactUsPage);
+    //this.app.getRootNav().setRoot(contactUsPage);
+    this.app.getRootNav().push(contactUsPage);
   }
   searchBox(ev) {
     this.page = 0;
@@ -92,7 +93,8 @@ export class MainTabPage {
       });
   }
   storeclick(store) {
-    this.app.getRootNav().setRoot(StorePage, { store: store, profile: this.profile });
+    //this.app.getRootNav().setRoot(StorePage, { store: store, profile: this.profile });
+    this.app.getRootNav().push(StorePage, { store: store, profile: this.profile });
   }
 
   likeFerst(itam) {
@@ -140,7 +142,7 @@ export class MainTabPage {
   //   }
   // }
   openGift() {
-    this.app.getRootNav().setRoot(GiftPage);
+    this.app.getRootNav().push(GiftPage);
   }
 
   showList(item) {

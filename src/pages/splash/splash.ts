@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
 import { serverUrl } from '../../Globals';
 import { ResponseStatus } from '../Enum/enum';
+import { EarnMoneyPage } from '../earn-money-page/earn-money-page';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class SplashPage {
             
             //navCtrl.push('bank');
             navCtrl.setRoot(TabsControllerPage,{profile:data});
+            //navCtrl.setRoot(EarnMoneyPage,{profile:data});
           } else {
             let toast = toastCtrl.create({
               message: 'خطا در شبکه. لطفا دوباره سعی کنید',

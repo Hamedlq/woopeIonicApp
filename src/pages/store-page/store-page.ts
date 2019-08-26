@@ -82,33 +82,7 @@ export class StorePage {
       });
 
   }
-  // seperateReturnWoope(returnPoint: string) {
-  //   returnPoint = returnPoint.toString();
-  //   let lenght = returnPoint.length;
-  //   let extra = lenght % 3;
-  //   let firstdigit: string;
-  //   let digit: string;
-  //   if (extra != 0) {
-  //     firstdigit = returnPoint.substring(0, extra);
-  //     digit = firstdigit;
-  //     let st = (extra)
-  //     let ed = (extra + 3);
-  //     for (var i = 0; i < (lenght - extra); i += 3) {
-  //       digit += "," + returnPoint.substring((st + i), (ed + i))
-  //     }
-  //   }
-  //   else {
-  //     firstdigit = returnPoint.substring(0, 3);
-  //     let digit: string = firstdigit;
-  //     extra = 3;
-  //     let st = (extra)
-  //     let ed = (extra + 3);
-  //     for (var j = 0; j < (lenght - extra); j += 3) {
-  //       digit += "," + returnPoint.substring((st + j), (ed + j));
-  //     }
-  //   }
-  //   return digit;
-  // }
+  
 
   modal() {
     let accessToken = localStorage.getItem("access_token");
@@ -218,7 +192,8 @@ export class StorePage {
     // if (this.view == 'search')
     //   this.navCtrl.setRoot(SearchTabPage);
     // else
-      this.app.getRootNav().setRoot(TabsControllerPage);
+      //this.app.getRootNav().setRoot(TabsControllerPage);
+      this.navCtrl.popTo(TabsControllerPage);
   };
   doInfinite(infiniteScroll) {
     this.scroll = 'topScroll';

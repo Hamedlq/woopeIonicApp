@@ -9,6 +9,7 @@ import { MainTabPage } from '../main-tab/main-tab';
 import {AllPostPage} from '../all-post/all-post'
 import { LoginSignupTabPage } from '../login-signup-tab/login-signup-tab';
 import { Platform } from 'ionic-angular';
+import { SelectPurpose } from '../SelectPurpose/select-purpose-tab';
 @Component({
   selector: 'page-tabs-controller',
   templateUrl: 'tabs-controller.html'
@@ -19,7 +20,9 @@ export class TabsControllerPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   //tab1Root: any = StoreTabPage;
-  tab1Root: any = MainTabPage;
+  //tab1Root: any = MainTabPage;
+  tab1Root: any = SelectPurpose;
+  
   tab2Root: any = SearchTabPage;
   //tab3Root: any = WoopeTabPage;
   tab3Root: any = AllPostPage;
@@ -37,7 +40,7 @@ export class TabsControllerPage {
       .subscribe(data => {
         this.profile=data;
       });
-      this.tab4Root = FavoriteTabPage;
+      this.tab4Root = MainTabPage;
       this.tab5Root = ProfileTabPage;
     }
   };

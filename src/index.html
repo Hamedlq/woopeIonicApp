@@ -60,10 +60,14 @@
   <script src="build/main.js"></script>
 
   <script src="https://static.pushe.co/pusheweb.js"></script>
-  <script>
-    Pushe.init("2eymj455l78ykpje");
+<script>
+    Pushe.init("2eym2rk722nxxxxe");
     Pushe.subscribe();
-  </script>
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+    });
+</script>
 
 </body>
 

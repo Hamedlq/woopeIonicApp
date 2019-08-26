@@ -25,11 +25,11 @@ page-tabs-controller {
       height: $sz;
     } // custom icons
     &[class*="pinn"][ng-reflect-is-active="true"] {
-      background: url("../assets/img/homeac.svg") no-repeat 50% 50%;
+      background: url("../assets/img/home_v2.png") no-repeat 50% 50%;
       background-size: 25px;
     } //in case of active
     &[class*="pinn"][ng-reflect-is-active="false"] {
-      background: url("../assets/img/home.svg") no-repeat 50% 50%;
+      background: url("../assets/img/home_v2.png") no-repeat 50% 50%;
       background-size: 25px;
     } //in case of inactive
   }
@@ -42,11 +42,11 @@ page-tabs-controller {
       height: $sz;
     } // custom icons
     &[class*="pinsearch"][ng-reflect-is-active="true"] {
-      background: url("../assets/img/searchac.svg") no-repeat 50% 50%;
+      background: url("../assets/img/search_v2.png") no-repeat 50% 50%;
       background-size: 25px;
     } //in case of active
     &[class*="pinsearch"][ng-reflect-is-active="false"] {
-      background: url("../assets/img/search.svg") no-repeat 50% 50%;
+      background: url("../assets/img/search_v2.png") no-repeat 50% 50%;
       background-size: 25px;
     } //in case of inactive
   }
@@ -59,11 +59,11 @@ page-tabs-controller {
       height: $sz;
     } // custom icons
     &[class*="pinbookmark"][ng-reflect-is-active="true"] {
-      background: url("../assets/img/bookmarkac.svg") no-repeat 50% 50%;
+      background: url("../assets/img/notification.png") no-repeat 50% 50%;
       background-size: 25px;
     } //in case of active
     &[class*="pinbookmark"][ng-reflect-is-active="false"] {
-      background: url("../assets/img/bookmark.svg") no-repeat 50% 50%;
+      background: url("../assets/img/notification.png") no-repeat 50% 50%;
       background-size: 25px;
     } //in case of inactive
   }
@@ -76,16 +76,47 @@ page-tabs-controller {
       height: $sz;
     } // custom icons
     &[class*="pinperson"][ng-reflect-is-active="true"] {
-      background: url("../assets/img/personac.svg") no-repeat 50% 50%;
+      background: url("../assets/img/profile_v2.png") no-repeat 50% 50%;
       background-size: 25px;
     } //in case of active
     &[class*="pinperson"][ng-reflect-is-active="false"] {
-      background: url("../assets/img/person.svg") no-repeat 50% 50%;
+      background: url("../assets/img/profile_v2.png") no-repeat 50% 50%;
       background-size: 25px;
     } //in case of inactive
   }
   .tabs-md .tabbar {
     background: #f8f8f8;
     height: 35px !important;
+  }
+  
+  .ion-ios-cart-pinn-outline,
+  .ion-ios-cart-pinn,.ion-md-cart-pinn,.ion-md-cart-pinn-outline {
+    content: url('../assets/img/home_v2.png');
+    max-width: 25px;
+    max-height: 25px;
+  }
+  .ion-ios-search-pinsearch-outline,
+  .ion-ios-search-pinsearch,.ion-md-search-pinsearch,.ion-md-search-pinsearch-outline {
+    content: url('../assets/img/search_v2.png');
+    max-width: 25px;
+    max-height: 25px;
+  }
+  .ion-ios-custom-pin-outline,
+  .ion-ios-custom-pin,.ion-md-custom-pin,.ion-md-custom-pin-outline {
+    content: url('../assets/img/fab_bg.png');
+    max-width: 25px;
+    max-height: 25px;
+  }
+  .ion-ios-bookmark-pinbookmark-outline,
+  .ion-ios-bookmark-pinbookmark,.ion-md-bookmark-pinbookmark,.ion-md-bookmark-pinbookmark-outline {
+    content: url('../assets/img/notification.png');
+    max-width: 25px;
+    max-height: 25px;
+  }
+  .ion-ios-person-pinperson-outline,
+  .ion-ios-person-pinperson,.ion-md-person-pinperson,.ion-md-person-pinperson-outline {
+    content: url('../assets/img/profile_v2.png');
+    max-width: 25px;
+    max-height: 25px;
   }
 }

@@ -5,6 +5,7 @@ import { serverUrl } from '../../Globals';
 import { CashPayCodePage } from '../cash-pay-code/cash-pay-code';
 import { ResponseStatus } from '../Enum/enum';
 import { CreditePayCodePage } from '../creditepaycode/creditepaycode';
+import { DecimalPipe } from '@angular/common';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class PayPage {
   switch_woope: boolean;
   persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
   arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+  constructor(public navCtrl: NavController,public dc: DecimalPipe, public navParams: NavParams, private http: HttpClient) {
     this.disableButton = false;
     this.showCash = true;
     this.baseUrl = serverUrl;
@@ -155,7 +156,7 @@ export class PayPage {
         //   }
         // });
         //this.iab.create("http://mywoope.com/api/Pay/GoToBankFromWeb?token="+data["token"]);
-        window.open("http://mywoope.com/api/Pay/GoToBankFromWeb?token=" + data["token"], '_self');
+        window.open("http://mywoope.com/api/Pay/GoToBankFromWeb?token=" + data["token"], '_blank');
       }, onerror => { this.disableButton = false; });
   }
   calculateValues() {
@@ -168,26 +169,29 @@ export class PayPage {
         this.showCash = false
       }
     }
+    // if(this.giftwoope!=0){
+    //   this.totalPrice=this.totalPrice-this.giftwoope;
+    // }
     //console.log(rw);
     this.return_woope = rw;
     if (!this.isOnline) {
-      this.pay_price = this.totalPrice;
-      this.payPriceValue = this.totalPrice;
-      this.Btntxt = "پرداخت (" + this.totalPrice + " تومان)";
+      this.pay_price = this.totalPrice-this.giftwoope;
+      this.payPriceValue = this.totalPrice-this.giftwoope;
+      this.Btntxt = "پرداخت (" + ((this.totalPrice-this.giftwoope)) + " تومان)";
       this.toman_use = "0";
       this.woope_use = "0";
       this.remain_toman = "0";
       this.tax = "0";
     } else {
-      let alpha = this.totalPrice - this.profile.moneyCredit;
-      let beta = this.totalPrice - (this.profile.woopeCredit * 1000);
-      let gama = this.totalPrice - this.profile.moneyCredit - (this.profile.woopeCredit * 1000);
+      let alpha = this.totalPrice-this.giftwoope - this.profile.moneyCredit;
+      let beta = this.totalPrice-this.giftwoope - (this.profile.woopeCredit * 1000);
+      let gama = this.totalPrice-this.giftwoope - this.profile.moneyCredit - (this.profile.woopeCredit * 1000);
       //    long  remainToman=profile.getTomanCredit()-totalprice;
       this.toman_use = "0";
       if (!this.switch_credit && !this.switch_woope) {
-        this.pay_price = this.totalPrice;
-        this.payPriceValue = this.totalPrice;
-        this.Btntxt = "پرداخت (" + this.totalPrice + " تومان)";
+        this.pay_price = this.totalPrice-this.giftwoope;
+        this.payPriceValue = this.totalPrice-this.giftwoope;
+        this.Btntxt = "پرداخت (" + this.dc.transform((this.totalPrice-this.giftwoope), '2.')+ " تومان)";
         this.toman_use = "0";
         this.woope_use = "0";
         this.remain_toman = "0";
@@ -198,7 +202,7 @@ export class PayPage {
           this.pay_price = "0";
           this.payPriceValue = 0;
           this.Btntxt = "پرداخت (" + 0 + " تومان)";
-          this.toman_use = this.totalPrice;
+          this.toman_use = this.totalPrice-this.giftwoope;
           this.woope_use = "0";
           this.remain_toman = "0";
           this.tax = "0";
@@ -207,14 +211,14 @@ export class PayPage {
           this.pay_price = "0";
           this.payPriceValue = 0;
           this.Btntxt = "پرداخت (" + 0 + " تومان)";
-          this.toman_use = this.totalPrice;
+          this.toman_use = this.totalPrice-this.giftwoope;
           this.woope_use = "0";
           this.remain_toman = "0";
           this.tax = "0";
         } else if (alpha > 0) {
           this.payPriceValue = alpha;
           this.pay_price = alpha;
-          this.Btntxt = "پرداخت (" + alpha + " تومان)";
+          this.Btntxt = "پرداخت (" + (alpha-this.giftwoope) + " تومان)";
           this.toman_use = this.profile.moneyCredit;
           this.woope_use = "0";
           this.remain_toman = "0";
@@ -232,7 +236,7 @@ export class PayPage {
           this.tax = "0";
 
         } else if (beta < 0) {
-          let integerPart = Math.ceil(this.totalPrice / 1000);
+          let integerPart = Math.ceil((this.totalPrice-this.giftwoope) / 1000);
           let remainder = Math.abs(beta % 1000);
           this.payPriceValue = 0;
           this.pay_price = "0";
@@ -257,7 +261,7 @@ export class PayPage {
           this.payPriceValue = 0;
           this.pay_price = "0";
           this.Btntxt = "پرداخت (" + "0" + " تومان)";
-          this.toman_use = this.totalPrice;
+          this.toman_use = this.totalPrice-this.giftwoope;
           this.woope_use = "0";
           this.remain_toman = "0";
           this.tax = "0";

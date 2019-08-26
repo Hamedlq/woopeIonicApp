@@ -48,6 +48,7 @@ export class LoginPage {
             }else{
               //this.navCtrl.push(TabsControllerPage);
               this.navCtrl.setRoot(TabsControllerPage);
+              //this.navCtrl.popTo(TabsControllerPage);
             }
           });
         } else {

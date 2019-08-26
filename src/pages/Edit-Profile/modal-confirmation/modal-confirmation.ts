@@ -20,7 +20,8 @@ export class ModalConfirmationPage {
   logout(){
     localStorage.clear(); 
     this.events.publish('user:logout');
-    this.navCtrl.push(TabsControllerPage);
+    //this.navCtrl.push(TabsControllerPage);
+    this.navCtrl.setRoot(TabsControllerPage);
   };
 
 }

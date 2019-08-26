@@ -50,7 +50,8 @@ export class GiftPage {
   }
   backpressed() {
     
-    this.app.getRootNav().setRoot(TabsControllerPage);
+    //this.app.getRootNav().setRoot(TabsControllerPage);
+    this.navCtrl.popTo(TabsControllerPage);
   }
 
   goToRegister(params){

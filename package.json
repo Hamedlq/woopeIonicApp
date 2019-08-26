@@ -1,6 +1,6 @@
 {
   "name": "Woope",
-  "version": "0.0.20",
+  "version": "0.0.24",
   "author": "CSFORM",
   "homepage": "http://csform.com/",
   "private": true,
@@ -64,7 +64,6 @@
     "ngx-clipboard": "^12.0.0",
     "phonegap-plugin-barcodescanner": "^8.0.1",
     "promise-polyfill": "8.1.0",
-    "pushe-webpush": "^0.7.11",
     "query-string": "^6.5.0",
     "rxjs": "6.5.2",
     "rxjs-compat": "^6.5.2",
