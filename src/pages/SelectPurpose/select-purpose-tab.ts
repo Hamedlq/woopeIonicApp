@@ -21,7 +21,7 @@ export class SelectPurpose {
   }
   async earnMoney() {
     const alert = await this.alertController.create({
-      title: '<img class="title_image" src="assets/img/earn_popup.png" on-click="gotoearn()">',
+      title: '<img height="150" class="title_image" src="assets/img/earn_popup.png" on-click="gotoearn()">',
       message: 'فروشگاه‌ها رو تو شبکه‌های مجازی به دوستات معرفی کن و ووپ بگیر ',
       buttons: [
         {
@@ -38,8 +38,8 @@ export class SelectPurpose {
 
   async spendMoney() {
     const alert = await this.alertController.create({
-      title: '<img class="title_image" src="assets/img/pay_popup.png" on-click="gotoearn()">',
-      message: 'به فروشگاه ها پرداخت کن</br>و از تخفیفاتشون استفاده کن ',
+      title: '<img height="150" class="title_image" src="assets/img/pay_popup.png" on-click="gotoearn()">',
+      message: 'به فروشگاه ها پرداخت کن<br> و از تخفیفاتشون استفاده کن ',
       buttons: [
         {
           text: 'متوجه شدم',

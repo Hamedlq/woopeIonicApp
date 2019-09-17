@@ -52,6 +52,13 @@ export class PayPage {
     this.discountCode = navParams.get('discount');
     this.isOnline = true;
     this.calculateValues();
+    
+    let accessToken = localStorage.getItem("access_token");
+    this.http.post(serverUrl + 'api/Profile/GetProfile', {})
+    .subscribe(data => {
+      this.profile=data;
+    });
+
     if (this.payListId) {
       this.ConfirmPayment(this.payListId);
     }
